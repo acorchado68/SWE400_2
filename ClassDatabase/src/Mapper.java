@@ -1,4 +1,5 @@
 
-public abstract class Mapper {
+public abstract class Mapper 
+{
 
 }

@@ -8,9 +8,9 @@ import java.sql.SQLException;
 
 public class TestConnection {
 	
-    public static Connection getConnection(String[] args) throws SQLException 
+	public static Connection conn;
+    public static Connection getConnection() throws SQLException 
     {
-    	Connection conn;
     	String url = "jdbc:mysql://157.160.36.32:3306/swe400-23?autoReconnect=true";
     	String username = "swe400_2";
     	String password = "pwd4swe400_2F16";
@@ -18,11 +18,7 @@ public class TestConnection {
     	System.out.println("Connecting database...");
 
     	conn = DriverManager.getConnection(url, username, password);
-    	try (Connection connection = conn) {
-    	    System.out.println("Database connected!");
-    	} catch (SQLException e) {
-    	    throw new IllegalStateException("Cannot connect the database!", e);
-    	}
+    
     	return conn;
    }  
 }
