@@ -3,7 +3,8 @@ import java.sql.SQLException;
 
 public class NailMapper extends AbstractFastenerMapper 
 {
-
+	protected int numberInBox;
+	
 	public NailMapper(int id, String upc, int manufacturerID, int price, long length, int numberInBox) 
 	{
 		super(id, upc, manufacturerID, price, length);
@@ -26,6 +27,22 @@ public class NailMapper extends AbstractFastenerMapper
 	public NailMapper(int id)
 	{
 		super(id);
+		
+		java.sql.PreparedStatement stmt = null;
+		try {
+			Connection conn = TestConnection.getConnection();
+			
+			String query = "Insert into Nail (id, numberInBox) VALUES (" + id + "," + numberInBox +  ");";
+
+			stmt = conn.prepareStatement(query);
+			stmt.execute();
+
+			numberInBox = 0;
+			
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

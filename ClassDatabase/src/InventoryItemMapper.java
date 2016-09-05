@@ -5,10 +5,12 @@ public class InventoryItemMapper extends Mapper
 
 	public static void main(String args[])
 	{
-		//new NailMapper(7, "5", 9, 10, 5, 20);
+		NailMapper a = new NailMapper(7, "5", 9, 10, 5, 20);
 		//new PowerToolMapper(9, "6", 5, 10, "9", 0);
 		//new StripNailsMapper(10, "4", 6, 5, 10, 30);
 		//new ToolMapper(11, "9",5, 7, "5");
+		
+		//ToolMapper new ToolMapper(1);
 	}
 	
 }
