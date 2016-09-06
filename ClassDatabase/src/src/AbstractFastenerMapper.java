@@ -19,8 +19,7 @@ public abstract class AbstractFastenerMapper extends AbstractInventoryItemMapper
 			String query = "Insert into Fastener (id, length) VALUES (" + id + "," + length +  ");";
 			stmt = conn.prepareStatement(query);
 			stmt.execute();
-			
-			conn.close();
+		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

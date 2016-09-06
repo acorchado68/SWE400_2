@@ -22,7 +22,6 @@ public abstract class AbstractInventoryItemMapper extends Mapper
 		
 		try {
 			Connection conn = TestConnection.getConnection();
-			
 			PreparedStatement query = conn.prepareStatement("Insert into InventoryItem (id, upc, manufacturerID, price) VALUES (?,?,?,?);"); //" + id + ",'" + upc + "'," + manufacturerID + "," + price + ");");
 			
 			query.setInt(1, id);
@@ -31,11 +30,7 @@ public abstract class AbstractInventoryItemMapper extends Mapper
 			query.setInt(4, price);
 			
 			query.execute();
-			
-			conn.close();
-			
-			
-			
+				
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

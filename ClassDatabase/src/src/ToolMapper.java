@@ -18,8 +18,6 @@ public class ToolMapper extends AbstractInventoryItemMapper
 			stmt = conn.prepareStatement(query);
 			stmt.execute();
 			
-			conn.close();
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

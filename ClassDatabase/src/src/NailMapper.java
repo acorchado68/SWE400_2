@@ -20,7 +20,6 @@ public class NailMapper extends AbstractFastenerMapper
 			stmt = conn.prepareStatement(query);
 			stmt.execute();
 			
-			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

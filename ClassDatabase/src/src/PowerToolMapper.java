@@ -18,7 +18,6 @@ public class PowerToolMapper extends ToolMapper
 			stmt = conn.prepareStatement(query);
 			stmt.execute();
 			
-			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
