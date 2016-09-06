@@ -1,21 +1,22 @@
+package src;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public abstract class AbstractFastenerMapper extends AbstractInventoryItemMapper
+public class NailMapper extends AbstractFastenerMapper 
 {
-	protected long length;
+	protected int numberInBox;
+	private final String CLASSNAME = "Nail";
 	
-	public AbstractFastenerMapper(int id, String upc, int manufacturerID, int price, long length) 
+	public NailMapper(int id, String upc, int manufacturerID, int price, long length, int numberInBox) 
 	{
-		super(id, upc, manufacturerID, price);
+		super(id, upc, manufacturerID, price, length);
 		
 		java.sql.PreparedStatement stmt = null;
 		try {
 			Connection conn = TestConnection.getConnection();
 			
-			
-			
-			String query = "Insert into Fastener (id, length) VALUES (" + id + "," + length +  ");";
+			String query = "Insert into " + CLASSNAME + " (id, numberInBox) VALUES (" + id + "," + numberInBox +  ");";
+
 			stmt = conn.prepareStatement(query);
 			stmt.execute();
 			
@@ -24,26 +25,26 @@ public abstract class AbstractFastenerMapper extends AbstractInventoryItemMapper
 			e.printStackTrace();
 		}
 	}
-	
-	public AbstractFastenerMapper(int id)
-	{	
+
+	public NailMapper(int id)
+	{
 		super(id);
 		
 		java.sql.PreparedStatement stmt = null;
 		try {
 			Connection conn = TestConnection.getConnection();
 			
-			String query = "Insert into Fastener (id, length) VALUES (" + id + "," + length +  ");";
+			String query = "Select id, numberInBox From ? WHERE id = (?)";
+
 			stmt = conn.prepareStatement(query);
 			stmt.execute();
-			
-			length = 0;
+
+			numberInBox = 0;
 			
 			conn.close();
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-
+	
 }
