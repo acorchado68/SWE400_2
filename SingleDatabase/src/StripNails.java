@@ -6,8 +6,15 @@ public class StripNails extends Fastener
 {
     protected int numberInStrip;
 
-    public StripNails()
+    public StripNails(int id, String upc, int manufacturerID, int price, int length,
+                      int numberInStrip)
     {
+        super(id, upc, manufacturerID, price, length);
+        this.numberInStrip = numberInStrip;
+    }
 
+    public String constructQuery()
+    {
+        return null;
     }
 }

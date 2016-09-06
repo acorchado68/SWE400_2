@@ -6,8 +6,10 @@ public class PowerTool extends Tool
 {
     protected boolean batteryPowered;
 
-    public PowerTool()
+    public PowerTool(int id, String upc, int manufacturerID, int price,
+                     String description, boolean batteryPowered)
     {
-
+        super(id, upc, manufacturerID, price, description);
+        this.batteryPowered = batteryPowered;
     }
 }
