@@ -46,9 +46,10 @@ public abstract class AbstractInventoryItemMapper extends Mapper
 	{
 		
 	}
-	public abstract Object getId();
-	public abstract Object getUpc();
-	public abstract Object getManufacturerID();
-	public abstract Object getPrice();
+	
+	public abstract int getId();
+	public abstract String getUpc();
+	public abstract int getManufacturerID();
+	public abstract int getPrice();
 	
 }

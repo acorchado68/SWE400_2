@@ -51,27 +51,33 @@ public class NailMapper extends AbstractFastenerMapper
 	}
 
 	@Override
-	public Object getId() {
-		// TODO Auto-generated method stub
-		return null;
+	public int getId() 
+	{
+		return id;
 	}
 
 	@Override
-	public Object getUpc() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getUpc() 
+	{
+		return upc;
 	}
 
 	@Override
-	public Object getManufacturerID() {
-		// TODO Auto-generated method stub
-		return null;
+	public int getManufacturerID() 
+	{
+		return manufacturerID;
 	}
 
 	@Override
-	public Object getPrice() {
-		// TODO Auto-generated method stub
-		return null;
+	public int getPrice() 
+	{
+		return price;
+	}
+
+	@Override
+	public long getLength() 
+	{
+		return length;
 	}
 	
 }

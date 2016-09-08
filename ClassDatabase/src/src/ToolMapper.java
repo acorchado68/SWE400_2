@@ -55,32 +55,37 @@ public class ToolMapper extends AbstractInventoryItemMapper
 			e.printStackTrace();
 		}
 	}
+	public ToolMapper() 
+	{
+		super(0);
+	}
+
 	public Object getDescription()
 	{
 		return description;
 	}
 
 	@Override
-	public Object getId() {
-		// TODO Auto-generated method stub
+	public int getId() 
+	{
 		return id;
 	}
 
 	@Override
-	public Object getUpc() {
-		// TODO Auto-generated method stub
+	public String getUpc() 
+	{
 		return upc;
 	}
 
 	@Override
-	public Object getManufacturerID() 
+	public int getManufacturerID() 
 	{
 		// TODO Auto-generated method stub
 		return manufacturerID;
 	}
 
 	@Override
-	public Object getPrice() {
+	public int getPrice() {
 		// TODO Auto-generated method stub
 		return price;
 	}

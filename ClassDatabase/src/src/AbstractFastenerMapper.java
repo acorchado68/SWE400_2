@@ -29,5 +29,6 @@ public abstract class AbstractFastenerMapper extends AbstractInventoryItemMapper
 	{	
 		super(id);
 	}
-
+	
+	public abstract long getLength();
 }

@@ -28,7 +28,7 @@ public class PowerToolMapper extends ToolMapper
 
 	public PowerToolMapper(int id)
 	{
-		super(id);
+		super();
 		PreparedStatement stmt = null;
 		try{
 			System.out.println("Entered PowerToolMapper");
@@ -45,9 +45,11 @@ public class PowerToolMapper extends ToolMapper
 			this.upc= rs.getString("upc");
 			this.manufacturerID = Integer.parseInt(rs.getString("manufacturerId"));
 			this.price = Integer.parseInt(rs.getString("price"));
+			this.description = rs.getString("description");
 			
 			System.out.println(id + " " + batteryPow);
 			stmt.execute();
+			
 		}
 		catch(SQLException e)
 		{
@@ -56,6 +58,9 @@ public class PowerToolMapper extends ToolMapper
 
 	}
 	
-	
+	public int getbattery()
+	{
+		return batteryPow;
+	}
 	
 }
