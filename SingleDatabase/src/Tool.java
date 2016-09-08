@@ -11,11 +11,13 @@ public class Tool extends InventoryItem
 {
     protected String description;
 
-    private static String insertQuery = "INSERT INTO " + TABLE_NAME + " (upc, manufacturerID, "
+    private static final String insertQuery = "INSERT INTO " + TABLE_NAME + " (upc, manufacturerID, "
     		+ "price, description, batteryPowered, length, numberInStrip, numberInBox, type) "
     		+ "VALUES (?,?,?,?,null,null,null,null,?);";
 
-    private static String selectQuery = "SELECT * FROM " + TABLE_NAME + " WHERE id = (?);";
+    private static final String selectQuery = "SELECT * FROM " + TABLE_NAME + " WHERE id = (?);";
+
+    private static final String classType = "Tool";
 
     public Tool(int id, String upc, int manufacturerID, int price, String description)
     {
@@ -30,8 +32,7 @@ public class Tool extends InventoryItem
         	stmt.setInt(2, manufacturerID);
         	stmt.setInt(3, price);
         	stmt.setString(4, description);
-        	String type = "Tool";
-        	stmt.setString(5, type);
+        	stmt.setString(5, classType);
 
         	stmt.executeUpdate();
         } catch ( SQLException exception )
@@ -64,7 +65,6 @@ public class Tool extends InventoryItem
     			// ...
     			return;
     		}
-    		this.id = id;
     		// set relevant fields for Tool
     	} catch ( SQLException exception )
     	{
