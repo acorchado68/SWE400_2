@@ -26,5 +26,11 @@ public class PowerToolMapper extends ToolMapper
 	public PowerToolMapper(int id)
 	{
 		super(id);
+		
+		
+		
+		
+		String query = "SELECT a.id, b.description, a.upc, a.manufacturerId, a.price, c.batteryPowered FROM InventoryItem a JOIN Tool b ON"
+				+ "	a.ID = b.ID JOIN PowerTool c ON a.ID = c.ID WHERE a.ID = ?;";
 	}
 }

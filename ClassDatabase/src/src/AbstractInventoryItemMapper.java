@@ -44,24 +44,7 @@ public abstract class AbstractInventoryItemMapper extends Mapper
 	
 	public AbstractInventoryItemMapper(int id)
 	{
-		java.sql.PreparedStatement stmt = null;
-		try {
-			Connection conn = DBConnectionManager.getConnection();
-			
-			String query = "Insert into InventoryItem (id, upc, manufacturerID, price) VALUES (" + id + "," + upc + "," + manufacturerID + "," + price + ");";
-			stmt = conn.prepareStatement(query);
-			stmt.execute();
-			
-			id = 0;
-			upc= "";
-			manufacturerID = 0;
-			price = 0;
-			
-			conn.close();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 	}
 
 }
