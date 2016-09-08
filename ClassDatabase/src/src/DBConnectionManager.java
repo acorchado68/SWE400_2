@@ -49,6 +49,12 @@ public class  DBConnectionManager {
   {
 	  testMode = state;
   }
+  
+  public static void setConnection() throws SQLException
+  {
+	 conn.close();
+	  
+  }
     
 }
        

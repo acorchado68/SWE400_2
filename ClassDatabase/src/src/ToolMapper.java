@@ -3,10 +3,9 @@ import static org.junit.Assert.assertEquals;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
-public class ToolMapper extends AbstractInventoryItemMapper 
+public class ToolMapper extends AbstractInventoryItemMapper
 {
 	String description;
 	
@@ -52,10 +51,37 @@ public class ToolMapper extends AbstractInventoryItemMapper
 			
 			stmt.execute();
 			
-			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
+	public Object getDescription()
+	{
+		return description;
+	}
+
+	@Override
+	public Object getId() {
+		// TODO Auto-generated method stub
+		return id;
+	}
+
+	@Override
+	public Object getUpc() {
+		// TODO Auto-generated method stub
+		return upc;
+	}
+
+	@Override
+	public Object getManufacturerID() 
+	{
+		// TODO Auto-generated method stub
+		return manufacturerID;
+	}
+
+	@Override
+	public Object getPrice() {
+		// TODO Auto-generated method stub
+		return price;
+	}
 }

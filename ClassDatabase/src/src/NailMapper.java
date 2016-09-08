@@ -1,5 +1,6 @@
 package src;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class NailMapper extends AbstractFastenerMapper 
@@ -15,10 +16,11 @@ public class NailMapper extends AbstractFastenerMapper
 		try {
 			Connection conn = DBConnectionManager.getConnection();
 			
-			String query = "Insert into " + CLASSNAME + " (id, numberInBox) VALUES (" + id + "," + numberInBox +  ");";
-
-			stmt = conn.prepareStatement(query);
-			stmt.execute();
+			PreparedStatement query = conn.prepareStatement("Insert into " + CLASSNAME + " (id, numberInBox) VALUES ( ?,? );");
+			
+			query.setInt(1,id);
+			query.setInt(2,numberInBox);
+			query.execute();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -46,6 +48,30 @@ public class NailMapper extends AbstractFastenerMapper
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public Object getId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object getUpc() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object getManufacturerID() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object getPrice() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
