@@ -8,7 +8,8 @@ import java.sql.SQLException;
 
 public class ToolMapper extends AbstractInventoryItemMapper 
 {
-
+	String description;
+	
 	public ToolMapper(int id, String upc, int manufacturerID, int price, String description) 
 	{
 		super(id, upc, manufacturerID, price);
@@ -39,16 +40,15 @@ public class ToolMapper extends AbstractInventoryItemMapper
 			stmt = conn.prepareStatement(query);
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
-			ResultSetMetaData rsmd = rs.getMetaData();
-			int incrementer = rsmd.getColumnCount();
-			while (rs.next()) 
-			{
-				for (int i = 1; i <= incrementer; i++) 
-				{
-					System.out.println(rs.getString(i)+ "");
-				}
-			}
+			rs.next();
 			
+			description = rs.getString("description");
+			this.id = Integer.parseInt(rs.getString("id"));
+			this.upc= rs.getString("upc");
+			this.manufacturerID = Integer.parseInt(rs.getString("manufacturerId"));
+			this.price = Integer.parseInt(rs.getString("price"));
+			
+			System.out.println(id + " " + upc);
 			
 			stmt.execute();
 			

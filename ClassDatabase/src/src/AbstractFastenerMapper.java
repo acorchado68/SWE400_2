@@ -28,22 +28,6 @@ public abstract class AbstractFastenerMapper extends AbstractInventoryItemMapper
 	public AbstractFastenerMapper(int id)
 	{	
 		super(id);
-		
-		java.sql.PreparedStatement stmt = null;
-		try {
-			Connection conn = DBConnectionManager.getConnection();
-			
-			String query = "Insert into Fastener (id, length) VALUES (" + id + "," + length +  ");";
-			stmt = conn.prepareStatement(query);
-			stmt.execute();
-			
-			length = 0;
-			
-			conn.close();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 	}
 
 }
