@@ -1,11 +1,13 @@
 import java.sql.*;
 /**
+ * Gateway
  * Created by Andrew Corchado on 9/6/16.
  */
-public class TestConnection
+public class DBConnection
 {
 
     public static Connection conn;
+
     public static Connection getConnection() throws SQLException
     {
         String url = "jdbc:mysql://157.160.36.32:3306/swe400-21?autoReconnect=true";
