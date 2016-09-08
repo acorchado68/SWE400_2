@@ -4,7 +4,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
+/**
+ * AbstractInventoryItemMapper.java
+ * @author Zachary & Scott
+ * Abstract method for adding items to the Inventroy Item Mapper.
+ */
 public abstract class AbstractInventoryItemMapper extends Mapper 
 {
 	protected int id;
@@ -16,12 +20,12 @@ public abstract class AbstractInventoryItemMapper extends Mapper
 	{
 		this.id = id;
 		this.upc= upc;
-		this.manufacturerID = 0;
-		this.price = 0;
+		this.manufacturerID = manufacturerID;
+		this.price = price;
 		
 		
 		try {
-			Connection conn = TestConnection.getConnection();
+			Connection conn = DBConnectionManager.getConnection();
 			PreparedStatement query = conn.prepareStatement("Insert into InventoryItem (id, upc, manufacturerID, price) VALUES (?,?,?,?);"); //" + id + ",'" + upc + "'," + manufacturerID + "," + price + ");");
 			
 			query.setInt(1, id);
@@ -42,7 +46,7 @@ public abstract class AbstractInventoryItemMapper extends Mapper
 	{
 		java.sql.PreparedStatement stmt = null;
 		try {
-			Connection conn = TestConnection.getConnection();
+			Connection conn = DBConnectionManager.getConnection();
 			
 			String query = "Insert into InventoryItem (id, upc, manufacturerID, price) VALUES (" + id + "," + upc + "," + manufacturerID + "," + price + ");";
 			stmt = conn.prepareStatement(query);

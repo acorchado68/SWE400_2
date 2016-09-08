@@ -12,7 +12,7 @@ public abstract class AbstractFastenerMapper extends AbstractInventoryItemMapper
 		
 		java.sql.PreparedStatement stmt = null;
 		try {
-			Connection conn = TestConnection.getConnection();
+			Connection conn = DBConnectionManager.getConnection();
 			
 			
 			
@@ -31,7 +31,7 @@ public abstract class AbstractFastenerMapper extends AbstractInventoryItemMapper
 		
 		java.sql.PreparedStatement stmt = null;
 		try {
-			Connection conn = TestConnection.getConnection();
+			Connection conn = DBConnectionManager.getConnection();
 			
 			String query = "Insert into Fastener (id, length) VALUES (" + id + "," + length +  ");";
 			stmt = conn.prepareStatement(query);

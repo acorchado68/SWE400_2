@@ -11,7 +11,7 @@ public class PowerToolMapper extends ToolMapper
 		
 		java.sql.PreparedStatement stmt = null;
 		try {
-			Connection conn = TestConnection.getConnection();
+			Connection conn = DBConnectionManager.getConnection();
 			
 			String query = "Insert into PowerTool (id, batteryPowered) VALUES (" + id + "," + batteryPowered +  ");";
 			

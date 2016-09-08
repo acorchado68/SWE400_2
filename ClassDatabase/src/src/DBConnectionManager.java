@@ -6,16 +6,26 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
-
-public class  TestConnection {
+/**
+ * DB ConnectionManager.java
+ * @author Scott & Zachary 
+ * Manages connecting to the database;
+ */
+public class  DBConnectionManager {
 	
 	private static Connection conn;
+	private static boolean testMode = false;
 	
-	public TestConnection()
+	public DBConnectionManager()
 	{
 		
 	}
 	
+	/**
+	 * returns the connection to the database, if it is closed open a new one
+	 * @return the connection to the database
+	 * @throws SQLException
+	 */
     public static Connection getConnection() throws SQLException 
     {
     	if(conn == null)
@@ -26,11 +36,19 @@ public class  TestConnection {
 
     	System.out.println("Connecting database...");	
     	conn = DriverManager.getConnection(url, username, password);
-    	conn.setAutoCommit(false);
+    	
+    		if(testMode)
+    		{
+    		conn.setAutoCommit(false);
+    		}
     	}
     	return conn;
    }  
     
-  
+  public static void setTestMode(boolean state)
+  {
+	  testMode = state;
+  }
+    
 }
        

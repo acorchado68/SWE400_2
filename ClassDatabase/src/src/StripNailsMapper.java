@@ -10,7 +10,7 @@ public class StripNailsMapper extends AbstractFastenerMapper
 		
 		java.sql.PreparedStatement stmt = null;
 		try {
-			Connection conn = TestConnection.getConnection();
+			Connection conn = DBConnectionManager.getConnection();
 			
 			String query = "Insert into StripNails (id, numberInStrip) VALUES (" + id + "," + numberInStrip + ");";
 			

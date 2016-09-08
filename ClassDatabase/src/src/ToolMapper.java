@@ -11,7 +11,7 @@ public class ToolMapper extends AbstractInventoryItemMapper
 		
 		java.sql.PreparedStatement stmt = null;
 		try {
-			Connection conn = TestConnection.getConnection();
+			Connection conn = DBConnectionManager.getConnection();
 			
 			String query = "Insert into Tool (id, description) VALUES (" + id + "," + description +  ");";
 			

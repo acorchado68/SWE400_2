@@ -13,7 +13,7 @@ public class NailMapper extends AbstractFastenerMapper
 		
 		java.sql.PreparedStatement stmt = null;
 		try {
-			Connection conn = TestConnection.getConnection();
+			Connection conn = DBConnectionManager.getConnection();
 			
 			String query = "Insert into " + CLASSNAME + " (id, numberInBox) VALUES (" + id + "," + numberInBox +  ");";
 
@@ -31,7 +31,7 @@ public class NailMapper extends AbstractFastenerMapper
 		
 		java.sql.PreparedStatement stmt = null;
 		try {
-			Connection conn = TestConnection.getConnection();
+			Connection conn = DBConnectionManager.getConnection();
 			
 			String query = "Select id, numberInBox From ? WHERE id = (?)";
 
