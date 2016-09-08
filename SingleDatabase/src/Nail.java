@@ -1,4 +1,5 @@
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  * Nail
@@ -61,12 +62,13 @@ public class Nail extends Fastener
     		stmt.setInt(1, id);
 
     		ResultSet rs = stmt.executeQuery();
-    		if( rs.first() == null )
-    		{
-    			// ...
-    			return;
-    		}
-    		// set relevant fields for Tool
+      		id = rs.getInt("id");
+    		upc = rs.getString("upc");
+    		manufacturerID = rs.getInt("manufacturerID");
+    		price = rs.getInt("price");
+    		length = rs.getInt("length");
+    		numberInBox = rs.getInt("numberInBox");
+
     	} catch ( SQLException exception )
     	{
     		exception.printStackTrace();

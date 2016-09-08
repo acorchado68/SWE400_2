@@ -1,3 +1,6 @@
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 /**
  * Strip Nails
  * Nick Martinez and Andrew Corchado - Single File Inheritence
@@ -28,8 +31,8 @@ public class StripNails extends Fastener
         	stmt.setString(1, upc);
         	stmt.setInt(2, manufacturerID);
         	stmt.setInt(3, price);
-        	stmt.setString(4, description);
-        	stmt.setBoolean(5, batteryPowered);
+        	stmt.setInt(4, length);
+        	stmt.setInt(5, numberInStrip);
         	stmt.setString(6, classType);
 
         	stmt.executeUpdate();
@@ -49,8 +52,35 @@ public class StripNails extends Fastener
         }
     }
 
-    public String constructQuery()
+    public StripNails(int id)
     {
-        return null;
+    	try
+    	{
+    		Connection conn = TestConnection.getConnection();
+    		PreparedStatment stmt = conn.prepareStatement(selectQuery);
+    		stmt.setInt(1, id);
+
+    		ResultSet rs = stmt.executeQuery();
+    		id = rs.getInt("id");
+    		upc = rs.getString("upc");
+    		manufacturerID = rs.getInt("manufacturerID");
+    		price = rs.getInt("price");
+    		length = rs.getInt("length");
+    		numberInStrip = rs.getInt("numberInStrip");
+    	} catch ( SQLException exception )
+    	{
+    		exception.printStackTrace();
+    	} finally
+    	{
+    		if( conn != null )
+    		{
+    			conn.close();
+    		}
+    		if( stmt != null )
+    		{
+    			stmt.close();
+    		}
+    	}
     }
+
 }

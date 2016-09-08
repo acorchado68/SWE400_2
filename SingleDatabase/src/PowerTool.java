@@ -1,4 +1,5 @@
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  * Power Tool
@@ -60,12 +61,12 @@ public class PowerTool extends Tool
     		stmt.setInt(1, id);
 
     		ResultSet rs = stmt.executeQuery();
-    		if( rs.first() == null )
-    		{
-    			// ...
-    			return;
-    		}
-    		// set relevant fields for Tool
+      		id = rs.getInt("id");
+    		upc = rs.getString("upc");
+    		manufacturerID = rs.getInt("manufacturerID");
+    		price = rs.getInt("price");
+    		description = rs.getString("description");
+    		batteryPowered = rs.getBoolean("batteryPowered");
     	} catch ( SQLException exception )
     	{
     		exception.printStackTrace();

@@ -60,12 +60,12 @@ public class Tool extends InventoryItem
     		stmt.setInt(1, id);
 
     		ResultSet rs = stmt.executeQuery();
-    		if( rs.first() == null )
-    		{
-    			// ...
-    			return;
-    		}
-    		// set relevant fields for Tool
+      		id = rs.getInt("id");
+    		upc = rs.getString("upc");
+    		manufacturerID = rs.getInt("manufacturerID");
+    		price = rs.getInt("price");
+    		description = rs.getDescription("description");
+
     	} catch ( SQLException exception )
     	{
     		exception.printStackTrace();

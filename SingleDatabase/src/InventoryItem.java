@@ -3,8 +3,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
+ * Inventory Item
  * Nick Martinez and Andrew Corchado - Single File Inheritence
- * Created by Nick Martinez on 9/3/16.
+ * Created by Nick Martinez on 9/3/16. Last Modified on 9/8/16.
  */
 public abstract class InventoryItem
 {
@@ -17,7 +18,6 @@ public abstract class InventoryItem
 
     public InventoryItem(int id, String upc, int manufacturerID, int price)
     {
-        // ResultSet rs = insert(connection)
         this.id = id;
         this.upc = upc;
         this.manufacturerID = manufacturerID;
@@ -26,36 +26,7 @@ public abstract class InventoryItem
 
     public InventoryItem(int id)
     {
-
+    	this.id = id;
     }
-
-    /**
-     * Insertion. TODO
-     * Will return a ResultSet
-     * @param conn connection to the database
-     */
-    public void insert(Connection conn, String query)
-    {
-        PreparedStatement stmt = null;
-
-        try {
-            conn = TestConnection.getConnection();
-
-            stmt = conn.prepareStatement(query);
-            stmt.execute();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                conn.close();
-            } catch ( SQLException e ) {
-                System.out.println("Insertion Problems");
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public abstract String constructQuery();
 
 }
