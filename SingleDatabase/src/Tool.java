@@ -3,37 +3,83 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
+ * Tool
  * Nick Martinez and Andrew Corchado - Single File Inheritence
- * Created by Nick Martinez on 9/3/16.
+ * Created by Nick Martinez on 9/3/16. Last Modified on 9/8/16.
  */
 public class Tool extends InventoryItem
 {
     protected String description;
 
+    private static String insertQuery = "INSERT INTO " + TABLE_NAME + " (upc, manufacturerID, "
+    		+ "price, description, batteryPowered, length, numberInStrip, numberInBox, type) "
+    		+ "VALUES (?,?,?,?,null,null,null,null,?);";
+
+    private static String selectQuery = "SELECT * FROM " + TABLE_NAME + " WHERE id = (?);";
+
     public Tool(int id, String upc, int manufacturerID, int price, String description)
     {
         super(id, upc, manufacturerID, price);
-        String query = constructQuery();
-        Connection conn = null;
-        try {
-            conn = TestConnection.getConnection();
-            insert(conn,query);
-        } catch ( SQLException e ) {
-            e.printStackTrace();
-        } finally {
-            try {
-                conn.close();
-            } catch ( SQLException e ) {
-                e.printStackTrace();
-            }
+        this.description = description;
+
+        try
+        {
+        	Connection conn = TestConnection.getConnection();
+        	PreparedStatement stmt = conn.prepareStatement(insertQuery);
+        	stmt.setString(1, upc);
+        	stmt.setInt(2, manufacturerID);
+        	stmt.setInt(3, price);
+        	stmt.setString(4, description);
+        	String type = "Tool";
+        	stmt.setString(5, type);
+
+        	stmt.executeUpdate();
+        } catch ( SQLException exception )
+        {
+        	exception.printStackTrace();
+        } finally
+        {
+        	if( conn != null )
+        	{
+        		conn.close();
+        	}
+        	if( stmt != null )
+        	{
+        		stmt.close();
+        	}
         }
-
     }
 
-    public String constructQuery() {
-        String query = "INSERT INTO " + TABLE_NAME + " (id, upc, manufacturerID, price, description, batteryPowered, " +
-                "length, numberInStrip, numberInBox) VALUES (" + id + "," + upc + "," + manufacturerID + ","
-                + price + "," + description + ",null,null,null,null);";
-        return query;
+    public Tool(int id)
+    {
+    	try
+    	{
+    		Connection conn = TestConnection.getConnection();
+    		PreparedStatment stmt = conn.prepareStatement(selectQuery);
+    		stmt.setInt(1, id);
+
+    		ResultSet rs = stmt.executeQuery();
+    		if( rs.first() == null )
+    		{
+    			// ...
+    			return;
+    		}
+    		this.id = id;
+    		// set relevant fields for Tool
+    	} catch ( SQLException exception )
+    	{
+    		exception.printStackTrace();
+    	} finally
+    	{
+    		if( conn != null )
+    		{
+    			conn.close();
+    		}
+    		if( stmt != null )
+    		{
+    			stmt.close();
+    		}
+    	}
     }
+
 }

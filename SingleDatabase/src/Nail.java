@@ -1,6 +1,7 @@
 /**
+ * TODO
  * Nick Martinez and Andrew Corchado - Single File Inheritence
- * Created by Nick Martinez on 9/3/16.
+ * Created by Nick Martinez on 9/3/16. Last Modified on 9/8/16.
  */
 public class Nail extends Fastener
 {
@@ -11,6 +12,8 @@ public class Nail extends Fastener
     {
         super(id, upc, manufacturerID, price, length);
         this.numberInBox = numberInBox;
+
+
     }
 
     public Nail(int id)
@@ -18,8 +21,4 @@ public class Nail extends Fastener
         super(id);
     }
 
-    public String constructQuery()
-    {
-        return null;
-    }
 }
