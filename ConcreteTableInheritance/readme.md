@@ -1,0 +1,2 @@
+Concrete Table Inheritance
+---
