@@ -14,24 +14,7 @@ public abstract class InventoryItem {
 	private static int COLUMN_UPC = 1;
 	private static int COLUMN_MFGID = 2;
 	private static int COLUMN_PRICE = 3;
-	protected static String uri = "jdbc:mysql://db.cs.ship.edu:3306/swe400-22?"
-			+ "user=swe400_2&password=pwd4swe400_2F16";
-	private static Connection connection;
 
-	public static Connection getConnection() {
-		if (connection == null) {
-			try {
-				Class.forName("com.mysql.jdbc.Driver");
-				connection = DriverManager.getConnection(uri);
-			} catch (ClassNotFoundException e) {
-				System.err.println("SQL Driver is Missing!");
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-
-		}
-		return connection;
-	}
 
 	protected InventoryItem() {
 		id = -9999;

@@ -13,6 +13,7 @@ import org.junit.Before;
 import junit.framework.TestCase;
 import wellington.*;
 import domain.InventoryItem;
+import domain.InventoryItemCommand;
 
 /**
  * 
@@ -41,7 +42,7 @@ public class CTITestCase {
 		}
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connection = InventoryItem.getConnection();
+			connection = InventoryItemCommand.getConnection();
 			statement = connection.createStatement();
 			statement.execute("START TRANSACTION");
 			populateTables();
