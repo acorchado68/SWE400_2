@@ -2,13 +2,14 @@ package domain;
 
 import java.util.ArrayList;
 
-public abstract class Fastener extends InventoryItem{
+public abstract class Fastener extends InventoryItem {
 	protected long length;
+
 	public Fastener(ArrayList<Object> objectArray) {
 		super(objectArray);
 	}
-	public Fastener()
-	{
+
+	public Fastener() {
 		super();
 		this.length = -1;
 	}

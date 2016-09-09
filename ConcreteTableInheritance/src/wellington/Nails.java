@@ -1,4 +1,5 @@
 package wellington;
+
 /**
  * The list of nail boxes that should be in your db. NOTICE: the type of the
  * variable "length" should be double - NOT Long as it was in the project spec
@@ -6,8 +7,7 @@ package wellington;
  * @author Merlin
  *
  */
-public enum Nails
-{
+public enum Nails {
 	/**
 	 *
 	 */
@@ -35,9 +35,7 @@ public enum Nails
 	private double length;
 	private int numberInBox;
 
-	private Nails(String upc, int manufacturerID, int price,
-			double length, int numberInBox)
-	{
+	private Nails(String upc, int manufacturerID, int price, double length, int numberInBox) {
 		this.upc = upc;
 		this.manufacturerID = manufacturerID;
 		this.price = price;
@@ -48,40 +46,35 @@ public enum Nails
 	/**
 	 * @return the length in inches of the nails in the strip
 	 */
-	public double getLength()
-	{
+	public double getLength() {
 		return length;
 	}
 
 	/**
 	 * @return the unique ID of the manufacturer of these nails
 	 */
-	public int getManufacturerID()
-	{
+	public int getManufacturerID() {
 		return manufacturerID;
 	}
 
 	/**
 	 * @return the number of nails in a box
 	 */
-	public int getNumberInBox()
-	{
+	public int getNumberInBox() {
 		return numberInBox;
 	}
 
 	/**
 	 * @return the price of one strip of nails
 	 */
-	public int getPrice()
-	{
+	public int getPrice() {
 		return price;
 	}
 
 	/**
 	 * @return this product's UPC code
 	 */
-	public String getUpc()
-	{
+	public String getUpc() {
 		return upc;
 	}
 }

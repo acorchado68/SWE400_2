@@ -17,19 +17,18 @@ public abstract class InventoryItem {
 	protected static String uri = "jdbc:mysql://db.cs.ship.edu:3306/swe400-22?"
 			+ "user=swe400_2&password=pwd4swe400_2F16";
 	private static Connection connection;
-	
-	public static Connection getConnection(){
-		if(connection == null)
-		{
+
+	public static Connection getConnection() {
+		if (connection == null) {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				connection = DriverManager.getConnection(uri);
 			} catch (ClassNotFoundException e) {
 				System.err.println("SQL Driver is Missing!");
-			}catch (SQLException e) {
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
+
 		}
 		return connection;
 	}
@@ -42,17 +41,16 @@ public abstract class InventoryItem {
 	}
 
 	public InventoryItem(ArrayList<Object> objectArray) {
-		if(objectArray.isEmpty())
-		{
+		if (objectArray.isEmpty()) {
 			this.id = -99999;
 			price = -1;
 			manufacturerId = -1;
 			upc = "NOT AN ITEM/DOES NOT EXIST";
-		}else{
+		} else {
 			parseParameterObjects(objectArray);
 			handleUniqueColumn(objectArray);
 		}
-		
+
 	}
 
 	/**
@@ -116,10 +114,11 @@ public abstract class InventoryItem {
 	 * @param objectArray
 	 */
 	protected abstract void handleUniqueColumn(ArrayList<Object> objectArray);
-	
+
 	/**
 	 * Insert/Find
 	 */
 	protected abstract boolean insert();
+
 	protected abstract InventoryItem find(int id);
 }

@@ -13,12 +13,13 @@ import org.junit.Before;
 import junit.framework.TestCase;
 import wellington.*;
 import domain.InventoryItem;
+
 /**
  * 
  * @author mb8542
  *
  */
-public class CTITestCase{
+public class CTITestCase {
 
 	protected static Connection connection;
 	protected static Statement statement;
@@ -53,31 +54,39 @@ public class CTITestCase{
 	}
 
 	/**
-	 * A helper method to populate the tables w/ known data
-	 * its very gross, probably should work a way out to condense the for loops
-	 * @throws SQLException 
+	 * A helper method to populate the tables w/ known data its very gross,
+	 * probably should work a way out to condense the for loops
+	 * 
+	 * @throws SQLException
 	 */
 	private static void populateTables() throws SQLException {
-		for(Nails nail : Nails.values())
-		{
-			statement.execute("INSERT INTO Nail (upc,manufacturerID,price,numberInBox,length) VALUES (" + nail.getUpc() + "," + nail.getManufacturerID() + ","+ nail.getPrice() + "," + nail.getNumberInBox() + "," + nail.getLength() + ");");
+		for (Nails nail : Nails.values()) {
+			statement.execute("INSERT INTO Nail (upc,manufacturerID,price,numberInBox,length) VALUES (" + nail.getUpc()
+					+ "," + nail.getManufacturerID() + "," + nail.getPrice() + "," + nail.getNumberInBox() + ","
+					+ nail.getLength() + ");");
 		}
-		/*for(Tools tool : Tools.values())
-		{
-			statement.execute("INSERT INTO Nail (upc,manufacturerID,price,description) VALUES (" + tool.getUpc() + "," + tool.getManufacturerID() + ","+ tool.getPrice() + "," + tool.getDescription() + ");");
-		}*/
+		/*
+		 * for(Tools tool : Tools.values()) { statement.
+		 * execute("INSERT INTO Nail (upc,manufacturerID,price,description) VALUES ("
+		 * + tool.getUpc() + "," + tool.getManufacturerID() + ","+
+		 * tool.getPrice() + "," + tool.getDescription() + ");"); }
+		 */
 		/**
 		 * Commented out for now
 		 */
-		/*for(StripNails nail : StripNails.values())
-		{
-			statement.execute("INSERT INTO Nail (upc,manufacturerID,price,numberInBox,length) VALUES (" + nail.getUpc() + "," + nail.getManufacturerID() + ","+ nail.getPrice() + "," + nail.getNumberInStrip() + "," + nail.getLength() + ");");
-		}
-		for(PowerTools powerTool : PowerTools.values())
-		{
-			//make sure you take a look at the ternary conditional down there :/
-			statement.execute("INSERT INTO Nail (upc,manufacturerID,price,batterypowered) VALUES (" + powerTool.getUpc() + "," + powerTool.getManufacturerID() + ","+ powerTool.getPrice() + "," + (powerTool.isBatteryPowered() ? 0 : 1) + ");");
-		}*/
+		/*
+		 * for(StripNails nail : StripNails.values()) { statement.
+		 * execute("INSERT INTO Nail (upc,manufacturerID,price,numberInBox,length) VALUES ("
+		 * + nail.getUpc() + "," + nail.getManufacturerID() + ","+
+		 * nail.getPrice() + "," + nail.getNumberInStrip() + "," +
+		 * nail.getLength() + ");"); } for(PowerTools powerTool :
+		 * PowerTools.values()) { //make sure you take a look at the ternary
+		 * conditional down there :/ statement.
+		 * execute("INSERT INTO Nail (upc,manufacturerID,price,batterypowered) VALUES ("
+		 * + powerTool.getUpc() + "," + powerTool.getManufacturerID() + ","+
+		 * powerTool.getPrice() + "," + (powerTool.isBatteryPowered() ? 0 : 1) +
+		 * ");"); }
+		 */
 	}
 
 	/**
@@ -90,9 +99,9 @@ public class CTITestCase{
 	public void after() throws SQLException, Exception {
 		statement.execute("ROLLBACK");
 		objArray.clear();
-		//resultSet.close();
-		//statement.close();
-		//connection.close();
+		// resultSet.close();
+		// statement.close();
+		// connection.close();
 
 	}
 }

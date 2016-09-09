@@ -36,7 +36,7 @@ public class Tool extends InventoryItem {
 	@Override
 	protected Tool find(int id) {
 		// TODO Auto-generated method stub
-		return (Tool)null;
+		return (Tool) null;
 	}
 
 }

@@ -10,8 +10,7 @@ public class StripNails extends Fastener {
 
 	@Override
 	protected void handleUniqueColumn(ArrayList<Object> objectArray) {
-		
-		
+
 	}
 
 	@Override
@@ -22,7 +21,7 @@ public class StripNails extends Fastener {
 
 	@Override
 	protected StripNails find(int id) {
-		return (StripNails)null;
+		return (StripNails) null;
 	}
 
 }

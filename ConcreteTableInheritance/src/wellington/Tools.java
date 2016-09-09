@@ -1,11 +1,12 @@
 package wellington;
+
 /**
  * A list of (non-power) tools for testing purposes
+ * 
  * @author Merlin
  *
  */
-public enum Tools
-{
+public enum Tools {
 	/**
 	 *
 	 */
@@ -32,8 +33,8 @@ public enum Tools
 	private int manufacturerID;
 	private int price;
 	private String description;
-	private Tools(String upc, int manufacturerID, int price, String description)
-	{
+
+	private Tools(String upc, int manufacturerID, int price, String description) {
 		this.upc = upc;
 		this.manufacturerID = manufacturerID;
 		this.price = price;
@@ -43,32 +44,28 @@ public enum Tools
 	/**
 	 * @return the description of this tool
 	 */
-	public String getDescription()
-	{
+	public String getDescription() {
 		return description;
 	}
 
 	/**
 	 * @return the unique ID of the manufacturer of this tool
 	 */
-	public int getManufacturerID()
-	{
+	public int getManufacturerID() {
 		return manufacturerID;
 	}
 
 	/**
 	 * @return the price (in cents) of this tool
 	 */
-	public int getPrice()
-	{
+	public int getPrice() {
 		return price;
 	}
 
 	/**
 	 * @return the UPC code for this tool
 	 */
-	public String getUpc()
-	{
+	public String getUpc() {
 		return upc;
 	}
 }

@@ -19,13 +19,10 @@ public class TestInventoryItem extends CTITestCase {
 	private ResultSet powerToolResultSet = null;
 	private ResultSet toolResultSet = null;
 	private ResultSet nailPowerToolUnionRS = null;
-	
 
 	@Test
-	public void test()
-	{
+	public void test() {
 		fail("not yet implemented");
 	}
-
 
 }

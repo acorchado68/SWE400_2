@@ -14,14 +14,15 @@ import org.junit.Before;
 
 public class TestNail extends CTITestCase {
 	private ArrayList<Nail> nails;
-	
+
 	/**
 	 * This merely tests to see if data is successfully added to the Nail table.
+	 * 
 	 * @throws Exception
 	 */
 	@Test
 	public void testPopulated() throws Exception {
-		//CTITestCase.before();
+		// CTITestCase.before();
 		statement.execute("SELECT * FROM Nail");
 		resultSet = this.statement.getResultSet();
 		resultSet.first();
@@ -37,18 +38,16 @@ public class TestNail extends CTITestCase {
 			objArray.clear();
 
 		} while (resultSet.next());
-		
-		for(Nail n : nails)
-		{
+
+		for (Nail n : nails) {
 			assertTrue(n.getId() > 0);
 		}
 
 	}
-	
+
 	@Test
-	public void testFinderConstructor()
-	{
-		//BRIGHT_10D("4343412343", 27, 1899, 3, 750),
+	public void testFinderConstructor() {
+		// BRIGHT_10D("4343412343", 27, 1899, 3, 750),
 		Nail aNail = new Nail(2);
 		assertTrue(aNail.getUpc().equals("4343412343"));
 	}
