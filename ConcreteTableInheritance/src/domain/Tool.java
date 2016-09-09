@@ -35,4 +35,10 @@ public class Tool extends InventoryItem {
 		return InventoryItemCommand.Tool.find(id);
 	}
 
+	@Override
+	protected void insert() {
+		InventoryItemCommand.insert(InventoryItemCommand.Tool, this);
+		
+	}
+
 }

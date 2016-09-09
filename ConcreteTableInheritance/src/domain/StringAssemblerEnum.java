@@ -31,7 +31,7 @@ public enum StringAssemblerEnum implements SAEParent {
 	BATTERYPOWERED("batteryPowered") {
 
 		public String getValue(InventoryItem i) {
-
+			
 			PowerTool t = (PowerTool) i;
 			int ternaryInt = t.getBatteryPowered() ? 0 : 1;
 			return ((Integer) ternaryInt).toString();
@@ -40,8 +40,8 @@ public enum StringAssemblerEnum implements SAEParent {
 	},
 	LENGTH("length") {
 		public String getValue(InventoryItem i) {
-			Fastener f = (Fastener) i;
-			return ((Long) f.getLength()).toString();
+			Fastener f = (Fastener)i;
+			return ((Long)f.getLength()).toString();
 		}
 
 	},
@@ -70,5 +70,6 @@ public enum StringAssemblerEnum implements SAEParent {
 	protected String getColumn() {
 		return columnName;
 	}
+	
 
 }
