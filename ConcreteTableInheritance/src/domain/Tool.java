@@ -17,6 +17,10 @@ public class Tool extends InventoryItem {
 		super(objArray);
 	}
 
+	public Tool(int id) {
+		this(findList(id));
+	}
+
 	@Override
 	protected void handleUniqueColumn(ArrayList<Object> objectArray) {
 		this.description = (String) objectArray.get(COLUMN_DESCRIPTION);
@@ -27,16 +31,8 @@ public class Tool extends InventoryItem {
 		return description;
 	}
 
-	@Override
-	protected boolean insert() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	protected Tool find(int id) {
-		// TODO Auto-generated method stub
-		return (Tool) null;
+	private static ArrayList<Object> findList(int id) {
+		return InventoryItemCommand.Tool.find(id);
 	}
 
 }

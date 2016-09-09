@@ -115,10 +115,6 @@ public abstract class InventoryItem {
 	 */
 	protected abstract void handleUniqueColumn(ArrayList<Object> objectArray);
 
-	/**
-	 * Insert/Find
-	 */
-	protected abstract boolean insert();
+	
 
-	protected abstract InventoryItem find(int id);
 }
