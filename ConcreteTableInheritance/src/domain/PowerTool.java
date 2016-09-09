@@ -34,5 +34,9 @@ public class PowerTool extends Tool {
 		// TODO Auto-generated method stub
 		return batteryPowered;
 	}
-
+	@Override
+	protected void insert() {
+		
+		InventoryItemCommand.insert(InventoryItemCommand.PowerTool, this);
+	}
 }

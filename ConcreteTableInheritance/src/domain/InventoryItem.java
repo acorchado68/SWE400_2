@@ -114,7 +114,7 @@ public abstract class InventoryItem {
 	 * @param objectArray
 	 */
 	protected abstract void handleUniqueColumn(ArrayList<Object> objectArray);
-
+	protected abstract void insert();
 	
 
 }

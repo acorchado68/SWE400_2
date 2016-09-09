@@ -26,4 +26,10 @@ public class StripNails extends Fastener {
 	public Integer getNumPerStrip() {
 		return numPerStrip;
 	}
+
+	@Override
+	protected void insert() {
+		InventoryItemCommand.insert(InventoryItemCommand.StripNails, this);
+		
+	}
 }

@@ -48,4 +48,10 @@ public class Nail extends Fastener {
 		this.numberInBox = numberInBox;
 	}
 
+	@Override
+	protected void insert() {
+		InventoryItemCommand.insert(InventoryItemCommand.Nail, this);
+		
+	}
+
 }

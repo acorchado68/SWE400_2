@@ -46,7 +46,7 @@ public enum InventoryItemCommand {
 		return new ArrayList<Object>();
 	}
 
-	protected boolean insert(InventoryItemCommand inventoryItemCommand, InventoryItem in) {
+	protected static boolean insert(InventoryItemCommand inventoryItemCommand, InventoryItem in) {
 		try {
 
 			Connection connection = InventoryItem.getConnection();
@@ -60,7 +60,7 @@ public enum InventoryItemCommand {
 		return true;
 	}
 
-	private String assembleString(InventoryItemCommand inventoryItemCommand, InventoryItem in) {
+	private static String assembleString(InventoryItemCommand inventoryItemCommand, InventoryItem in) {
 
 		String assembledString = "INSERT INTO " + inventoryItemCommand.tableName + " VALUES "
 				+ inventoryItemCommand.valueString + " (";
@@ -75,10 +75,7 @@ public enum InventoryItemCommand {
 		return assembledString;
 	}
 
-	/**
-	 * Very gross
-	 */
-	private void assembleStringMap() {
+	private static void assembleStringMap() {
 		stringMap = new HashMap<String, StringAssemblerEnum>();
 		for (StringAssemblerEnum strEnum : StringAssemblerEnum.values()) {
 			stringMap.put(strEnum.getColumn(), strEnum);
@@ -86,7 +83,7 @@ public enum InventoryItemCommand {
 
 	}
 
-	private StringAssemblerEnum getStringAssemblerEnum(String column) {
+	private static StringAssemblerEnum getStringAssemblerEnum(String column) {
 		if (stringMap == null) {
 			assembleStringMap();
 		}
