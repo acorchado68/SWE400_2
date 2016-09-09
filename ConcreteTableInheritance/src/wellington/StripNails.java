@@ -1,4 +1,5 @@
 package wellington;
+
 /**
  * The list of strip nails that should be in your db. NOTICE: the type of the
  * variable "length" should be double - NOT Long as it was in the project spec
@@ -6,8 +7,7 @@ package wellington;
  * @author Merlin
  *
  */
-public enum StripNails
-{
+public enum StripNails {
 	/**
 	 * Works with Hitachi's pneumatic nailer and the framing nailer
 	 */
@@ -35,9 +35,7 @@ public enum StripNails
 	private double length;
 	private int numberInStrip;
 
-	private StripNails(String upc, int manufacturerID, int price,
-			double length, int numberInStrip)
-	{
+	private StripNails(String upc, int manufacturerID, int price, double length, int numberInStrip) {
 		this.upc = upc;
 		this.manufacturerID = manufacturerID;
 		this.price = price;
@@ -48,40 +46,35 @@ public enum StripNails
 	/**
 	 * @return the length in inches of the nails in the strip
 	 */
-	public double getLength()
-	{
+	public double getLength() {
 		return length;
 	}
 
 	/**
 	 * @return the unique ID of the manufacturer of these nails
 	 */
-	public int getManufacturerID()
-	{
+	public int getManufacturerID() {
 		return manufacturerID;
 	}
 
 	/**
 	 * @return the number of nails in a strip
 	 */
-	public int getNumberInStrip()
-	{
+	public int getNumberInStrip() {
 		return numberInStrip;
 	}
 
 	/**
 	 * @return the price of one strip of nails
 	 */
-	public int getPrice()
-	{
+	public int getPrice() {
 		return price;
 	}
 
 	/**
 	 * @return this product's UPC code
 	 */
-	public String getUpc()
-	{
+	public String getUpc() {
 		return upc;
 	}
 }
