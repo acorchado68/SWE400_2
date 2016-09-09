@@ -45,15 +45,22 @@ public class  DBConnectionManager {
     	return conn;
    }  
     
+  /**
+   * changes the mode for testing purposes which allows roll backing   
+   * @param state
+   */
   public static void setTestMode(boolean state)
   {
 	  testMode = state;
   }
   
-  public static void setConnection() throws SQLException
+  /**
+   * closes the connection
+   * @throws SQLException
+   */
+  public static void closeConnection() throws SQLException
   {
 	 conn.close();
-	  
   }
     
 }

@@ -4,21 +4,42 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * PowerToolMapper.java
+ * @author Zachary & Scott
+ *
+ */
 public class PowerToolMapper extends ToolMapper 
 {
-	int batteryPow;
-	public PowerToolMapper(int id, String upc, int manufacturerID, int price, String description, int batteryPowered) 
+	boolean batteryPow;
+	
+	/**
+	 * creation constuctor
+	 * @param id
+	 * @param upc
+	 * @param manufacturerID
+	 * @param price
+	 * @param description
+	 * @param batteryPowered
+	 */
+	public PowerToolMapper(String upc, int manufacturerID, int price, String description, boolean batteryPowered) 
 	{
-		super(id, upc, manufacturerID, price, description);
+		super(upc, manufacturerID, price, description);
 		
-		java.sql.PreparedStatement stmt = null;
 		try {
 			Connection conn = DBConnectionManager.getConnection();
 			
 			PreparedStatement query = conn.prepareStatement("Insert into PowerTool (id, batteryPowered) VALUES (?,?);");
 			query.setInt(1, id);
-			query.setInt(2, batteryPowered);
 			
+			if(batteryPowered == true)
+			{
+				query.setInt(2, 0);
+			}
+			else
+			{
+				query.setInt(2, 1);
+			}
 			query.execute();
 			
 		} catch (SQLException e) {
@@ -26,6 +47,10 @@ public class PowerToolMapper extends ToolMapper
 		}
 	}
 
+	/**
+	 * finder constructor
+	 * @param id
+	 */
 	public PowerToolMapper(int id)
 	{
 		super();
@@ -40,14 +65,21 @@ public class PowerToolMapper extends ToolMapper
 			ResultSet rs = stmt.executeQuery();
 			rs.next();
 			
-			batteryPow = rs.getInt("batteryPowered");
+			int value = rs.getInt("batteryPowered");
+			if(value == 0)
+			{
+				batteryPow = true;
+			}
+			else
+			{
+				batteryPow = false;
+			}
 			this.id = Integer.parseInt(rs.getString("id"));
 			this.upc= rs.getString("upc");
 			this.manufacturerID = Integer.parseInt(rs.getString("manufacturerId"));
 			this.price = Integer.parseInt(rs.getString("price"));
 			this.description = rs.getString("description");
 			
-			System.out.println(id + " " + batteryPow);
 			stmt.execute();
 			
 		}
@@ -58,7 +90,11 @@ public class PowerToolMapper extends ToolMapper
 
 	}
 	
-	public int getbattery()
+	/**
+	 * 
+	 * @return the battery power
+	 */
+	public boolean getbattery()
 	{
 		return batteryPow;
 	}

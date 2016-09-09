@@ -3,13 +3,17 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+/**
+ * StripNailsMapper.java
+ * @author Zachary & SCott
+ *
+ */
 public class StripNailsMapper extends AbstractFastenerMapper 
 {
 	public StripNailsMapper(int id, String upc, int manufacturerID, int price, long length, int numberInStrip) 
 	{
-		super(id, upc, manufacturerID, price, length);
+		super(upc, manufacturerID, price, length);
 		
-		java.sql.PreparedStatement stmt = null;
 		try {
 			Connection conn = DBConnectionManager.getConnection();
 			
@@ -29,27 +33,42 @@ public class StripNailsMapper extends AbstractFastenerMapper
 		super(id);
 	}
 
+	/**
+	 * returns the id
+	 */
 	@Override
 	public int getId() {
 
 		return id;
 	}
 
+	/**
+	 * returns the upc
+	 */
 	@Override
 	public String getUpc() {
 		return upc;
 	}
 
+	/**
+	 * returns the manufacturerID
+	 */
 	@Override
 	public int getManufacturerID() {
 		return manufacturerID;
 	}
 
+	/**
+	 * returns the price
+	 */
 	@Override
 	public int getPrice() {
 		return price;
 	}
 
+	/**
+	 * return the nail length
+	 */
 	@Override
 	public long getLength() 
 	{

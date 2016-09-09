@@ -1,32 +1,49 @@
 package src;
-import static org.junit.Assert.assertEquals;
-
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * ToolMapper.java
+ * @author Zachary & Scott 
+ * class for the Tool Table
+ */
 public class ToolMapper extends AbstractInventoryItemMapper
 {
 	String description;
 	
-	public ToolMapper(int id, String upc, int manufacturerID, int price, String description) 
+	/**
+	 * creation constructor
+	 * @param id 
+	 * @param upc code of the item
+	 * @param manufacturerID 
+	 * @param price
+	 * @param description
+	 */
+	public ToolMapper(String upc, int manufacturerID, int price, String description) 
 	{
-		super(id, upc, manufacturerID, price);
-		
-		java.sql.PreparedStatement stmt = null;
+		super(upc, manufacturerID, price);
+	
 		try {
 			Connection conn = DBConnectionManager.getConnection();
 			
-			String query = "Insert into Tool (id, description) VALUES (" + id + "," + description +  ");";
+			PreparedStatement query = conn.prepareStatement("Insert into Tool (id, description) VALUES (?,?);");
 			
-			stmt = conn.prepareStatement(query);
-			stmt.execute();
+			query.setInt(1, id);
+			query.setString(2, description);
+			
+			query.execute();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
+	/**
+	 * finder constructor
+	 * @param id
+	 */
 	public ToolMapper(int id)
 	{
 		super(id);
@@ -55,38 +72,57 @@ public class ToolMapper extends AbstractInventoryItemMapper
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * constructor for the concrete finder methods
+	 */
 	public ToolMapper() 
 	{
 		super(0);
 	}
 
-	public Object getDescription()
+	/**
+	 * returns the description
+	 * @return
+	 */
+	public String getDescription()
 	{
 		return description;
 	}
 
+	/**
+	 * returns the id of the item
+	 */
 	@Override
 	public int getId() 
 	{
 		return id;
 	}
 
+	/**
+	 * returns the upc of the item
+	 */
 	@Override
 	public String getUpc() 
 	{
 		return upc;
 	}
 
+	/**
+	 * returns the manufacturer ID
+	 */
 	@Override
 	public int getManufacturerID() 
 	{
-		// TODO Auto-generated method stub
 		return manufacturerID;
 	}
 
+	/**
+	 * returns the price of the item
+	 */
 	@Override
-	public int getPrice() {
-		// TODO Auto-generated method stub
+	public int getPrice() 
+	{
 		return price;
 	}
 }

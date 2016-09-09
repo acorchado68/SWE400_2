@@ -29,11 +29,10 @@ public class TestsNail extends abstractTests {
 	public void testCreation() throws SQLException 
 	{
 		String[] Checker = { "6", "8" };
-		PreparedStatement stmt = null;
-		NailMapper example = new NailMapper(8, "absolute", 5, 10, 6, 6);
+		
+		new NailMapper("absolute", 5, 10, 6, 6);
 		Connection conn = DBConnectionManager.getConnection();
-		String query = "Select * From Nail WHERE id = 8";
-		stmt = conn.prepareStatement(query);
+		PreparedStatement stmt = conn.prepareStatement("Select * From Nail WHERE id = 8");
 		ResultSet rs = stmt.executeQuery();
 		ResultSetMetaData rsmd = rs.getMetaData();
 		int incrementer = rsmd.getColumnCount();
@@ -46,4 +45,25 @@ public class TestsNail extends abstractTests {
 		}
 	}
 
+	/**
+	 * Test for finding the creation 
+	 * @throws SQLException
+	 */
+	@Test
+	public void testFind() throws SQLException
+	{
+		String upc = "absolute";
+		int manufacturerId = 5;
+		int price = 10;
+		int length = 6;
+		int numBox = 6;
+		NailMapper example = new NailMapper(upc, manufacturerId, price, length, numBox);
+		
+		NailMapper findExample = new NailMapper(example.getId());
+		assertEquals(upc, findExample.getUpc());
+		assertEquals(manufacturerId, findExample.getManufacturerID());
+		assertEquals(price, findExample.getPrice());
+		assertEquals(length, findExample.getLength());
+		assertEquals(numBox, findExample.getNumInBox());
+	}
 }
