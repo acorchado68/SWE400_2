@@ -1,6 +1,7 @@
 package domain;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -16,8 +17,9 @@ public enum InventoryItemCommand {
 
 	private String tableName;
 	private String valueString;
-	private static Connection connection = InventoryItem.getConnection();
 	private static HashMap<String, StringAssemblerEnum> stringMap = null;
+	private static Connection connection;
+	protected static String uri = "jdbc:mysql://db.cs.ship.edu:3306/swe400-22?user=swe400_2&password=pwd4swe400_2F16";
 
 	InventoryItemCommand(String tableName, String valueString) {
 		this.tableName = tableName;
@@ -26,6 +28,21 @@ public enum InventoryItemCommand {
 
 	protected ArrayList<Object> find(int id) {
 		return getRowList(this, id);
+	}
+
+	public static Connection getConnection() {
+		if (connection == null) {
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				connection = DriverManager.getConnection(uri);
+			} catch (ClassNotFoundException e) {
+				System.err.println("SQL Driver is Missing!");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
+		return connection;
 	}
 
 	private static ArrayList<Object> getRowList(InventoryItemCommand inventoryItemCommand, int id) {
@@ -48,8 +65,6 @@ public enum InventoryItemCommand {
 
 	protected static boolean insert(InventoryItemCommand inventoryItemCommand, InventoryItem in) {
 		try {
-
-			Connection connection = InventoryItem.getConnection();
 			Statement statement = connection.createStatement();
 			statement.execute(assembleString(inventoryItemCommand, in));
 			statement.close();
