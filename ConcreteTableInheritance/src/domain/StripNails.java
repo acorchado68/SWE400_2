@@ -4,8 +4,14 @@ import java.util.ArrayList;
 
 public class StripNails extends Fastener {
 
+	private int numPerStrip;
+
 	public StripNails(ArrayList<Object> objectArray) {
 		super(objectArray);
+	}
+
+	public StripNails(int id) {
+		this(findList(id));
 	}
 
 	@Override
@@ -13,15 +19,11 @@ public class StripNails extends Fastener {
 
 	}
 
-	@Override
-	protected boolean insert() {
-		// TODO Auto-generated method stub
-		return false;
+	private static ArrayList<Object> findList(int id) {
+		return InventoryItemCommand.StripNails.find(id);
 	}
 
-	@Override
-	protected StripNails find(int id) {
-		return (StripNails) null;
+	public Integer getNumPerStrip() {
+		return numPerStrip;
 	}
-
 }

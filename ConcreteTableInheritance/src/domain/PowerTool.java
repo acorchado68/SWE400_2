@@ -11,21 +11,28 @@ public class PowerTool extends Tool {
 		super(objArray);
 	}
 
+	/**
+	 * The "Finder" Constructor
+	 * 
+	 * @param id
+	 */
+	public PowerTool(int id) {
+		this(findList(id));
+	}
+
 	@Override
 	protected void handleUniqueColumn(ArrayList<Object> objectArray) {
 		this.description = (String) objectArray.get(COLUMN_DESCRIPTION);
 		this.batteryPowered = (boolean) objectArray.get(COLUMN_BATTERYPOWERED);
 	}
 
-	@Override
-	protected boolean insert() {
-
-		return false;
+	private static ArrayList<Object> findList(int id) {
+		return InventoryItemCommand.PowerTool.find(id);
 	}
 
-	@Override
-	protected PowerTool find(int id) {
+	public boolean getBatteryPowered() {
 		// TODO Auto-generated method stub
-		return (PowerTool) null;
+		return batteryPowered;
 	}
+
 }

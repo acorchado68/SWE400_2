@@ -14,4 +14,7 @@ public abstract class Fastener extends InventoryItem {
 		this.length = -1;
 	}
 
+	public long getLength() {
+		return this.length;
+	}
 }

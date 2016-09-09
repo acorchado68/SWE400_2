@@ -32,56 +32,20 @@ public class Nail extends Fastener {
 
 	@Override
 	protected void handleUniqueColumn(ArrayList<Object> objectArray) {
-		this.numberInBox = (Integer) objectArray.get(COLUMN_NUMINBOX);
+		this.setNumberInBox((Integer) objectArray.get(COLUMN_NUMINBOX));
 		this.length = (Long) objectArray.get(COLUMN_LENGTH);
 	}
 
-	@Override
-	protected boolean insert() {
-		try {
-
-			Connection connection = InventoryItem.getConnection();
-			Statement statement = connection.createStatement();
-			statement.execute("INSERT INTO Nail (upc,manufacturerID,price,numberInBox,length) VALUES (" + this.getUpc()
-					+ "," + this.getManufacturerId() + "," + this.getPrice() + "," + this.numberInBox + ","
-					+ this.length + ");");
-			statement.close();
-		} catch (SQLException e) {
-
-			return false;
-		}
-		return true;
-	}
-
 	private static ArrayList<Object> findList(int id) {
-		Connection connection = InventoryItem.getConnection();
-
-		try {
-			Statement statement = connection.createStatement();
-			if (statement.execute("SELECT * FROM Nail WHERE id=" + id)) {
-				ResultSet results = statement.getResultSet();
-				results.first();
-				ArrayList<Object> objArray = new ArrayList<Object>();
-				for (int i = 1; i < 7; i++) {
-					objArray.add(results.getObject(i));
-				}
-				return objArray;
-				// return new Nail(objArray);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return new ArrayList<Object>();
+		return InventoryItemCommand.Nail.find(id);
 	}
 
-	@Override
-	protected Nail find(int id) {
-		ArrayList<Object> objArray = findList(id);
-		if (objArray.isEmpty()) {
-			return (Nail) null;
-		}
-		return new Nail(objArray);
+	public int getNumberInBox() {
+		return numberInBox;
+	}
 
+	protected void setNumberInBox(int numberInBox) {
+		this.numberInBox = numberInBox;
 	}
 
 }
