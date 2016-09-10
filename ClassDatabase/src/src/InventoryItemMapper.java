@@ -3,9 +3,11 @@ import java.sql.SQLException;
 
 import javax.tools.Tool;
 
+import org.junit.runner.RunWith;
+
 public class InventoryItemMapper extends Mapper
 {
-
+	
 	public static void main(String args[]) throws SQLException
 	{
 		//NailMapper a = new NailMapper(7, "5a", 9, 10, 5, 20);
@@ -16,8 +18,11 @@ public class InventoryItemMapper extends Mapper
 		//Arraylist.add(Nail);
 		
 		//ToolMapper tool = new ToolMapper(2);
-		PowerToolMapper powTool = new PowerToolMapper(15);
+		//PowerToolMapper powTool = new PowerToolMapper(15);
+		
 		
 	}
+	
+	
 	
 }

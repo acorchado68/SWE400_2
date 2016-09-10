@@ -34,11 +34,11 @@ public class PowerToolMapper extends ToolMapper
 			
 			if(batteryPowered == true)
 			{
-				query.setInt(2, 0);
+				query.setInt(2, 1);
 			}
 			else
 			{
-				query.setInt(2, 1);
+				query.setInt(2, 0);
 			}
 			query.execute();
 	}
@@ -53,7 +53,6 @@ public class PowerToolMapper extends ToolMapper
 		super();
 		PreparedStatement stmt = null;
 		
-			System.out.println("Entered PowerToolMapper");
 			Connection conn = DBConnectionManager.getConnection();
 			String query = "SELECT a.id, b.description, a.upc, a.manufacturerId, a.price, c.batteryPowered FROM InventoryItem a JOIN Tool b ON"
 					+ "	a.ID = b.ID JOIN PowerTool c ON a.ID = c.ID WHERE a.ID = ?;";
@@ -65,11 +64,11 @@ public class PowerToolMapper extends ToolMapper
 			int value = rs.getInt("batteryPowered");
 			if(value == 0)
 			{
-				batteryPow = true;
+				batteryPow = false;
 			}
 			else
 			{
-				batteryPow = false;
+				batteryPow = true;
 			}
 			this.id = Integer.parseInt(rs.getString("id"));
 			this.upc= rs.getString("upc");

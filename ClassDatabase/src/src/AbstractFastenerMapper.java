@@ -10,7 +10,7 @@ import java.sql.SQLException;
  */
 public abstract class AbstractFastenerMapper extends AbstractInventoryItemMapper
 {
-	protected long length;
+	protected double length;
 	
 	/**
 	 * creation constructor
@@ -21,7 +21,7 @@ public abstract class AbstractFastenerMapper extends AbstractInventoryItemMapper
 	 * @param length
 	 * @throws SQLException 
 	 */
-	public AbstractFastenerMapper(String upc, int manufacturerID, int price, long length) throws SQLException 
+	public AbstractFastenerMapper(String upc, int manufacturerID, int price, double length) throws SQLException 
 	{
 		super(upc, manufacturerID, price);
 
@@ -30,7 +30,7 @@ public abstract class AbstractFastenerMapper extends AbstractInventoryItemMapper
 			PreparedStatement query = conn.prepareStatement("Insert into Fastener (id, length) VALUES (?,?);");
 			
 			query.setInt(1, id);
-			query.setLong(2, length);
+			query.setDouble(2, length);
 		
 			this.length = length;
 			query.execute();
@@ -49,5 +49,5 @@ public abstract class AbstractFastenerMapper extends AbstractInventoryItemMapper
 	 * method for returning length of nail 
 	 * @return
 	 */
-	public abstract long getLength();
+	public abstract double getLength();
 }

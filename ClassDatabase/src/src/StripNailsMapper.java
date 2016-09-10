@@ -12,7 +12,7 @@ import java.sql.SQLException;
 public class StripNailsMapper extends AbstractFastenerMapper 
 {
 	protected int numberInStrip;
-	public StripNailsMapper(String upc, int manufacturerID, int price, int length, int numberInStrip) throws SQLException 
+	public StripNailsMapper(String upc, int manufacturerID, int price, double length, int numberInStrip) throws SQLException 
 	{
 			super(upc, manufacturerID, price, length);
 	
@@ -44,7 +44,7 @@ public class StripNailsMapper extends AbstractFastenerMapper
 					
 			this.id = Integer.parseInt(rs.getString("id"));
 			this.upc= rs.getString("upc");
-			this.length = Integer.parseInt(rs.getString("length"));
+			this.length = Double.parseDouble(rs.getString("length"));
 			this.manufacturerID = Integer.parseInt(rs.getString("manufacturerId"));
 			this.price = Integer.parseInt(rs.getString("price"));
 			this.numberInStrip = Integer.parseInt(rs.getString("numberInStrip"));	
@@ -91,7 +91,7 @@ public class StripNailsMapper extends AbstractFastenerMapper
 	 * return the nail length
 	 */
 	@Override
-	public long getLength() 
+	public double getLength() 
 	{
 		return length;
 	}

@@ -24,7 +24,7 @@ public class NailMapper extends AbstractFastenerMapper
 	 * @param numberInBox
 	 * @throws SQLException 
 	 */
-	public NailMapper( String upc, int manufacturerID, int price, long length, int numberInBox) throws SQLException 
+	public NailMapper( String upc, int manufacturerID, int price, double length, int numberInBox) throws SQLException 
 	{
 		super(upc, manufacturerID, price, length);
 		
@@ -64,7 +64,7 @@ public class NailMapper extends AbstractFastenerMapper
 			this.upc= rs.getString("upc");
 			this.manufacturerID = Integer.parseInt(rs.getString("manufacturerId"));
 			this.price = Integer.parseInt(rs.getString("price"));
-			this.length = Integer.parseInt(rs.getString("length"));
+			this.length = Double.parseDouble(rs.getString("length"));
 			this.numberInBox = Integer.parseInt(rs.getString("numberInBox"));
 			
 	}
@@ -109,7 +109,7 @@ public class NailMapper extends AbstractFastenerMapper
 	 * returns the length
 	 */
 	@Override
-	public long getLength() 
+	public double getLength() 
 	{
 		return length;
 	}

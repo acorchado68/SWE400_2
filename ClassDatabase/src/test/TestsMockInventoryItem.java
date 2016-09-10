@@ -25,7 +25,7 @@ public class TestsMockInventoryItem extends abstractTests
 	 * @throws SQLException
 	 */
 	@Test
-	public void testCreation() throws SQLException 
+	public void testCreationMockInventoryItemClass() throws SQLException 
 	{
 		String upc = "this is a upc";
 		int manufacturerId = 7;

@@ -28,12 +28,12 @@ public class TestsNail extends abstractTests {
 	 * @throws SQLException
 	 */
 	@Test
-	public void testCreation() throws SQLException 
+	public void testCreationNail() throws SQLException 
 	{
 		String upc = "absolute";
 		int manufacturerId = 5;
 		int price = 14;
-		long length = 6;
+		double length = 6;
 		int numBox = 14;
 		NailMapper example = new NailMapper(upc, manufacturerId, price, length, numBox);
 		
@@ -56,7 +56,7 @@ public class TestsNail extends abstractTests {
 		
 		rs = query2.executeQuery();
 		rs.next();
-		assertEquals(length,rs.getInt("length"));
+		assertEquals(length,rs.getDouble("length"),.01);
 		
 		rs = query3.executeQuery();
 		rs.next();
@@ -73,7 +73,7 @@ public class TestsNail extends abstractTests {
 		String upc = "absolute";
 		int manufacturerId = 5;
 		int price = 14;
-		int length = 6;
+		double length = 6;
 		int numBox = 14;
 		NailMapper example = new NailMapper(upc, manufacturerId, price, length, numBox);
 		
@@ -81,7 +81,7 @@ public class TestsNail extends abstractTests {
 		assertEquals(upc, findExample.getUpc());
 		assertEquals(manufacturerId, findExample.getManufacturerID());
 		assertEquals(price, findExample.getPrice());
-		assertEquals(length, findExample.getLength());
+		assertEquals(length, findExample.getLength(),.01);
 		assertEquals(numBox, findExample.getNumInBox());
 	}
 	
@@ -89,7 +89,7 @@ public class TestsNail extends abstractTests {
 	 * Test if find is called on a id that does not exist
 	 */
 	@Test
-	public void testNull()
+	public void testNullNail()
 	{	
 		try {
 			new NailMapper(-1);

@@ -26,12 +26,12 @@ public class TestsMockFastener extends abstractTests
 	 * @throws SQLException
 	 */
 	@Test
-	public void testCreation() throws SQLException 
+	public void testCreationMockFastenerClass() throws SQLException 
 	{
 		String upc = "this is a upc";
 		int manufacturerId = 7;
 		int price = 10;
-		long length = 60;
+		double length = 60;
 		MockFastener example = new MockFastener(upc, manufacturerId, price, length);
 		
 		Connection conn = DBConnectionManager.getConnection();
@@ -50,13 +50,13 @@ public class TestsMockFastener extends abstractTests
 		query2.setInt(1, example.getId());
 		rs = query2.executeQuery();
 		rs.next();
-		assertEquals(length,rs.getLong("length"));
+		assertEquals(length,rs.getDouble("length"),.01);
 	}
 }
 
 class MockFastener extends AbstractFastenerMapper
 {	
-	MockFastener( String upc, int manufacturerID, int price, long length) throws SQLException
+	MockFastener( String upc, int manufacturerID, int price, double length) throws SQLException
 	{
 		super(upc,manufacturerID, price,length);
 	}
@@ -85,7 +85,7 @@ class MockFastener extends AbstractFastenerMapper
 	}
 
 	@Override
-	public long getLength() 
+	public double getLength() 
 	{
 		return length;
 	}
