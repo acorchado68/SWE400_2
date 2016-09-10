@@ -41,11 +41,10 @@ public abstract class AbstractFastenerMapper extends AbstractInventoryItemMapper
 	
 	/**
 	 * finder constructor
-	 * @param id
 	 */
-	public AbstractFastenerMapper(int id)
+	public AbstractFastenerMapper()
 	{	
-		super(id);
+		super();
 	}
 	
 	/**

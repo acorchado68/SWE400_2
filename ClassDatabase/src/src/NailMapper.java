@@ -49,10 +49,11 @@ public class NailMapper extends AbstractFastenerMapper
 	 */
 	public NailMapper(int id)
 	{
-		super(id);
+		super();
 		
 		java.sql.PreparedStatement stmt = null;
 		try {
+			System.out.println("Entered NailMapper");
 			Connection conn = DBConnectionManager.getConnection();
 			
 			String query = "SELECT a.id, a.upc, a.manufacturerId, a.price, b.length, c.numberInBox FROM InventoryItem a JOIN Fastener b ON"

@@ -56,9 +56,9 @@ public abstract class AbstractInventoryItemMapper extends Mapper
 	
 	/**
 	 * need for finder constructor of upper classes 
-	 * @param id
+	 *
 	 */
-	public AbstractInventoryItemMapper(int id)
+	public AbstractInventoryItemMapper()
 	{
 		
 	}

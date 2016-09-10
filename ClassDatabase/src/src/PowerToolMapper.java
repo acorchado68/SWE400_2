@@ -98,5 +98,5 @@ public class PowerToolMapper extends ToolMapper
 	{
 		return batteryPow;
 	}
-	
+
 }

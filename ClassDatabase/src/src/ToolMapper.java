@@ -46,7 +46,7 @@ public class ToolMapper extends AbstractInventoryItemMapper
 	 */
 	public ToolMapper(int id)
 	{
-		super(id);
+		super();
 		java.sql.PreparedStatement stmt = null;
 		try {
 			System.out.println("Enter is here");
@@ -78,7 +78,7 @@ public class ToolMapper extends AbstractInventoryItemMapper
 	 */
 	public ToolMapper() 
 	{
-		super(0);
+		super();
 	}
 
 	/**

@@ -1,6 +1,7 @@
 package src;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -10,19 +11,21 @@ import java.sql.SQLException;
  */
 public class StripNailsMapper extends AbstractFastenerMapper 
 {
-	public StripNailsMapper(int id, String upc, int manufacturerID, int price, long length, int numberInStrip) 
+	protected int numberInStrip;
+	public StripNailsMapper(String upc, int manufacturerID, int price, long length, int numberInStrip) 
 	{
 		super(upc, manufacturerID, price, length);
 		
 		try {
 			Connection conn = DBConnectionManager.getConnection();
 			
-			PreparedStatement query = conn.prepareStatement("Insert into StripNails (id, numberInStrip) VALUES (?,?);");
+			PreparedStatement query = conn.prepareStatement("Insert into StripNail (id, numberInStrip) VALUES (?,?);");
 			query.setInt(1, id);
 			query.setInt(2,numberInStrip);
 			
 			query.execute();
 			
+			this.numberInStrip = numberInStrip;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -30,9 +33,37 @@ public class StripNailsMapper extends AbstractFastenerMapper
 
 	public StripNailsMapper(int id)
 	{
-		super(id);
+		super();
+		PreparedStatement stmt = null;
+		try{
+			System.out.println("Enter StripNailMapper");
+			Connection conn = DBConnectionManager.getConnection();
+			String query = "SELECT a.id, a.upc, a.manufacturerId, a.price, b.length, c.numberInStrip FROM InventoryItem a JOIN Fastener b ON"
+					+ "	a.ID = b.ID JOIN StripNail c ON a.ID = c.ID WHERE a.ID = ?;";
+			stmt = conn.prepareStatement(query);
+			stmt.setInt(1, id);
+			
+			ResultSet rs = stmt.executeQuery();
+			rs.next();
+			
+					
+			this.id = Integer.parseInt(rs.getString("id"));
+			this.upc= rs.getString("upc");
+			this.length = Integer.parseInt(rs.getString("length"));
+			this.manufacturerID = Integer.parseInt(rs.getString("manufacturerId"));
+			this.price = Integer.parseInt(rs.getString("price"));
+			this.numberInStrip = Integer.parseInt(rs.getString("numberInStrip"));	
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
 	}
 
+	public int getNumInStrip()
+	{
+		return numberInStrip;
+	}
 	/**
 	 * returns the id
 	 */

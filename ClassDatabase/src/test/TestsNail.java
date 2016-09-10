@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
+import javax.management.Query;
+
 import src.*;
 
 import org.junit.Test;
@@ -28,21 +30,16 @@ public class TestsNail extends abstractTests {
 	@Test
 	public void testCreation() throws SQLException 
 	{
-		String[] Checker = { "6", "8" };
-		
 		new NailMapper("absolute", 5, 10, 6, 6);
 		Connection conn = DBConnectionManager.getConnection();
-		PreparedStatement stmt = conn.prepareStatement("Select * From Nail WHERE id = 8");
-		ResultSet rs = stmt.executeQuery();
-		ResultSetMetaData rsmd = rs.getMetaData();
-		int incrementer = rsmd.getColumnCount();
-		while (rs.next()) 
-		{
-			for (int i = 1; i <= incrementer; i++) 
-			{
-				assertEquals(Checker[i - 1], rs.getString(i));
-			}
-		}
+		PreparedStatement query = conn.prepareStatement("Select  numberInBox from Nail where id = 1;");		
+		query.execute();
+		ResultSet rs = query.executeQuery();
+		System.out.println(rs.getInt("numberInBox"));
+		//assertEquals(6,numbInBox);
+		
+		query.execute();
+		
 	}
 
 	/**
@@ -50,13 +47,13 @@ public class TestsNail extends abstractTests {
 	 * @throws SQLException
 	 */
 	@Test
-	public void testFind() throws SQLException
+	public void testFindNails() throws SQLException
 	{
 		String upc = "absolute";
 		int manufacturerId = 5;
-		int price = 10;
+		int price = 14;
 		int length = 6;
-		int numBox = 6;
+		int numBox = 14;
 		NailMapper example = new NailMapper(upc, manufacturerId, price, length, numBox);
 		
 		NailMapper findExample = new NailMapper(example.getId());
