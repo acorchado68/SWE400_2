@@ -1,5 +1,11 @@
 package domain;
-
+/**
+ * String Assembler Enum - a "condensed" (maybe?) command pattern to help assemble strings
+ * 	for inserting objects into the database
+ * Each enumeration represents a column in some table in the database.
+ * @author mb8542
+ *	
+ */
 public enum StringAssemblerEnum implements SAEParent {
 
 	UPC("upc") {
@@ -60,8 +66,12 @@ public enum StringAssemblerEnum implements SAEParent {
 
 	};
 
+	
 	private String columnName;
-
+	/**
+	 * 
+	 * @param columnName
+	 */
 	StringAssemblerEnum(String columnName) {
 
 		this.columnName = columnName;

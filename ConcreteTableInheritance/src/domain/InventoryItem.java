@@ -16,19 +16,12 @@ public abstract class InventoryItem {
 	private static int COLUMN_PRICE = 3;
 
 
-	protected InventoryItem() {
-		id = -9999;
-		price = -1;
-		manufacturerId = -1;
-		upc = "NOT AN ITEM/DOES NOT EXIST";
-	}
-
 	public InventoryItem(ArrayList<Object> objectArray) {
 		if (objectArray.isEmpty()) {
-			this.id = -99999;
-			price = -1;
-			manufacturerId = -1;
-			upc = "NOT AN ITEM/DOES NOT EXIST";
+			this.id = -9999;
+			this.price = -1;
+			this.manufacturerId = -1;
+			this.upc = "NOT AN ITEM/DOES NOT EXIST";
 		} else {
 			parseParameterObjects(objectArray);
 			handleUniqueColumn(objectArray);

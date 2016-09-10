@@ -57,6 +57,7 @@ public enum InventoryItemCommand {
 				}
 				return objArray;
 			}
+			statement.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

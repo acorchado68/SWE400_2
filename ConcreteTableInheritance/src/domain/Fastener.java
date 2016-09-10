@@ -9,10 +9,7 @@ public abstract class Fastener extends InventoryItem {
 		super(objectArray);
 	}
 
-	public Fastener() {
-		super();
-		this.length = -1;
-	}
+
 
 	public long getLength() {
 		return this.length;
