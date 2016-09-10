@@ -11,8 +11,8 @@ public class InventoryItemMapper extends Mapper
 	public static void main(String args[]) throws SQLException
 	{
 		//NailMapper a = new NailMapper(7, "5a", 9, 10, 5, 20);
-		//new PowerToolMapper(25, "6", 5, 10, "9", 0);
-		//new StripNailsMapper(10, "4", 6, 5, 10, 30);
+		PowerToolMapper pwt1 = new PowerToolMapper("6", 5, 10, "9", true);
+		StripNailsMapper sn1 = new StripNailsMapper("4", 6, 5, 10, 30);
 		//new ToolMapper(2, "9",5, 7, "5");
 		//NailMapper Nail = new NailMapper(7);
 		//Arraylist.add(Nail);
@@ -20,7 +20,7 @@ public class InventoryItemMapper extends Mapper
 		//ToolMapper tool = new ToolMapper(2);
 		//PowerToolMapper powTool = new PowerToolMapper(15);
 		
-		
+		PowerToolXStripNailMapper link1 = new PowerToolXStripNailMapper(pwt1, sn1);
 	}
 	
 	
