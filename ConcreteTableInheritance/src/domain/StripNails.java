@@ -28,7 +28,7 @@ public class StripNails extends Fastener {
 	}
 
 	@Override
-	protected void insert() {
+	public void insert() {
 		InventoryItemCommand.insert(InventoryItemCommand.StripNails, this);
 		
 	}

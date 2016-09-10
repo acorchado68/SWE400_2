@@ -13,17 +13,21 @@ public enum InventoryItemCommand {
 	/**
 	 * 
 	 */
-	Nail("Nail", ""), PowerTool("PowerTool", ""), StripNails("StripNail", ""), Tool("Tool", "");
+	Nail("Nail", "(upc,manufacturerId,price,numberInBox,length)"), PowerTool("PowerTool", "(upc,manufacturerId,price,batteryPowered,description,compatibleStripNails)"), StripNails("StripNail", "(upc,manufacturerId,price,numberInStrip,length,compatiblePowerTools)"), Tool("Tool", "(upc,manufacturerId,price,description)");
 
 	private String tableName;
 	private String valueString;
 	private static HashMap<String, StringAssemblerEnum> stringMap = null;
 	private static Connection connection;
 	protected static String uri = "jdbc:mysql://db.cs.ship.edu:3306/swe400-22?user=swe400_2&password=pwd4swe400_2F16";
+	private static int availableID;
 
+	protected static int getAvailableID() {
+		return availableID;
+	}
 	InventoryItemCommand(String tableName, String valueString) {
 		this.tableName = tableName;
-
+		this.valueString = valueString;
 	}
 
 	protected ArrayList<Object> find(int id) {
@@ -68,26 +72,28 @@ public enum InventoryItemCommand {
 	protected static boolean insert(InventoryItemCommand inventoryItemCommand, InventoryItem in) {
 		try {
 			Statement statement = connection.createStatement();
+			statement.execute("START TRANSACTION");
 			statement.execute(assembleString(inventoryItemCommand, in));
+			statement.execute("COMMIT");
 			statement.close();
 		} catch (SQLException e) {
-
+			e.printStackTrace();
 			return false;
 		}
 		return true;
 	}
 
-	private static String assembleString(InventoryItemCommand inventoryItemCommand, InventoryItem in) {
 
-		String assembledString = "INSERT INTO " + inventoryItemCommand.tableName + " VALUES "
-				+ inventoryItemCommand.valueString + " (";
+	private static String assembleString(InventoryItemCommand inventoryItemCommand, InventoryItem in) {
+		String assembledString = "INSERT INTO " + inventoryItemCommand.tableName 
+				+ inventoryItemCommand.valueString + " VALUES (";
 		String temporaryString = String.copyValueOf(inventoryItemCommand.valueString.toCharArray());
-		temporaryString.replaceAll("(", "");
-		temporaryString.replaceAll(")", "");
-		String[] split = inventoryItemCommand.valueString.split(",");
-		for (String s : split) {
-			assembledString += getStringAssemblerEnum(s).getValue(in);
+		temporaryString = temporaryString.replaceAll("[)(]","");
+		String[] split = temporaryString.split(",");
+		for (int i = 0; i < split.length-1; i++) {
+			assembledString += getStringAssemblerEnum(split[i]).getValue(in) + ",";
 		}
+		assembledString += getStringAssemblerEnum(split[split.length-1]).getValue(in);
 		assembledString += ");";
 		return assembledString;
 	}

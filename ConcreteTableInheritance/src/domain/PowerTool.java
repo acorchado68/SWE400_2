@@ -31,11 +31,10 @@ public class PowerTool extends Tool {
 	}
 
 	public boolean getBatteryPowered() {
-		// TODO Auto-generated method stub
 		return batteryPowered;
 	}
 	@Override
-	protected void insert() {
+	public void insert() {
 		
 		InventoryItemCommand.insert(InventoryItemCommand.PowerTool, this);
 	}

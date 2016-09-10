@@ -14,7 +14,7 @@ public abstract class InventoryItem {
 	private static int COLUMN_UPC = 1;
 	private static int COLUMN_MFGID = 2;
 	private static int COLUMN_PRICE = 3;
-
+	private static int NO_ID_ISSUED = -27;
 
 	public InventoryItem(ArrayList<Object> objectArray) {
 		if (objectArray.isEmpty()) {
@@ -37,7 +37,12 @@ public abstract class InventoryItem {
 	 */
 	private void parseParameterObjects(ArrayList<Object> objectArray) {
 
-		this.id = (Integer) objectArray.get(COLUMN_ID);
+		if((Integer)objectArray.get(COLUMN_ID) == NO_ID_ISSUED)
+		{
+			this.id = NO_ID_ISSUED;
+		}else{
+			this.id = (Integer) objectArray.get(COLUMN_ID);
+		}
 		this.upc = (String) objectArray.get(COLUMN_UPC);
 		this.manufacturerId = (Integer) objectArray.get(COLUMN_MFGID);
 		this.price = (Integer) objectArray.get(COLUMN_PRICE);
