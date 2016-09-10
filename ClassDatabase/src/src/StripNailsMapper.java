@@ -12,7 +12,7 @@ import java.sql.SQLException;
 public class StripNailsMapper extends AbstractFastenerMapper 
 {
 	protected int numberInStrip;
-	public StripNailsMapper(String upc, int manufacturerID, int price, long length, int numberInStrip) 
+	public StripNailsMapper(String upc, int manufacturerID, int price, int length, int numberInStrip) 
 	{
 		super(upc, manufacturerID, price, length);
 		

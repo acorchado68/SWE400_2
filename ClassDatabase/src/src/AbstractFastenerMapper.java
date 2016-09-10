@@ -32,6 +32,7 @@ public abstract class AbstractFastenerMapper extends AbstractInventoryItemMapper
 			query.setInt(1, id);
 			query.setLong(2, length);
 		
+			this.length = length;
 			query.execute();
 		
 		} catch (SQLException e) {

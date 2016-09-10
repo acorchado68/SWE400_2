@@ -30,16 +30,37 @@ public class TestsNail extends abstractTests {
 	@Test
 	public void testCreation() throws SQLException 
 	{
-		new NailMapper("absolute", 5, 10, 6, 6);
+		String upc = "absolute";
+		int manufacturerId = 5;
+		int price = 14;
+		long length = 6;
+		int numBox = 14;
+		NailMapper example = new NailMapper(upc, manufacturerId, price, length, numBox);
+		
 		Connection conn = DBConnectionManager.getConnection();
-		PreparedStatement query = conn.prepareStatement("Select  numberInBox from Nail where id = 1;");		
-		query.execute();
-		ResultSet rs = query.executeQuery();
-		System.out.println(rs.getInt("numberInBox"));
-		//assertEquals(6,numbInBox);
 		
-		query.execute();
+		PreparedStatement query1 = conn.prepareStatement("Select * from InventoryItem where id = ?;");
+		query1.setInt(1, example.getId());
+				
+		PreparedStatement query2 = conn.prepareStatement("Select * from Fastener where id = ?;");
+		query2.setInt(1, example.getId());
 		
+		PreparedStatement query3 = conn.prepareStatement("Select * from Nail where id = ?;");
+		query3.setInt(1, example.getId());
+		
+		ResultSet rs = query1.executeQuery();
+		rs.next();
+		assertEquals(upc,rs.getString("upc"));
+		assertEquals(manufacturerId,rs.getInt("manufacturerId"));
+		assertEquals(price,rs.getInt("price"));
+		
+		rs = query2.executeQuery();
+		rs.next();
+		assertEquals(length,rs.getInt("length"));
+		
+		rs = query3.executeQuery();
+		rs.next();
+		assertEquals(numBox,rs.getInt("numberInBox"));
 	}
 
 	/**
@@ -63,4 +84,15 @@ public class TestsNail extends abstractTests {
 		assertEquals(length, findExample.getLength());
 		assertEquals(numBox, findExample.getNumInBox());
 	}
+	
+	/**
+	 * Test if find is called on a id that does not exist
+	 */
+	@Test(expected = java.sql.SQLException.class)
+	public void testNull()
+	{	
+	    NailMapper findExample = new NailMapper(-1);
+		
+	}
+	
 }
