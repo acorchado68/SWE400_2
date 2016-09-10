@@ -55,6 +55,7 @@ public enum InventoryItemCommand {
 				for (int i = 1; i < 7; i++) {
 					objArray.add(results.getObject(i));
 				}
+				statement.close();
 				return objArray;
 			}
 			statement.close();
