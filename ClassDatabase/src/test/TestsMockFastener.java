@@ -9,6 +9,7 @@ import java.sql.SQLException;
 
 import org.junit.Test;
 
+import src.AbstractFastenerMapper;
 import src.AbstractInventoryItemMapper;
 import src.DBConnectionManager;
 
@@ -17,7 +18,7 @@ import src.DBConnectionManager;
  * @author Zachary & Scott
  * Tests for the abstractInventoryItem class
  */
-public class TestsMockInventoryItem extends abstractTests
+public class TestsMockFastener extends abstractTests
 {
 	/**
 	 * Test for creating a Nail
@@ -30,7 +31,8 @@ public class TestsMockInventoryItem extends abstractTests
 		String upc = "this is a upc";
 		int manufacturerId = 7;
 		int price = 10;
-		MockInventoryItem example = new MockInventoryItem(upc, manufacturerId, price);
+		long length = 60;
+		MockFastener example = new MockFastener(upc, manufacturerId, price, length);
 		
 		Connection conn = DBConnectionManager.getConnection();
 		
@@ -38,18 +40,25 @@ public class TestsMockInventoryItem extends abstractTests
 		query1.setInt(1, example.getId());
 		
 		ResultSet rs = query1.executeQuery();
+		
 		rs.next();
 		assertEquals(upc,rs.getString("upc"));
 		assertEquals(manufacturerId,rs.getInt("manufacturerId"));
 		assertEquals(price,rs.getInt("price"));
+		
+		PreparedStatement query2 = conn.prepareStatement("Select * from Fastener where id = ?;");
+		query2.setInt(1, example.getId());
+		rs = query2.executeQuery();
+		rs.next();
+		assertEquals(length,rs.getLong("length"));
 	}
 }
 
-class MockInventoryItem extends AbstractInventoryItemMapper
+class MockFastener extends AbstractFastenerMapper
 {	
-	MockInventoryItem( String upc, int manufacturerID, int price) throws SQLException
+	MockFastener( String upc, int manufacturerID, int price, long length) throws SQLException
 	{
-		super(upc,manufacturerID, price);
+		super(upc,manufacturerID, price,length);
 	}
 
 	@Override
@@ -73,5 +82,11 @@ class MockInventoryItem extends AbstractInventoryItemMapper
 	@Override
 	public int getPrice() {
 		return price;
+	}
+
+	@Override
+	public long getLength() 
+	{
+		return length;
 	}
 }

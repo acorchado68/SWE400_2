@@ -39,7 +39,7 @@ public class TestsStripNails extends abstractTests
 	}
 	
 	@Test
-	public void testFindStripNails()
+	public void testFindStripNails() throws SQLException
 	{
 		String upc = "absolute3";
 		int manufacturerId = 7;
@@ -53,9 +53,22 @@ public class TestsStripNails extends abstractTests
 		assertEquals(manufacturerId, findExample.getManufacturerID());
 		assertEquals(price, findExample.getPrice());
 		assertEquals(length, findExample.getLength());
-		System.out.println("This is the number in getNumInStrip  = " + findExample.getNumInStrip());
 		assertEquals(numStrip, findExample.getNumInStrip());
-
-		
+	}
+	
+	/**
+	 * Test if find is called on a id that does not exist
+	 */
+	@Test
+	public void testNull()
+	{	
+		try {
+			new StripNailsMapper(-1);
+			fail("Expected an SQLException to be thrown");
+		} 
+		catch (SQLException exception) 
+		{
+	
+		}    
 	}
 }

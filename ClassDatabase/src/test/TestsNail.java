@@ -88,11 +88,17 @@ public class TestsNail extends abstractTests {
 	/**
 	 * Test if find is called on a id that does not exist
 	 */
-	@Test(expected = java.sql.SQLException.class)
+	@Test
 	public void testNull()
 	{	
-	    NailMapper findExample = new NailMapper(-1);
-		
+		try {
+			new NailMapper(-1);
+			fail("Expected an SQLException to be thrown");
+		} 
+		catch (SQLException exception) 
+		{
+	
+		}    
 	}
 	
 }

@@ -2,16 +2,10 @@ package test;
 
 import static org.junit.Assert.*;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
 import org.junit.Test;
 
-import src.DBConnectionManager;
-import src.NailMapper;
 import src.ToolMapper;
 
 public class TestsTool extends abstractTests{
@@ -23,7 +17,7 @@ public class TestsTool extends abstractTests{
 	}
 	
 	@Test
-	public void testFind()
+	public void testFind() throws SQLException
 	{
 		String upc = "absolute";
 		int manufacturerId = 5;
@@ -39,4 +33,19 @@ public class TestsTool extends abstractTests{
 	
 	}
 
+	/**
+	 * Test if find is called on a id that does not exist
+	 */
+	@Test
+	public void testFindNull()
+	{	
+		try {
+			new ToolMapper(-1);
+			fail("Expected an SQLException to be thrown");
+		} 
+		catch (SQLException exception) 
+		{
+	
+		}    
+	}
 }

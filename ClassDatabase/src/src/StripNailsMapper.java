@@ -12,11 +12,10 @@ import java.sql.SQLException;
 public class StripNailsMapper extends AbstractFastenerMapper 
 {
 	protected int numberInStrip;
-	public StripNailsMapper(String upc, int manufacturerID, int price, int length, int numberInStrip) 
+	public StripNailsMapper(String upc, int manufacturerID, int price, int length, int numberInStrip) throws SQLException 
 	{
-		super(upc, manufacturerID, price, length);
-		
-		try {
+			super(upc, manufacturerID, price, length);
+	
 			Connection conn = DBConnectionManager.getConnection();
 			
 			PreparedStatement query = conn.prepareStatement("Insert into StripNail (id, numberInStrip) VALUES (?,?);");
@@ -26,17 +25,13 @@ public class StripNailsMapper extends AbstractFastenerMapper
 			query.execute();
 			
 			this.numberInStrip = numberInStrip;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 	}
 
-	public StripNailsMapper(int id)
+	public StripNailsMapper(int id) throws NumberFormatException, SQLException
 	{
 		super();
 		PreparedStatement stmt = null;
-		try{
-			System.out.println("Enter StripNailMapper");
+	
 			Connection conn = DBConnectionManager.getConnection();
 			String query = "SELECT a.id, a.upc, a.manufacturerId, a.price, b.length, c.numberInStrip FROM InventoryItem a JOIN Fastener b ON"
 					+ "	a.ID = b.ID JOIN StripNail c ON a.ID = c.ID WHERE a.ID = ?;";
@@ -53,11 +48,6 @@ public class StripNailsMapper extends AbstractFastenerMapper
 			this.manufacturerID = Integer.parseInt(rs.getString("manufacturerId"));
 			this.price = Integer.parseInt(rs.getString("price"));
 			this.numberInStrip = Integer.parseInt(rs.getString("numberInStrip"));	
-		}
-		catch(SQLException e)
-		{
-			e.printStackTrace();
-		}
 	}
 
 	public int getNumInStrip()

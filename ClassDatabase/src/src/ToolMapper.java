@@ -20,12 +20,12 @@ public class ToolMapper extends AbstractInventoryItemMapper
 	 * @param manufacturerID 
 	 * @param price
 	 * @param description
+	 * @throws SQLException 
 	 */
-	public ToolMapper(String upc, int manufacturerID, int price, String description) 
+	public ToolMapper(String upc, int manufacturerID, int price, String description) throws SQLException 
 	{
 		super(upc, manufacturerID, price);
 	
-		try {
 			Connection conn = DBConnectionManager.getConnection();
 			
 			PreparedStatement query = conn.prepareStatement("Insert into Tool (id, description) VALUES (?,?);");
@@ -34,22 +34,17 @@ public class ToolMapper extends AbstractInventoryItemMapper
 			query.setString(2, description);
 			
 			query.execute();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	/**
 	 * finder constructor
 	 * @param id
+	 * @throws SQLException 
 	 */
-	public ToolMapper(int id)
+	public ToolMapper(int id) throws SQLException
 	{
 		super();
-		java.sql.PreparedStatement stmt = null;
-		try {
-			System.out.println("Enter is here");
+			java.sql.PreparedStatement stmt = null;
 			Connection conn = DBConnectionManager.getConnection();
 			String query = "SELECT a.id, b.description, a.upc, a.manufacturerId, a.price FROM InventoryItem a JOIN Tool b ON"
 			+ "	a.ID = b.ID WHERE a.ID = ?;";
@@ -64,13 +59,7 @@ public class ToolMapper extends AbstractInventoryItemMapper
 			this.manufacturerID = Integer.parseInt(rs.getString("manufacturerId"));
 			this.price = Integer.parseInt(rs.getString("price"));
 			
-			System.out.println(id + " " + upc);
-			
 			stmt.execute();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	/**

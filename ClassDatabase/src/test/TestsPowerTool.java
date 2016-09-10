@@ -2,10 +2,13 @@ package test;
 
 import static org.junit.Assert.*;
 
+import java.sql.SQLException;
+
 import org.junit.Test;
 
 import src.NailMapper;
 import src.PowerToolMapper;
+import src.ToolMapper;
 
 public class TestsPowerTool extends abstractTests {
 
@@ -15,7 +18,7 @@ public class TestsPowerTool extends abstractTests {
 	}
 	
 	@Test
-	public void testFind()
+	public void testFind() throws SQLException
 	{
 		String upc = "absolute";
 		int manufacturerId = 5;
@@ -33,4 +36,19 @@ public class TestsPowerTool extends abstractTests {
 		
 	}
 
+	/**
+	 * test for finding a element that does not exist
+	 */
+	@Test
+	public void testFindNull()
+	{	
+		try {
+			new PowerToolMapper(-1);
+			fail("Expected an SQLException to be thrown");
+		} 
+		catch (SQLException exception) 
+		{
+	
+		}    
+	}
 }

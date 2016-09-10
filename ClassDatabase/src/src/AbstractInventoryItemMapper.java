@@ -22,14 +22,14 @@ public abstract class AbstractInventoryItemMapper extends Mapper
 	 * @param upc
 	 * @param manufacturerID
 	 * @param price
+	 * @throws SQLException 
 	 */
-	public AbstractInventoryItemMapper( String upc, int manufacturerID, int price)
+	public AbstractInventoryItemMapper( String upc, int manufacturerID, int price) throws SQLException
 	{
 		this.upc= upc;
 		this.manufacturerID = manufacturerID;
 		this.price = price;
 		
-		try {
 			Connection conn = DBConnectionManager.getConnection();
 			PreparedStatement query = conn.prepareStatement("Insert into InventoryItem (upc, manufacturerID, price) VALUES (?,?,?);"); 
 			
@@ -49,9 +49,6 @@ public abstract class AbstractInventoryItemMapper extends Mapper
 			
 			this.id = Integer.parseInt(rs.getString("id"));
 			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	/**

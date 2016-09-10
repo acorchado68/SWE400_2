@@ -19,12 +19,12 @@ public abstract class AbstractFastenerMapper extends AbstractInventoryItemMapper
 	 * @param manufacturerID
 	 * @param price
 	 * @param length
+	 * @throws SQLException 
 	 */
-	public AbstractFastenerMapper(String upc, int manufacturerID, int price, long length) 
+	public AbstractFastenerMapper(String upc, int manufacturerID, int price, long length) throws SQLException 
 	{
 		super(upc, manufacturerID, price);
-	
-		try {
+
 			Connection conn = DBConnectionManager.getConnection();
 	
 			PreparedStatement query = conn.prepareStatement("Insert into Fastener (id, length) VALUES (?,?);");
@@ -34,10 +34,7 @@ public abstract class AbstractFastenerMapper extends AbstractInventoryItemMapper
 		
 			this.length = length;
 			query.execute();
-		
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	
 	}
 	
 	/**

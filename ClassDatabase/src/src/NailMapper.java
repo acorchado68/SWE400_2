@@ -22,12 +22,12 @@ public class NailMapper extends AbstractFastenerMapper
 	 * @param price
 	 * @param length
 	 * @param numberInBox
+	 * @throws SQLException 
 	 */
-	public NailMapper( String upc, int manufacturerID, int price, long length, int numberInBox) 
+	public NailMapper( String upc, int manufacturerID, int price, long length, int numberInBox) throws SQLException 
 	{
 		super(upc, manufacturerID, price, length);
 		
-		try {
 			Connection conn = DBConnectionManager.getConnection();
 			
 			PreparedStatement query = conn.prepareStatement("Insert into " + CLASSNAME + " (id, numberInBox) VALUES ( ?,? );");
@@ -37,22 +37,19 @@ public class NailMapper extends AbstractFastenerMapper
 			query.execute();
 			
 			this.numberInBox = numberInBox;
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 	}
 
 	/**
 	 * finder constructor
 	 * @param id
+	 * @throws SQLException 
 	 */
-	public NailMapper(int id)
+	public NailMapper(int id) throws SQLException
 	{
 		super();
 		
 		java.sql.PreparedStatement stmt = null;
-		try {
 			Connection conn = DBConnectionManager.getConnection();
 			
 			String query = "SELECT a.id, a.upc, a.manufacturerId, a.price, b.length, c.numberInBox FROM InventoryItem a JOIN Fastener b ON"
@@ -70,9 +67,6 @@ public class NailMapper extends AbstractFastenerMapper
 			this.length = Integer.parseInt(rs.getString("length"));
 			this.numberInBox = Integer.parseInt(rs.getString("numberInBox"));
 			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 	}
 
 	/**
