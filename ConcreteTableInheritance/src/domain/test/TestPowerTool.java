@@ -10,7 +10,7 @@ public class TestPowerTool extends CTITestCase {
 
 	@Test
 	public void testFinderConstructor() {
-		PowerTool p = new PowerTool(1);
+		fail("Not yet implemented");
 	}
 
 }
