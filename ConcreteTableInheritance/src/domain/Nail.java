@@ -33,7 +33,7 @@ public class Nail extends Fastener {
 	@Override
 	protected void handleUniqueColumn(ArrayList<Object> objectArray) {
 		this.setNumberInBox((Integer) objectArray.get(COLUMN_NUMINBOX));
-		this.length = (Long) objectArray.get(COLUMN_LENGTH);
+		this.length = (Double) objectArray.get(COLUMN_LENGTH);
 	}
 
 	private static ArrayList<Object> findList(int id) {
@@ -49,7 +49,7 @@ public class Nail extends Fastener {
 	}
 
 	@Override
-	protected void insert() {
+	public void insert() {
 		InventoryItemCommand.insert(InventoryItemCommand.Nail, this);
 		
 	}

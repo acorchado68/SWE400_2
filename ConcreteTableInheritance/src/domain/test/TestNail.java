@@ -2,7 +2,9 @@ package domain.test;
 
 import static org.junit.Assert.*;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import org.junit.Test;
@@ -22,9 +24,10 @@ public class TestNail extends CTITestCase {
 	 */
 	@Test
 	public void testPopulated() throws Exception {
-		// CTITestCase.before();
+		//CTITestCase.before();
+		Statement statement = CTITestCase.connection.createStatement();
 		statement.execute("SELECT * FROM Nail");
-		resultSet = this.statement.getResultSet();
+		resultSet = statement.getResultSet();
 		resultSet.first();
 		nails = new ArrayList<Nail>();
 		do {
@@ -41,6 +44,8 @@ public class TestNail extends CTITestCase {
 
 		for (Nail n : nails) {
 			assertTrue(n.getId() > 0);
+			assertTrue(n.getLength() > 0.0);
+			assertTrue(n.getNumberInBox() > 0);
 		}
 
 	}
@@ -50,6 +55,40 @@ public class TestNail extends CTITestCase {
 		// BRIGHT_10D("4343412343", 27, 1899, 3, 750),
 		Nail aNail = new Nail(2);
 		assertTrue(aNail.getUpc().equals("4343412343"));
+	}
+	
+	@Test
+	public void testCreationConstructor() throws SQLException
+	{
+		String fakeUpc = "99999999";
+		objArray.clear();
+		objArray.add(-27);
+		objArray.add(fakeUpc);
+		objArray.add(-5);
+		objArray.add(-1999);
+		objArray.add(-5);
+		objArray.add(-10.0);
+		Nail aNail = new Nail(objArray);
+		aNail.insert();
+		
+		Statement statement = CTITestCase.connection.createStatement();
+		statement.execute("SELECT * FROM Nail WHERE upc='"+fakeUpc+"'");
+		resultSet = statement.getResultSet();
+		resultSet.first();
+		objArray.clear();
+			for (int i = 1; i < 7; i++) {
+				Object object = resultSet.getObject(i);
+				objArray.add(object);
+			}
+			Nail nail = new Nail(objArray);
+			
+			assertTrue(nail.getId() > 0);
+			assertTrue(nail.getLength() == -10.0);
+			assertTrue(nail.getPrice() == -1999);
+			assertTrue(nail.getManufacturerId() == -5);
+			assertTrue(nail.getNumberInBox() == -5);
+			objArray.clear();
+
 	}
 
 }

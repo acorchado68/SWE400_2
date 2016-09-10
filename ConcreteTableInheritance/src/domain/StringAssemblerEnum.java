@@ -11,7 +11,7 @@ public enum StringAssemblerEnum implements SAEParent {
 	UPC("upc") {
 		public String getValue(InventoryItem i) {
 
-			return i.getUpc();
+			return "'"+i.getUpc()+"'";
 		}
 	},
 	MFGID("manufacturerId") {
@@ -47,23 +47,52 @@ public enum StringAssemblerEnum implements SAEParent {
 	LENGTH("length") {
 		public String getValue(InventoryItem i) {
 			Fastener f = (Fastener)i;
-			return ((Long)f.getLength()).toString();
+			return ((Double)f.getLength()).toString();
 		}
 
 	},
-	NUMBERINSTRIP("numPerStrip") {
+	NUMBERINSTRIP("numberInStrip") {
 		public String getValue(InventoryItem i) {
 			StripNails nail = (StripNails) i;
 			return ((Integer) nail.getNumPerStrip()).toString();
 		}
 
 	},
-	NUMBERINBOX("numPerBox") {
+	NUMBERINBOX("numberInBox") {
 		public String getValue(InventoryItem i) {
 			Nail nail = (Nail) i;
 			return ((Integer) nail.getNumberInBox()).toString();
 		}
 
+	},
+	/*ID("id")
+	{
+
+
+		public String getValue(InventoryItem i) {
+			return ((Integer)InventoryItemCommand.getAvailableID()).toString();
+		}
+		
+	},*/
+	COMPATIBLE_POWERTOOLS("compatiblePowerTools")
+	{
+
+		@Override
+		public String getValue(InventoryItem i) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		
+	},
+	COMPATIBLE_STRIPNAILS("compatibleStripNails")
+	{
+
+		@Override
+		public String getValue(InventoryItem i) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		
 	};
 
 	
