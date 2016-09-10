@@ -10,10 +10,10 @@ import java.util.ArrayList;
 import org.junit.After;
 import org.junit.Before;
 
-import junit.framework.TestCase;
-import wellington.*;
 import domain.InventoryItem;
 import domain.InventoryItemCommand;
+import junit.framework.TestCase;
+import wellington.*;
 
 /**
  * 
@@ -25,8 +25,6 @@ public class CTITestCase {
 	protected static Connection connection;
 	protected static Statement statement;
 	protected static ResultSet resultSet;
-	private static String uri = "jdbc:mysql://db.cs.ship.edu:3306/swe400-22?"
-			+ "user=swe400_2&password=pwd4swe400_2F16";
 	protected static ArrayList<Object> objArray = null;
 
 	/**

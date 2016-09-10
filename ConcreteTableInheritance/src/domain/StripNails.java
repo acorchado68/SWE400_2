@@ -16,7 +16,7 @@ public class StripNails extends Fastener {
 
 	@Override
 	protected void handleUniqueColumn(ArrayList<Object> objectArray) {
-
+		
 	}
 
 	private static ArrayList<Object> findList(int id) {
