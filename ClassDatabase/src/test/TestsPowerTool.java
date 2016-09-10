@@ -58,17 +58,15 @@ public class TestsPowerTool extends abstractTests {
 		int manufacturerId = 5;
 		int price = 14;
 		String description = "description";
-		Boolean batteryPowered = true;
+		boolean batteryPowered = true;
 		PowerToolMapper example = new PowerToolMapper(upc,manufacturerId,price,description,batteryPowered);
-		Connection conn = DBConnectionManager.getConnection();
-		PreparedStatement query1 = conn.prepareStatement("Select * from InventoryItem where id = ?;");
-		query1.setInt(1, example.getId());
-				
-		PreparedStatement query2 = conn.prepareStatement("Select * from  where id = ?;");
-		query2.setInt(1, example.getId());
 		
-		PreparedStatement query3 = conn.prepareStatement("Select * from Nail where id = ?;");
-		query3.setInt(1, example.getId());
+		PowerToolMapper findExample = new PowerToolMapper(example.getId());
+		assertEquals(upc, findExample.getUpc());
+		assertEquals(manufacturerId, findExample.getManufacturerID());
+		assertEquals(price, findExample.getPrice());
+		assertEquals(description, findExample.getDescription());
+		assertEquals(batteryPowered, findExample.getbattery());
 		
 	}
 
