@@ -66,8 +66,8 @@ public class TestNail extends CTITestCase {
 		objArray.add(fakeUpc);
 		objArray.add(-5);
 		objArray.add(-1999);
-		objArray.add(-5);
-		objArray.add(-10.0);
+		objArray.add(5);
+		objArray.add(2.0);
 		Nail aNail = new Nail(objArray);
 		aNail.insert();
 		
@@ -83,10 +83,10 @@ public class TestNail extends CTITestCase {
 			Nail nail = new Nail(objArray);
 			
 			assertTrue(nail.getId() > 0);
-			assertTrue(nail.getLength() == -10.0);
+			assertTrue(nail.getLength() == 2.0);
 			assertTrue(nail.getPrice() == -1999);
 			assertTrue(nail.getManufacturerId() == -5);
-			assertTrue(nail.getNumberInBox() == -5);
+			assertTrue(nail.getNumberInBox() == 5);
 			objArray.clear();
 
 	}

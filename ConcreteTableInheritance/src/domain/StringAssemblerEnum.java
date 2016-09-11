@@ -39,7 +39,7 @@ public enum StringAssemblerEnum implements SAEParent {
 		public String getValue(InventoryItem i) {
 			
 			PowerTool t = (PowerTool) i;
-			int ternaryInt = t.getBatteryPowered() ? 0 : 1;
+			int ternaryInt = t.getBatteryPowered() ? 1 : 0;
 			return ((Integer) ternaryInt).toString();
 
 		}
