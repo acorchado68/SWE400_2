@@ -18,4 +18,13 @@ public abstract class Fastener extends InventoryItem
         super(id);
     }
 
+    /**
+     * Returns the length of this fastener.
+     * @return - the length of this fastener
+     */
+    public long getLength()
+    {
+        return length;
+    }
+
 }

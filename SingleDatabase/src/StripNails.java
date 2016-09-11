@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
+ *
  * Nick Martinez and Andrew Corchado - Single File Inheritence
  * Created by Nick Martinez on 9/3/16.
  */
@@ -32,7 +33,6 @@ public class StripNails extends Fastener
     {
         super(id, upc, manufacturerID, price, length);
         this.numberInStrip = numberInStrip;
-        insert();
     }
 
     /**
@@ -88,6 +88,15 @@ public class StripNails extends Fastener
         {
             exception.printStackTrace();
         }
+    }
+
+    /**
+     * Returns the number of nails in a strip
+     * @return - the number of nails in a strip
+     */
+    public int getNumberInStrip()
+    {
+        return numberInStrip;
     }
 
     /**
