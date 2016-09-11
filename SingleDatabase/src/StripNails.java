@@ -21,17 +21,19 @@ public class StripNails extends Fastener
 
     /**
      * Creation constructor. Initializes a new StripNails.
-     * @param id - the id of the strip nails
      * @param upc - the upc of the strip nails
      * @param manufacturerID - the manufacturer ID of the strip nails
      * @param price - the price of the strip nails
      * @param length - the length of the strip nails
      * @param numberInStrip - how many nails are in each strip?
      */
-    public StripNails(int id, String upc, int manufacturerID, int price, int length,
+    public StripNails(String upc, int manufacturerID, int price, int length,
                       int numberInStrip)
     {
-        super(id, upc, manufacturerID, price, length);
+        this.upc = upc;
+        this.manufacturerID = manufacturerID;
+        this.price = price;
+        this.length = length;
         this.numberInStrip = numberInStrip;
     }
 
@@ -41,7 +43,7 @@ public class StripNails extends Fastener
      */
     public StripNails(int id)
     {
-        super(id);
+        find(id);
     }
 
     /** Maps StripNails to database. */

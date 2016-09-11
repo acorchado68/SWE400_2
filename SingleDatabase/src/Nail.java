@@ -21,17 +21,19 @@ public class Nail extends Fastener
 
     /**
      * Creation constructor. Initializes a new Nail.
-     * @param id - the id of the nail
      * @param upc - the upc of the nail
      * @param manufacturerID - the manufacturer ID of the nail
      * @param price - the price of the nail
      * @param length - the length of the nail
      * @param numberInBox - how many nails are in each box?
      */
-    public Nail(int id, String upc, int manufacturerID, int price, int length,
+    public Nail(String upc, int manufacturerID, int price, int length,
                       int numberInBox)
     {
-        super(id, upc, manufacturerID, price, length);
+        this.upc = upc;
+        this.manufacturerID = manufacturerID;
+        this.price = price;
+        this.length = length;
         this.numberInBox = numberInBox;
     }
 
@@ -41,7 +43,7 @@ public class Nail extends Fastener
      */
     public Nail(int id)
     {
-        super(id);
+        find(id);
     }
 
     /** Maps Nail to database. */

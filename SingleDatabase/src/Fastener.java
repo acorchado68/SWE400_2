@@ -7,15 +7,8 @@ public abstract class Fastener extends InventoryItem
 {
     protected long length;
 
-    public Fastener(int id, String upc, int manufacturerID, int price, int length)
+    public Fastener()
     {
-        super(id, upc, manufacturerID, price);
-        this.length = length;
-    }
-
-    public Fastener(int id)
-    {
-        super(id);
     }
 
     /**

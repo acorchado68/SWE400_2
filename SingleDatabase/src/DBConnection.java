@@ -40,14 +40,4 @@ public class DBConnection
         testMode = state;
     }
 
-    public static void main( String[] args ) {
-        DBConnection test = new DBConnection();
-        try {
-            Connection conn = DBConnection.getConnection();
-        } catch ( SQLException e ) {
-            System.out.println("uh-oh");
-            e.printStackTrace();
-        }
-    }
-
 }

@@ -27,8 +27,8 @@ public class TestTool extends InheritableTest
         String query = "SELECT * FROM " + InventoryItem.getTableName() +
                 " WHERE upc = (?);";
 
-        try(Connection connection = DBConnection.getConnection();
-            PreparedStatement stmt = connection.prepareStatement(query) )
+        try(    Connection connection = DBConnection.getConnection();
+                PreparedStatement stmt = connection.prepareStatement(query) )
         {
             stmt.setString(1, upc);
             ResultSet rs = stmt.executeQuery();
@@ -39,6 +39,31 @@ public class TestTool extends InheritableTest
         {
             exception.printStackTrace();
         }
+    }
+
+    /**
+     * We should be able to find a Tool record, and load a new Tool object
+     * with data from the record.
+     */
+    @Test
+    public void testFindTool()
+    {
+        // insertion
+        Tool tool = new Tool("0121232234", 32, 899, "Ball Peen Hammer");
+        System.out.println(tool.getId());
+//        try( Connection connection = DBConnection.getConnection() )
+//        {
+//            // selection
+//            Tool hammer = new Tool(tool.getId());
+//            assertEquals(hammer.getId(), tool.getId());
+//            assertEquals(hammer.getUpc(), tool.getUpc());
+//            assertEquals(hammer.getManufacturerID(), tool.getManufacturerID());
+//            assertEquals(hammer.getPrice(), tool.getPrice());
+//            assertEquals(hammer.getDescription(), tool.getDescription());
+//        } catch (SQLException exception)
+//        {
+//            exception.printStackTrace();
+//        }
     }
 
 }
