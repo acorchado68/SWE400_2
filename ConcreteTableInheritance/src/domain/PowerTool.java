@@ -23,7 +23,7 @@ public class PowerTool extends Tool {
 	@Override
 	protected void handleUniqueColumn(ArrayList<Object> objectArray) {
 		this.description = (String) objectArray.get(COLUMN_DESCRIPTION);
-		this.batteryPowered = (boolean) objectArray.get(COLUMN_BATTERYPOWERED);
+		this.batteryPowered = ((Integer)objectArray.get(COLUMN_BATTERYPOWERED) > 0);
 	}
 
 	private static ArrayList<Object> findList(int id) {
