@@ -10,7 +10,10 @@ public class TestPowerTool extends CTITestCase {
 
 	@Test
 	public void testFinderConstructor() {
-		fail("Not yet implemented");
+		PowerTool powerTool = new PowerTool(3);
+		assertTrue(powerTool.getBatteryPowered());
+		assertTrue(powerTool.getDescription().equals("Standard 10 inch table saw"));
+		assertTrue(powerTool.getId() == 3);
 	}
 
 }
