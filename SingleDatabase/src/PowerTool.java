@@ -21,17 +21,20 @@ public class PowerTool extends Tool
 
     /**
      * Creation constructor. Initializes a new PowerTool.
-     * @param id - the id of the power tool
      * @param upc - the upc of the power tool
      * @param manufacturerID - the manufacturer ID of the power tool
      * @param price - the price of the power tool
      * @param description - the description of the power tool
      */
-    public PowerTool(int id, String upc, int manufacturerID, int price, String description,
+    public PowerTool(String upc, int manufacturerID, int price, String description,
                      boolean batteryPowered)
     {
-        super(id, upc, manufacturerID, price, description);
+        this.upc = upc;
+        this.manufacturerID = manufacturerID;
+        this.price = price;
+        this.description = description;
         this.batteryPowered = batteryPowered;
+        insert();
     }
 
     /**
@@ -40,7 +43,7 @@ public class PowerTool extends Tool
      */
     public PowerTool(int id)
     {
-        super(id);
+        find(id);
     }
 
     /** Maps PowerTool to database. */

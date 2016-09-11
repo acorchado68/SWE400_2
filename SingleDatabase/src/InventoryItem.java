@@ -16,28 +16,33 @@ public abstract class InventoryItem
     protected int manufacturerID;
     protected int price;
 
-    // TEST
-    public InventoryItem(String upc, int manufacturerID, int price)
+    public InventoryItem( )
     {
-        this.upc = upc;
-        this.manufacturerID = manufacturerID;
-        this.price = price;
-        insert();
+
     }
 
-    public InventoryItem(int id, String upc, int manufacturerID, int price)
-    {
-        this.id = id;
-        this.upc = upc;
-        this.manufacturerID = manufacturerID;
-        this.price = price;
-        insert();
-    }
+//    // TEST
+//    public InventoryItem(String upc, int manufacturerID, int price)
+//    {
+//        this.upc = upc;
+//        this.manufacturerID = manufacturerID;
+//        this.price = price;
+//        insert();
+//    }
 
-    public InventoryItem(int id)
-    {
-        find(id);
-    }
+//    public InventoryItem(int id, String upc, int manufacturerID, int price)
+//    {
+//        this.id = id;
+//        this.upc = upc;
+//        this.manufacturerID = manufacturerID;
+//        this.price = price;
+//        insert();
+//    }
+
+//    public InventoryItem(int id)
+//    {
+//        find(id);
+//    }
 
     /**
      * Returns the database table name.
