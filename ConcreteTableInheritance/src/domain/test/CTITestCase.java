@@ -61,7 +61,7 @@ public class CTITestCase {
 	 * 
 	 * @throws SQLException
 	 */
-	private static void populateTables() throws SQLException {
+	/*private static void populateTables() throws SQLException {
 		for (Nails nail : Nails.values()) {
 
 			statement.execute("INSERT INTO Nail (upc,manufacturerID,price,numberInBox,length) VALUES (" + nail.getUpc()
@@ -75,9 +75,7 @@ public class CTITestCase {
 			statement.execute(executeMe);
 		}
 
-		/**
-		 * Commented out for now
-		 */
+		
 
 		for (StripNails nail : StripNails.values()) {
 			statement.execute("INSERT INTO StripNails (upc,manufacturerID,price,numberInStrip,length) VALUES (" + nail.getUpc()
@@ -94,7 +92,7 @@ public class CTITestCase {
 					+ (powerTool.isBatteryPowered() ? 0 : 1) + ",\'"+powerTool.getDescription()+"\');");
 		}
 
-	}
+	}*/
 
 	/**
 	 * After

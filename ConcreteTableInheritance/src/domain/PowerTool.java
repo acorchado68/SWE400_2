@@ -36,6 +36,6 @@ public class PowerTool extends Tool {
 	@Override
 	public void insert() {
 		
-		InventoryItemCommand.insert(InventoryItemCommand.PowerTool, this);
+		InventoryItemCommand.PowerTool.insert(this);
 	}
 }

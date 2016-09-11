@@ -50,7 +50,7 @@ public class Nail extends Fastener {
 
 	@Override
 	public void insert() {
-		InventoryItemCommand.insert(InventoryItemCommand.Nail, this);
+		InventoryItemCommand.Nail.insert(this);
 		
 	}
 

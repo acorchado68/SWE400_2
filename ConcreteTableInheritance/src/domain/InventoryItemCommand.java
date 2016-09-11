@@ -21,19 +21,26 @@ public enum InventoryItemCommand {
 	private static HashMap<String, StringAssemblerEnum> stringMap = null;
 	private static Connection connection;
 	protected static String uri = "jdbc:mysql://db.cs.ship.edu:3306/swe400-22?user=swe400_2&password=pwd4swe400_2F16";
-	private static int availableID;
+	private String[] splitString;
 
-	protected static int getAvailableID() {
-		return availableID;
-	}
 	InventoryItemCommand(String tableName, String valueString,int numColumns) {
 		this.tableName = tableName;
 		this.valueString = valueString;
 		this.numColumns = numColumns;
+		splitString(valueString);
 	}
 
+	private void splitString(String valueString) {
+		String temporaryString = String.copyValueOf(valueString.toCharArray());
+		temporaryString = temporaryString.replaceAll("[)(]","");
+		splitString = temporaryString.split(",");
+	}
+	private String[] getSplitString()
+	{
+		return splitString;
+	}
 	protected ArrayList<Object> find(int id) {
-		return getRowList(this, id);
+		return getRowList(id);
 	}
 
 	public static Connection getConnection() {
@@ -51,14 +58,14 @@ public enum InventoryItemCommand {
 		return connection;
 	}
 
-	private static ArrayList<Object> getRowList(InventoryItemCommand inventoryItemCommand, int id) {
+	private ArrayList<Object> getRowList(int id) {
 		try {
 			Statement statement = connection.createStatement();
-			if (statement.execute("SELECT * FROM " + inventoryItemCommand.tableName + " WHERE id=" + id)) {
+			if (statement.execute("SELECT * FROM " + this.tableName + " WHERE id=" + id)) {
 				ResultSet results = statement.getResultSet();
 				results.first();
 				ArrayList<Object> objArray = new ArrayList<Object>();
-				for (int i = 1; i < inventoryItemCommand.numColumns+1; i++) {
+				for (int i = 1; i < this.numColumns+1; i++) {
 					objArray.add(results.getObject(i));
 				}
 				statement.close();
@@ -71,11 +78,11 @@ public enum InventoryItemCommand {
 		return new ArrayList<Object>();
 	}
 
-	protected static boolean insert(InventoryItemCommand inventoryItemCommand, InventoryItem in) {
+	protected boolean insert( InventoryItem in) {
 		try {
 			Statement statement = connection.createStatement();
 			statement.execute("START TRANSACTION");
-			statement.execute(assembleString(inventoryItemCommand, in));
+			statement.execute(assembleString(in));
 			statement.execute("COMMIT");
 			statement.close();
 		} catch (SQLException e) {
@@ -86,16 +93,13 @@ public enum InventoryItemCommand {
 	}
 
 
-	private static String assembleString(InventoryItemCommand inventoryItemCommand, InventoryItem in) {
-		String assembledString = "INSERT INTO " + inventoryItemCommand.tableName 
-				+ inventoryItemCommand.valueString + " VALUES (";
-		String temporaryString = String.copyValueOf(inventoryItemCommand.valueString.toCharArray());
-		temporaryString = temporaryString.replaceAll("[)(]","");
-		String[] split = temporaryString.split(",");
-		for (int i = 0; i < split.length-1; i++) {
-			assembledString += getStringAssemblerEnum(split[i]).getValue(in) + ",";
+	private String assembleString(InventoryItem in) {
+		String assembledString = "INSERT INTO " + this.tableName 
+				+ " " +  this.valueString + " VALUES (";
+		for (int i = 0; i < this.splitString.length-1; i++) {
+			assembledString += getStringAssemblerEnum(this.splitString[i]).getValue(in) + ",";
 		}
-		assembledString += getStringAssemblerEnum(split[split.length-1]).getValue(in);
+		assembledString += getStringAssemblerEnum(this.splitString[splitString.length-1]).getValue(in);
 		assembledString += ");";
 		return assembledString;
 	}

@@ -67,7 +67,7 @@ public class TestNail extends CTITestCase {
 		objArray.add(-5);
 		objArray.add(-1999);
 		objArray.add(5);
-		objArray.add(2.0);
+		objArray.add((Double)2.0);
 		Nail aNail = new Nail(objArray);
 		aNail.insert();
 		
