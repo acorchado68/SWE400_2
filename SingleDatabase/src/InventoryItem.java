@@ -40,7 +40,7 @@ public abstract class InventoryItem
 
     /**
      * Returns the upc of this inventory item.
-     * @return - the upc
+     * @return - the upcs
      */
     public String getUpc() {
         return upc;

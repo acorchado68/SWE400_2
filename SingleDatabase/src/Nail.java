@@ -33,7 +33,6 @@ public class Nail extends Fastener
     {
         super(id, upc, manufacturerID, price, length);
         this.numberInBox = numberInBox;
-        insert();
     }
 
     /**
@@ -89,6 +88,15 @@ public class Nail extends Fastener
         {
             exception.printStackTrace();
         }
+    }
+
+    /**
+     * Returns the number of nails in a box for Nail
+     * @return - number of nails in box
+     */
+    public int getNumberInBox()
+    {
+        return numberInBox;
     }
 
     /**

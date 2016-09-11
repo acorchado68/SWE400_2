@@ -32,7 +32,6 @@ public class PowerTool extends Tool
     {
         super(id, upc, manufacturerID, price, description);
         this.batteryPowered = batteryPowered;
-        insert();
     }
 
     /**
