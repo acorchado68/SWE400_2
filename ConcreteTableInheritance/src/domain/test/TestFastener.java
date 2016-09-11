@@ -11,7 +11,7 @@ import domain.Fastener;
 public class TestFastener {
 
 	@Test
-	public void test() {
+	public void testFieldsViaMock() {
 		ArrayList<Object> testArray = new ArrayList<Object>();
 		{
 			testArray.add((Integer)(-5));

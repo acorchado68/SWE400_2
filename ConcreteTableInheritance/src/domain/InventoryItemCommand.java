@@ -13,10 +13,11 @@ public enum InventoryItemCommand {
 	/**
 	 * 
 	 */
-	Nail("Nail", "(upc,manufacturerId,price,numberInBox,length)"), PowerTool("PowerTool", "(upc,manufacturerId,price,batteryPowered,description,compatibleStripNails)"), StripNails("StripNail", "(upc,manufacturerId,price,numberInStrip,length,compatiblePowerTools)"), Tool("Tool", "(upc,manufacturerId,price,description)");
+	Nail("Nail", "(upc,manufacturerId,price,numberInBox,length)",6), PowerTool("PowerTool", "(upc,manufacturerId,price,batteryPowered,description,compatibleStripNails)",7), StripNails("StripNails", "(upc,manufacturerId,price,numberInStrip,length,compatiblePowerTools)",7), Tool("Tool", "(upc,manufacturerId,price,description)",5);
 
 	private String tableName;
 	private String valueString;
+	private int numColumns;
 	private static HashMap<String, StringAssemblerEnum> stringMap = null;
 	private static Connection connection;
 	protected static String uri = "jdbc:mysql://db.cs.ship.edu:3306/swe400-22?user=swe400_2&password=pwd4swe400_2F16";
@@ -25,9 +26,10 @@ public enum InventoryItemCommand {
 	protected static int getAvailableID() {
 		return availableID;
 	}
-	InventoryItemCommand(String tableName, String valueString) {
+	InventoryItemCommand(String tableName, String valueString,int numColumns) {
 		this.tableName = tableName;
 		this.valueString = valueString;
+		this.numColumns = numColumns;
 	}
 
 	protected ArrayList<Object> find(int id) {
@@ -56,7 +58,7 @@ public enum InventoryItemCommand {
 				ResultSet results = statement.getResultSet();
 				results.first();
 				ArrayList<Object> objArray = new ArrayList<Object>();
-				for (int i = 1; i < 7; i++) {
+				for (int i = 1; i < inventoryItemCommand.numColumns+1; i++) {
 					objArray.add(results.getObject(i));
 				}
 				statement.close();
