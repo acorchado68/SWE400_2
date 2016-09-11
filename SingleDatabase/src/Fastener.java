@@ -1,7 +1,7 @@
 /**
- * Fastener
+ *
  * Nick Martinez and Andrew Corchado - Single File Inheritence
- * Created by Nick Martinez on 9/3/16. Last Mofified on 9/8/16.
+ * Created by Nick Martinez on 9/3/16.
  */
 public abstract class Fastener extends InventoryItem
 {
@@ -17,4 +17,5 @@ public abstract class Fastener extends InventoryItem
     {
         super(id);
     }
+
 }
