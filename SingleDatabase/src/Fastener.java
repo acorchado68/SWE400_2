@@ -1,6 +1,6 @@
 /**
  *
- * Nick Martinez and Andrew Corchado - Single File Inheritence
+ * Nick Martinez and Andrew Corchado - Single Table Inheritence
  * Created by Nick Martinez on 9/3/16.
  */
 public abstract class Fastener extends InventoryItem

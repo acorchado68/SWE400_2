@@ -1,38 +1,53 @@
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 /**
- * Gateway
- * Created by Andrew Corchado on 9/6/16.
+ *
+ * Nick Martinez and Andrew Corchado - Single Table Inheritence
+ * Created by Nick Martinez on 9/5/16.
  */
 public class DBConnection
 {
     private static Connection conn;
-    private static boolean testState = false;
+
+    private static boolean testMode = false;
 
     public static Connection getConnection() throws SQLException
     {
-        if(conn == null)
+        String url = "jdbc:mysql://157.160.36.32:3306/swe400-21?autoReconnect=true";
+        String username = "swe400_2";
+        String password = "pwd4swe400_2F16";
+
+        System.out.println("Connecting database...");
+
+        conn = DriverManager.getConnection(url, username, password);
+
+        if( testMode )
         {
-            String url = "jdbc:mysql://157.160.36.32:3306/swe400-21?autoReconnect=true";
-            String username = "swe400_2";
-            String password = "pwd4swe400_2F16";
-
-            System.out.println("Connecting database...");
-            conn = DriverManager.getConnection(url, username, password);
-
-            if (testState)
-            {
-                conn.setAutoCommit(false);
-            }
+            conn.setAutoCommit(false);
         }
+
         return conn;
     }
-    public static void setTestState(boolean mode)
+
+    /**
+     * Sets whether DBConnection should return a connection in "test mode" or not.
+     * @param state - true if in test mode, false if not to be in test mode
+     */
+    public static void setTestMode(boolean state)
     {
-        testState = mode;
+        testMode = state;
     }
 
-    public void closeConn() throws SQLException
-    {
-        conn.close();
+    public static void main( String[] args ) {
+        DBConnection test = new DBConnection();
+        try {
+            Connection conn = DBConnection.getConnection();
+        } catch ( SQLException e ) {
+            System.out.println("uh-oh");
+            e.printStackTrace();
+        }
     }
+
 }

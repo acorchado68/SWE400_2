@@ -4,17 +4,26 @@ import java.sql.SQLException;
 
 /**
  *
- * Nick Martinez and Andrew Corchado - Single File Inheritence
+ * Nick Martinez and Andrew Corchado - Single Table Inheritence
  * Created by Nick Martinez on 9/3/16.
  */
 public abstract class InventoryItem
 {
-    protected static final String DB_TABLE_NAME = "InventoryItem";
+    public static final String DB_TABLE_NAME = "InventoryItems";
 
     protected int id;
     protected String upc;
     protected int manufacturerID;
     protected int price;
+
+    // TEST
+    public InventoryItem(String upc, int manufacturerID, int price)
+    {
+        this.upc = upc;
+        this.manufacturerID = manufacturerID;
+        this.price = price;
+        insert();
+    }
 
     public InventoryItem(int id, String upc, int manufacturerID, int price)
     {
@@ -28,6 +37,15 @@ public abstract class InventoryItem
     public InventoryItem(int id)
     {
         find(id);
+    }
+
+    /**
+     * Returns the database table name.
+     * @return - the database table name
+     */
+    public static String getTableName()
+    {
+        return DB_TABLE_NAME;
     }
 
     /**

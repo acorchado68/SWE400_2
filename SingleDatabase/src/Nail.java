@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 /**
  *
- * Nick Martinez and Andrew Corchado - Single File Inheritence
+ * Nick Martinez and Andrew Corchado - Single Table Inheritence
  * Created by Nick Martinez on 9/3/16.
  */
 public class Nail extends Fastener
@@ -73,8 +73,8 @@ public class Nail extends Fastener
     @Override
     protected void find(int id)
     {
-        try(    Connection connection = DBConnection.getConnection();
-                PreparedStatement stmt = connection.prepareStatement(selectQuery) ) {
+        try(Connection connection = DBConnection.getConnection();
+            PreparedStatement stmt = connection.prepareStatement(selectQuery) ) {
             stmt.setInt(1, id);
 
             ResultSet rs = stmt.executeQuery();

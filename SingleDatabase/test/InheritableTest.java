@@ -9,22 +9,22 @@ import java.sql.Connection;
 public abstract class InheritableTest
 {
     /*
-     * Start testing
+     * Start testing.
      */
     @Before
     public void before() throws Exception
     {
-        DBConnection.setTestState(true);
+        DBConnection.setTestMode(true);
     }
 
     /*
-     * Close testing and rollback
+     * Close testing and rollback.
      */
     @After
     public void after() throws Exception
     {
         Connection connection = DBConnection.getConnection();
         connection.rollback();
-        DBConnection.setTestState(false);
+        DBConnection.setTestMode(false);
     }
 }
