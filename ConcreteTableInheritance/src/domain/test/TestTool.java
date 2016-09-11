@@ -13,6 +13,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import domain.Nail;
 import domain.Tool;
 
 public class TestTool extends CTITestCase {
@@ -20,7 +21,9 @@ public class TestTool extends CTITestCase {
 	@Test
 	public void testFinderConstructor() {
 
-		fail("not yet implemented");
+		Tool aTool = new Tool(2);
+		assertTrue(aTool.getUpc().equals("1232343345"));
+		assertTrue(aTool.getDescription().equals("Ten piece screwdriver set"));
 	}
 
 }
