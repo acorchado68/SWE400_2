@@ -9,7 +9,7 @@ import static junit.framework.TestCase.assertEquals;
 
 /**
  *
- * Nick Martinez and Andrew Corchado - Single Table Inheritence
+ * Nick Martinez and Andrew Corchado - Single Table Inheritance
  * Created by Nick Martinez on 9/11/16.
  */
 public class TestTool extends InheritableTest

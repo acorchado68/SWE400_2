@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 /**
  *
- * Nick Martinez and Andrew Corchado - Single Table Inheritence
+ * Nick Martinez and Andrew Corchado - Single Table Inheritance
  * Created by Nick Martinez on 9/3/16.
  */
 public class PowerTool extends Tool
