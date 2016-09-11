@@ -79,7 +79,6 @@ public enum StringAssemblerEnum implements SAEParent {
 
 		@Override
 		public String getValue(InventoryItem i) {
-			// TODO Auto-generated method stub
 			return null;
 		}
 		
@@ -89,7 +88,6 @@ public enum StringAssemblerEnum implements SAEParent {
 
 		@Override
 		public String getValue(InventoryItem i) {
-			// TODO Auto-generated method stub
 			return null;
 		}
 		

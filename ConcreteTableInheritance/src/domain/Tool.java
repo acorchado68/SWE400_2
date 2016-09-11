@@ -37,7 +37,7 @@ public class Tool extends InventoryItem {
 
 	@Override
 	public void insert() {
-		InventoryItemCommand.insert(InventoryItemCommand.Tool, this);
+		InventoryItemCommand.Tool.insert(this);
 		
 	}
 
