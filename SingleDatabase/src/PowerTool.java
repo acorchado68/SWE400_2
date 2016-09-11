@@ -91,6 +91,15 @@ public class PowerTool extends Tool
     }
 
     /**
+     * Is this power tool battery powered?
+     * @return - true if battery powered, false if not
+     */
+    public boolean isBatteryPowered()
+    {
+        return batteryPowered;
+    }
+
+    /**
      * Returns the class type.
      * @return - the class type
      */
