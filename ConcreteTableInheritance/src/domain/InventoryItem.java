@@ -15,7 +15,6 @@ public abstract class InventoryItem {
 	private static int COLUMN_MFGID = 2;
 	private static int COLUMN_PRICE = 3;
 	private static int NO_ID_ISSUED = -27;
-
 	public InventoryItem(ArrayList<Object> objectArray) {
 		if (objectArray.isEmpty()) {
 			this.id = -9999;
@@ -28,7 +27,8 @@ public abstract class InventoryItem {
 		}
 
 	}
-
+	
+	
 	/**
 	 * A really gross helper method for the constructor
 	 * 
