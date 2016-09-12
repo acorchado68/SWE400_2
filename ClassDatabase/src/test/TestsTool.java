@@ -15,6 +15,10 @@ import src.ToolMapper;
 
 public class TestsTool extends abstractTests{
 	
+	/**
+	 * Tests the creation of a tool
+	 * @throws SQLException
+	 */
 	@Test
 	public void testCreationTool() throws SQLException 
 	{
@@ -44,6 +48,10 @@ public class TestsTool extends abstractTests{
 		
 	}
 	
+	/**
+	 * Tests the finding of a tool
+	 * @throws SQLException
+	 */
 	@Test
 	public void testFindTool() throws SQLException
 	{

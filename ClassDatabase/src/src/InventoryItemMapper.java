@@ -16,16 +16,16 @@ import enums.Tools;
  * @author Zachary & Scott
  * Runner, creates a arrayList of items
  */
-public class InventoryItemMapper extends Mapper
+public class InventoryItemMapper
 {
+	 static ArrayList<AbstractInventoryItemMapper> dbItem = new ArrayList<AbstractInventoryItemMapper>();
 	/**
-	 * Main method that c
+	 * Main method that will add the objects into the arraylist
 	 * @param args
 	 * @throws SQLException
 	 */
 	public static void main(String args[]) throws SQLException
 	{
-		 ArrayList<AbstractInventoryItemMapper> dbItem = new ArrayList<AbstractInventoryItemMapper>();
 		createDatabase();//Instatiates the Database, comment out if already created.
 		
 		Connection conn = DBConnectionManager.getConnection();
@@ -40,7 +40,7 @@ public class InventoryItemMapper extends Mapper
 	}
 
 	/**
-	 * Instantiates the Database 
+	 * Populates the Database with the Enums provided
 	 * @throws SQLException
 	 */
 	private static void createDatabase() throws SQLException 

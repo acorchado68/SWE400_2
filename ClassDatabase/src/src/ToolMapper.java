@@ -13,6 +13,14 @@ public class ToolMapper extends AbstractInventoryItemMapper
 {
 	String description;
 	
+	/**
+	 * Constructor for creating a tool with the correct ItemType
+	 * @param upc
+	 * @param manufacturerID
+	 * @param price
+	 * @param description
+	 * @throws SQLException
+	 */
 	public ToolMapper(String upc, int manufacturerID, int price, String description) throws SQLException
 	{
 		this(upc, manufacturerID, price, description, "Tool");	
