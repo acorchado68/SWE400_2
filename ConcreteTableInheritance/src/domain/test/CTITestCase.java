@@ -56,8 +56,8 @@ public class CTITestCase {
 	
 
 	/**
-	 * After
-	 * 
+	 * After rollsback the changes, re-enables auto-commit, opens a new statement and resets the auto_increment values using that statement.
+	 * Then it closes the connection/statement before finishing
 	 * @throws SQLException
 	 * @throws Exception
 	 */
