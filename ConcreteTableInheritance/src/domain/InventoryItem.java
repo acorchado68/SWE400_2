@@ -1,7 +1,11 @@
 package domain;
 
 import java.util.ArrayList;
-
+/**
+ * An abstract class for domain objects to implement
+ * @author mb8542
+ *
+ */
 public abstract class InventoryItem {
 	private int id;
 	private int price;

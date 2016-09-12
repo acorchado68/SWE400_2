@@ -17,13 +17,13 @@ public class PrimaryTest extends CTITestCase {
 
 	/**
 	 * This test iterates through Dr. Wellingtons Nails enumeration, creates a
-	 * corresponding Nail object via the inventoryitemfactory, inserts each one
+	 * corresponding Nail object via the InventoryItemFactory, inserts each one
 	 * into the database then checks to see if the ID in the object has been
 	 * updated. It also checks the unique fields for the Nail class. Then it
 	 * instantiates a new Nail object using the finder constructor, passing in
 	 * the id from the object originally added to the database. It checks to see
-	 * if the id it gets back in the new object is the same (as it will obtain
-	 * it via a SELECT query in InventoryItemCommand)
+	 * if the id it gets back in the new object is the same (as it will be
+	 * obtained via a SELECT query in InventoryItemCommand)
 	 */
 	@Test
 	public void testNail() {
