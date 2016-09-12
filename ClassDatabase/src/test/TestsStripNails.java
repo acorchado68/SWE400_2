@@ -17,6 +17,10 @@ import src.StripNailsMapper;
 
 public class TestsStripNails extends abstractTests 
 {
+	/**
+	 * Tests the creation of a StripNail
+	 * @throws SQLException
+	 */
 	@Test
 	public void testCreationStripNail() throws SQLException 
 	{
@@ -53,6 +57,10 @@ public class TestsStripNails extends abstractTests
 		assertEquals(numStrip,rs.getInt("numberInStrip"));
 	}
 	
+	/**
+	 * Tests the finding for a StripNail
+	 * @throws SQLException
+	 */
 	@Test
 	public void testFindStripNails() throws SQLException
 	{

@@ -12,6 +12,16 @@ import java.sql.SQLException;
 public class StripNailsMapper extends AbstractFastenerMapper 
 {
 	protected int numberInStrip;
+	
+	/**
+	 * Creation for StripNail
+	 * @param upc
+	 * @param manufacturerID
+	 * @param price
+	 * @param length
+	 * @param numberInStrip
+	 * @throws SQLException
+	 */
 	public StripNailsMapper(String upc, int manufacturerID, int price, double length, int numberInStrip) throws SQLException 
 	{
 			super(upc, manufacturerID, price, length, "StripNail");
@@ -27,6 +37,12 @@ public class StripNailsMapper extends AbstractFastenerMapper
 			this.numberInStrip = numberInStrip;
 	}
 
+	/**
+	 * Finder method for StripNail
+	 * @param id
+	 * @throws NumberFormatException
+	 * @throws SQLException
+	 */
 	public StripNailsMapper(int id) throws NumberFormatException, SQLException
 	{
 		super();
@@ -50,6 +66,10 @@ public class StripNailsMapper extends AbstractFastenerMapper
 			this.numberInStrip = Integer.parseInt(rs.getString("numberInStrip"));	
 	}
 
+	/**
+	 * Returns the value in numberInStrip
+	 * @return numberInStrip
+	 */
 	public int getNumInStrip()
 	{
 		return numberInStrip;

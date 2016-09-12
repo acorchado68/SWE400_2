@@ -10,12 +10,20 @@ import org.junit.BeforeClass;
 public abstract class abstractTests 
 {
 
+	/**
+	 * Creates test mode
+	 * @throws Exception
+	 */
 	@Before
 	public void beforeClass() throws Exception
 	{
 		src.DBConnectionManager.setTestMode(true);
 	}
-	
+	/**
+	 * Rolls back population of database before it actually
+	 * commits to the live version
+	 * @throws Exception
+	 */
 	@After
 	public  void afterClass() throws Exception
 	{

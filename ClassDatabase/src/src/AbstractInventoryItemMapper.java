@@ -9,7 +9,7 @@ import java.sql.SQLException;
  * @author Zachary & Scott
  * Abstract method for adding items to the Inventory Item Mapper.
  */
-public abstract class AbstractInventoryItemMapper extends Mapper 
+public abstract class AbstractInventoryItemMapper
 {
 	protected int id;
 	protected String upc;
@@ -63,7 +63,7 @@ public abstract class AbstractInventoryItemMapper extends Mapper
 	}
 	
 	/**
-	 * abstract getter for the instance variables
+	 * abstract getters for the instance variables
 	 * @return
 	 */
 	public abstract int getId();

@@ -16,6 +16,10 @@ import src.ToolMapper;
 
 public class TestsPowerTool extends abstractTests {
 
+	/**
+	 * Tests for the creation of a powertool
+	 * @throws SQLException
+	 */
 	@Test
 	public void testCreationPowerTool() throws SQLException 
 	{
@@ -51,6 +55,10 @@ public class TestsPowerTool extends abstractTests {
 		
 	}
 	
+	/**
+	 * Tests the finding method for a PowerTool
+	 * @throws SQLException
+	 */
 	@Test
 	public void testFindPowerTool() throws SQLException
 	{
