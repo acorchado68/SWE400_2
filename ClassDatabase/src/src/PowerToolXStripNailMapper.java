@@ -2,7 +2,11 @@ package src;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import enums.PowerTools;
+import enums.StripNails;
 
 /**
  * PowerToolXStripNailMapper.java
@@ -57,4 +61,35 @@ public class PowerToolXStripNailMapper
 		return SNMapper;
 	}
 
+	public static PowerToolMapper findPTID(PowerTools powertool) throws SQLException
+	{
+		Connection conn = DBConnectionManager.getConnection();
+		
+		PreparedStatement findID = conn.prepareStatement("Select id From InventoryItem Where upc = ? and manufacturerId = ? and price = ? and ItemType = ?;");
+		findID.setString(1, powertool.getUpc());
+		findID.setInt(2, powertool.getManufacturerID());
+		findID.setInt(3, powertool.getPrice());
+		findID.setString(4, "PowerTool");
+		
+		ResultSet rs = findID.executeQuery();
+		rs.next();
+		
+		return new PowerToolMapper(Integer.parseInt(rs.getString("id")));
+	}
+	
+	public static StripNailsMapper findSNID(StripNails stripnail) throws SQLException
+	{
+		Connection conn = DBConnectionManager.getConnection();
+		
+		PreparedStatement findID = conn.prepareStatement("Select id From InventoryItem Where upc = ? and manufacturerId = ? and price = ? and ItemType = ?;");
+		findID.setString(1, stripnail.getUpc());
+		findID.setInt(2, stripnail.getManufacturerID());
+		findID.setInt(3, stripnail.getPrice());
+		findID.setString(4, "StripNail");
+
+		ResultSet rs = findID.executeQuery();
+		rs.next();
+		
+		return new StripNailsMapper(Integer.parseInt(rs.getString("id")));
+	}
 }

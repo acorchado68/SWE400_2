@@ -26,10 +26,11 @@ public class InventoryItemMapper
 	 */
 	public static void main(String args[]) throws SQLException
 	{
-		createDatabase();//Instatiates the Database, comment out if already created.
+		createDatabase();//Instantiates the Database, comment out if already created.
+		
 		
 		Connection conn = DBConnectionManager.getConnection();
-	
+		
 		PreparedStatement query = conn.prepareStatement("Select id, ItemType From InventoryItem;");
 		ResultSet rs = query.executeQuery();
 	
@@ -64,6 +65,26 @@ public class InventoryItemMapper
 		{		
 			new ToolMapper(tool.getUpc(),tool.getManufacturerID(), tool.getPrice(), tool.getDescription());
 		}
+		
+		new PowerToolXStripNailMapper(PowerToolXStripNailMapper.findPTID(PowerTools.HITACHI_PNEUMATIC_NAILER),
+				PowerToolXStripNailMapper.findSNID(StripNails.ROUND_HEAD_NAIL_STRIP));
+		new PowerToolXStripNailMapper(PowerToolXStripNailMapper.findPTID(PowerTools.FRAMING_NAILER),
+				PowerToolXStripNailMapper.findSNID(StripNails.ROUND_HEAD_NAIL_STRIP));
+		
+		new PowerToolXStripNailMapper(PowerToolXStripNailMapper.findPTID(PowerTools.HITACHI_PNEUMATIC_NAILER),
+				PowerToolXStripNailMapper.findSNID(StripNails.QUALITY_ROUND_HEAD_NAIL_STRIP));
+		new PowerToolXStripNailMapper(PowerToolXStripNailMapper.findPTID(PowerTools.FRAMING_NAILER),
+				PowerToolXStripNailMapper.findSNID(StripNails.QUALITY_ROUND_HEAD_NAIL_STRIP));
+		
+		new PowerToolXStripNailMapper(PowerToolXStripNailMapper.findPTID(PowerTools.BRAD_CORDLESS_NAILER),
+				PowerToolXStripNailMapper.findSNID(StripNails.BRAD_STRIP));
+		new PowerToolXStripNailMapper(PowerToolXStripNailMapper.findPTID(PowerTools.BRAD_NAILER),
+				PowerToolXStripNailMapper.findSNID(StripNails.BRAD_STRIP));
+		
+		new PowerToolXStripNailMapper(PowerToolXStripNailMapper.findPTID(PowerTools.BRAD_CORDLESS_NAILER),
+				PowerToolXStripNailMapper.findSNID(StripNails.BRIGHT_FINISH_BRAD_STRIP));
+		new PowerToolXStripNailMapper(PowerToolXStripNailMapper.findPTID(PowerTools.BRAD_NAILER),
+				PowerToolXStripNailMapper.findSNID(StripNails.BRIGHT_FINISH_BRAD_STRIP));
 	}
 	
 	/**

@@ -42,7 +42,7 @@ public class PowerToolMapper extends ToolMapper
 			}
 			query.execute();
 	}
-
+	
 	/**
 	 * finder constructor
 	 * @param id
@@ -87,5 +87,4 @@ public class PowerToolMapper extends ToolMapper
 	{
 		return batteryPow;
 	}
-
 }
