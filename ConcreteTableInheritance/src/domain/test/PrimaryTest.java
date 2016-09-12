@@ -27,6 +27,8 @@ public class PrimaryTest extends CTITestCase{
 			assertTrue(n.getId() > 0);
 			assertTrue(n.getLength() > 0);
 			assertTrue(n.getNumberInBox() > 0);
+			domain.Nail aNewNail = new domain.Nail(n.getId());
+			assertTrue(aNewNail.getId() == n.getId());
 		}
 	}
 
@@ -43,6 +45,8 @@ public class PrimaryTest extends CTITestCase{
 			assertTrue(n.getId() > 0);
 			assertTrue(n.getLength() > 0);
 			assertTrue(n.getNumPerStrip() > 0);
+			domain.StripNails aNewNail = new domain.StripNails(n.getId());
+			assertTrue(aNewNail.getId() == n.getId());
 		}
 	}
 	
@@ -58,6 +62,8 @@ public class PrimaryTest extends CTITestCase{
 			n.insert();
 			assertTrue(n.getId() > 0);
 			assertTrue(!n.getDescription().equals(null));
+			domain.PowerTool aNewTool = new domain.PowerTool(n.getId());
+			assertTrue(aNewTool.getId() == n.getId());
 		}
 	}
 	
@@ -73,6 +79,8 @@ public class PrimaryTest extends CTITestCase{
 			n.insert();
 			assertTrue(n.getId() > 0);
 			assertTrue(!n.getDescription().equals(null));
+			domain.Tool aNewTool = new domain.Tool(n.getId());
+			assertTrue(aNewTool.getId() == n.getId());
 		}
 	}
 }
