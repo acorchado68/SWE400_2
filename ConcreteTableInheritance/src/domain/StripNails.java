@@ -18,6 +18,7 @@ public class StripNails extends Fastener {
 
 	/**
 	 * Creation constructor - not accessible outside of this package
+	 * 
 	 * @see InventoryItemFactory
 	 * @param objArray
 	 *            an arraylist of objects that will be used to initialize this

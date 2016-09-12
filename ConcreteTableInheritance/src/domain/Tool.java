@@ -5,12 +5,14 @@ import java.util.ArrayList;
 public class Tool extends InventoryItem {
 	protected String description;
 	/**
-	 * The ordinal of the column/entry in the arraylist for the description of the tool
+	 * The ordinal of the column/entry in the arraylist for the description of
+	 * the tool
 	 */
 	private static int COLUMN_DESCRIPTION = 4;
 
 	/**
 	 * Creation constructor - not accessible outside of this package
+	 * 
 	 * @see InventoryItemFactory
 	 * @param objArray
 	 *            an arraylist of objects that will be used to initialize this
@@ -19,10 +21,13 @@ public class Tool extends InventoryItem {
 	protected Tool(ArrayList<Object> objArray) {
 		super(objArray);
 	}
+
 	/**
-	 * The "Finder" Constructor, calls a static method which calls the correct method from the InventoryItemCommand enumeration
+	 * The "Finder" Constructor, calls a static method which calls the correct
+	 * method from the InventoryItemCommand enumeration
 	 * 
-	 * @param id - the id of the desired row in the database
+	 * @param id
+	 *            - the id of the desired row in the database
 	 */
 	public Tool(int id) {
 		this(findList(id));
@@ -45,7 +50,7 @@ public class Tool extends InventoryItem {
 	@Override
 	public void insert() {
 		InventoryItemCommand.Tool.insert(this);
-		
+
 	}
 
 }

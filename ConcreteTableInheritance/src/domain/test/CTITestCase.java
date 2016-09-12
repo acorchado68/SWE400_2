@@ -33,26 +33,18 @@ public class CTITestCase {
 	 * @throws Exception
 	 */
 	@BeforeClass
-	public static void before() throws SQLException, Exception {
-		connection = InventoryItemCommand.getConnection();
-		statement = InventoryItemCommand.getStatement();
-		connection.setAutoCommit(false);
+	public static void before() {
 		if (objArray == null) {
 			objArray = new ArrayList<Object>();
 		}
-
 		try {
+			connection = InventoryItemCommand.getConnection();
+			statement = InventoryItemCommand.getStatement();
+			connection.setAutoCommit(false);
 			statement = connection.createStatement();
-			/*
-			 * statement.execute("START TRANSACTION");
-			 * statement.execute("SAVEPOINT beginTest");
-			 */
 			savePoint = connection.setSavepoint();
-			// populateTables();
 
 		} catch (SQLException exception) {
-			exception.printStackTrace();
-		} catch (Exception exception) {
 			exception.printStackTrace();
 		}
 	}

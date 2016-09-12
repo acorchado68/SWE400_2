@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import domain.InventoryItem;
 
-public class TestInventoryItem{
+public class TestInventoryItem {
 
 	@Test
 	public void testFields() {
@@ -15,42 +15,43 @@ public class TestInventoryItem{
 		assertTrue(mockItem.getManufacturerId() == -1);
 		assertTrue(mockItem.getPrice() == -1);
 		assertTrue(mockItem.getUpc().equals("NOT AN ITEM/DOES NOT EXIST"));
-		
+
 		mockItem = new MockInventoryItem();
 		mockItem.allMutatorsNegativeFive();
 		assertTrue(mockItem.getId() == -5);
 		assertTrue(mockItem.getManufacturerId() == -5);
 		assertTrue(mockItem.getPrice() == -5);
-		assertTrue(mockItem.getUpc().equals("-5"));	
+		assertTrue(mockItem.getUpc().equals("-5"));
 	}
 
 }
-class MockInventoryItem extends InventoryItem
-{
 
-	MockInventoryItem()
-	{
+class MockInventoryItem extends InventoryItem {
+
+	MockInventoryItem() {
 		super(new ArrayList<Object>());
 	}
+
 	public MockInventoryItem(ArrayList<Object> objArray) {
 		super(objArray);
 	}
+
 	@Override
 	protected void handleUniqueColumn(ArrayList<Object> objectArray) {
 		return;
 	}
+
 	@Override
 	protected void insert() {
 		return;
-		
+
 	}
-	
-	protected void allMutatorsNegativeFive()
-	{
+
+	protected void allMutatorsNegativeFive() {
 		this.setId(-5);
 		this.setManufacturerId(-5);
 		this.setPrice(-5);
 		this.setUpc("-5");
 	}
-	
+
 }

@@ -5,16 +5,19 @@ import java.util.ArrayList;
 public class Nail extends Fastener {
 	private int numberInBox;
 	/**
-	 * The ordinal of the column/entry in the arraylist for the number of nails in the box
+	 * The ordinal of the column/entry in the arraylist for the number of nails
+	 * in the box
 	 */
 	private static int COLUMN_NUMINBOX = 4;
 	/**
-	 * The ordinal of the column/entry in the arraylist for the length of the nail
+	 * The ordinal of the column/entry in the arraylist for the length of the
+	 * nail
 	 */
 	private static int COLUMN_LENGTH = 5;
 
 	/**
 	 * Creation constructor - not accessible outside of this package
+	 * 
 	 * @see InventoryItemFactory
 	 * @param objArray
 	 *            an arraylist of objects that will be used to initialize this
@@ -25,9 +28,11 @@ public class Nail extends Fastener {
 	}
 
 	/**
-	 * The "Finder" Constructor, calls a static method which calls the correct method from the InventoryItemCommand enumeration
+	 * The "Finder" Constructor, calls a static method which calls the correct
+	 * method from the InventoryItemCommand enumeration
 	 * 
-	 * @param id - the id of the desired row in the database
+	 * @param id
+	 *            - the id of the desired row in the database
 	 */
 	public Nail(int id) {
 		this(findList(id));
@@ -54,7 +59,7 @@ public class Nail extends Fastener {
 	@Override
 	public void insert() {
 		InventoryItemCommand.Nail.insert(this);
-		
+
 	}
 
 }
