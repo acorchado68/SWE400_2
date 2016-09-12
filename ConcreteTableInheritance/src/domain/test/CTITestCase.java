@@ -25,7 +25,7 @@ public class CTITestCase {
 	protected static ArrayList<Object> objArray = null;
 	private static Savepoint savePoint;
 	/**
-	 * Before
+	 * Before sets up the connection, statement and a savepoint for reverting later
 	 * 
 	 * @throws SQLException
 	 * @throws Exception
