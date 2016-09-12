@@ -22,19 +22,23 @@ public class TestTool extends InheritableTest
     public void testInsertTool()
     {
         final String upc = "0121232234";
-        Tool tool = new Tool(upc, 32, 899, "Ball Peen Hammer");
+        final int manufacturerID = 32;
+        final int price = 899;
+        final String description = "Ball Peen Hammer";
+        new Tool(upc, manufacturerID, price, description);
 
         String query = "SELECT * FROM " + InventoryItem.getTableName() +
                 " WHERE upc = (?);";
 
-        try(    Connection connection = DBConnection.getConnection();
-                PreparedStatement stmt = connection.prepareStatement(query) )
+        try(PreparedStatement stmt = connection.prepareStatement(query))
         {
             stmt.setString(1, upc);
             ResultSet rs = stmt.executeQuery();
             rs.next();
             assertEquals(upc, rs.getString("upc"));
-            System.out.println(rs.getString("upc"));
+            assertEquals(manufacturerID, rs.getInt("manufacturerID"));
+            assertEquals(price, rs.getInt("price"));
+            assertEquals(description, rs.getString("description"));
         } catch (SQLException exception )
         {
             exception.printStackTrace();
@@ -48,22 +52,17 @@ public class TestTool extends InheritableTest
     @Test
     public void testFindTool()
     {
-        // insertion
+        // insert
         Tool tool = new Tool("0121232234", 32, 899, "Ball Peen Hammer");
-        System.out.println(tool.getId());
-//        try( Connection connection = DBConnection.getConnection() )
-//        {
-//            // selection
-//            Tool hammer = new Tool(tool.getId());
-//            assertEquals(hammer.getId(), tool.getId());
-//            assertEquals(hammer.getUpc(), tool.getUpc());
-//            assertEquals(hammer.getManufacturerID(), tool.getManufacturerID());
-//            assertEquals(hammer.getPrice(), tool.getPrice());
-//            assertEquals(hammer.getDescription(), tool.getDescription());
-//        } catch (SQLException exception)
-//        {
-//            exception.printStackTrace();
-//        }
+
+        // find
+        Tool hammer = new Tool(tool.getId());
+
+        assertEquals(hammer.getId(), tool.getId());
+        assertEquals(hammer.getUpc(), tool.getUpc());
+        assertEquals(hammer.getManufacturerID(), tool.getManufacturerID());
+        assertEquals(hammer.getPrice(), tool.getPrice());
+        assertEquals(hammer.getDescription(), tool.getDescription());
     }
 
 }
