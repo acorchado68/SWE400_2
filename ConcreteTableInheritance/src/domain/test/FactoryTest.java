@@ -12,6 +12,11 @@ import domain.Tool;
 
 public class FactoryTest{
 
+	/**
+	 * This bloated test makes use of all the enumerations in the InventoryItemFactory enum to create InventoryItem objects
+	 * It then checks a few fields on each to ensure that its getting real objects (the tests for the mutators/accessors are in TestInventoryItem,
+	 * so this isnt as thorough)
+	 */
 	@Test
 	public void testFactory() {
 		Nail nail = (Nail) InventoryItemFactory.Nail.buildItem("notanitem", -25, -25, -25,-25.0);
