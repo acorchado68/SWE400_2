@@ -25,7 +25,7 @@ public class CTITestCase {
 	protected static ArrayList<Object> objArray = null;
 	private static Savepoint savePoint;
 	/**
-	 * Before
+	 * Before sets up the static connection, statement and arraylist objects
 	 * 
 	 * @throws SQLException
 	 * @throws Exception
@@ -40,9 +40,6 @@ public class CTITestCase {
 		}
 		
 		try {
-			statement = connection.createStatement();
-			/*statement.execute("START TRANSACTION");
-			statement.execute("SAVEPOINT beginTest");*/
 			savePoint = connection.setSavepoint();
 			//populateTables();
 
@@ -64,10 +61,16 @@ public class CTITestCase {
 	@AfterClass
 	public static void after() throws SQLException, Exception {
 		connection.rollback(savePoint);
-		//objArray.clear();
-		// resultSet.close();
-		// statement.close();
-		// connection.close();
+		connection.setAutoCommit(true);
+		statement.close();
+		statement = InventoryItemCommand.getStatement();
+		String[] paramArray = {".Nail",".Tool",".PowerTool",".StripNails"};
+		for(String s : paramArray)
+		{
+			statement.execute("ALTER TABLE `swe400-22`"+s+" AUTO_INCREMENT=1;");
+		}
+		statement.close();
+		connection.close();
 
 	}
 }
