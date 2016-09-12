@@ -1,3 +1,4 @@
 Concrete Table Inheritance
 ---
-Make sure you look at the CTI branch, not the master branch!
+
+The Project for SWE400 (Null Pointer) pertaining to the Concrete Table Inheritance pattern
