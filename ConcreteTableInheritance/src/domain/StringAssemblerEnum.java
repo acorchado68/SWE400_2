@@ -1,4 +1,5 @@
 package domain;
+
 /**
  * String Assembler Enum - a "condensed" (maybe?) command pattern to help assemble strings
  * 	for inserting objects into the database
