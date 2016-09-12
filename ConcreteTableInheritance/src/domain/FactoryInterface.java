@@ -1,4 +1,5 @@
 package domain;
+
 /**
  * The parent interface for the InventoryItemFactory enum
  * Contains method signatures that all enumerations in InventoryItemFactory must implement
