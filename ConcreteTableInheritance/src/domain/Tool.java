@@ -13,10 +13,13 @@ public class Tool extends InventoryItem {
 	 *            an arraylist of objects representing a row of data from the
 	 *            Tool table
 	 */
-	public Tool(ArrayList<Object> objArray) {
+	protected Tool(ArrayList<Object> objArray) {
 		super(objArray);
 	}
-
+	/**
+	 * Finder constructor for tool, accepts an id and finds the corresponding row in the database
+	 * @param id
+	 */
 	public Tool(int id) {
 		this(findList(id));
 	}

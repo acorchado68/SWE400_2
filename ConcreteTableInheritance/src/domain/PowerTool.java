@@ -7,7 +7,7 @@ public class PowerTool extends Tool {
 	private static int COLUMN_DESCRIPTION = 5;
 	private static int COLUMN_BATTERYPOWERED = 4;
 
-	public PowerTool(ArrayList<Object> objArray) {
+	protected PowerTool(ArrayList<Object> objArray) {
 		super(objArray);
 	}
 

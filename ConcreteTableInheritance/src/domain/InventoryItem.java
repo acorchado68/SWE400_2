@@ -12,7 +12,7 @@ public abstract class InventoryItem {
 	private static int COLUMN_MFGID = 2;
 	private static int COLUMN_PRICE = 3;
 	private static int NO_ID_ISSUED = -27; //means the object has not yet been stored in the database, the database issues the IDs
-	public InventoryItem(ArrayList<Object> objectArray) {
+	protected InventoryItem(ArrayList<Object> objectArray) {
 		if (objectArray.isEmpty()) {
 			this.id = -9999;
 			this.price = -1;

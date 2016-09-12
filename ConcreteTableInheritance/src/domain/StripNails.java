@@ -7,7 +7,7 @@ public class StripNails extends Fastener {
 	private int numPerStrip;
 	private static int COLUMN_NUMPERSTRIP = 4;
 	private static int COLUMN_LENGTH = 5;
-	public StripNails(ArrayList<Object> objectArray) {
+	protected StripNails(ArrayList<Object> objectArray) {
 		super(objectArray);
 	}
 

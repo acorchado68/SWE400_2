@@ -12,7 +12,7 @@ public class Nail extends Fastener {
 	 * 
 	 * @param objArray
 	 */
-	public Nail(ArrayList<Object> objArray) {
+	protected Nail(ArrayList<Object> objArray) {
 		super(objArray);
 	}
 
