@@ -26,7 +26,7 @@ public class NailMapper extends AbstractFastenerMapper
 	 */
 	public NailMapper( String upc, int manufacturerID, int price, double length, int numberInBox) throws SQLException 
 	{
-		super(upc, manufacturerID, price, length);
+		super(upc, manufacturerID, price, length, "Nail");
 		
 			Connection conn = DBConnectionManager.getConnection();
 			

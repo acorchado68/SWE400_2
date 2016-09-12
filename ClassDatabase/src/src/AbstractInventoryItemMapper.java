@@ -24,25 +24,27 @@ public abstract class AbstractInventoryItemMapper extends Mapper
 	 * @param price
 	 * @throws SQLException 
 	 */
-	public AbstractInventoryItemMapper( String upc, int manufacturerID, int price) throws SQLException
+	public AbstractInventoryItemMapper( String upc, int manufacturerID, int price, String itemType) throws SQLException
 	{
 		this.upc= upc;
 		this.manufacturerID = manufacturerID;
 		this.price = price;
 		
 			Connection conn = DBConnectionManager.getConnection();
-			PreparedStatement query = conn.prepareStatement("Insert into InventoryItem (upc, manufacturerID, price) VALUES (?,?,?);"); 
+			PreparedStatement query = conn.prepareStatement("Insert into InventoryItem (upc, manufacturerID, price, ItemType) VALUES (?,?,?,?);"); 
 			
 			query.setString(1, upc);
 			query.setInt(2, manufacturerID);
 			query.setInt(3, price);
+			query.setString(4, itemType);
 			
 			query.execute();
 			
-			PreparedStatement findID = conn.prepareStatement("Select id From InventoryItem Where upc = ? and manufacturerId = ? and price = ? ");
+			PreparedStatement findID = conn.prepareStatement("Select id From InventoryItem Where upc = ? and manufacturerId = ? and price = ? and ItemType = ?;");
 			findID.setString(1, upc);
 			findID.setInt(2, manufacturerID);
 			findID.setInt(3, price);
+			findID.setString(4, itemType);
 			
 			ResultSet rs = findID.executeQuery();
 			rs.next();

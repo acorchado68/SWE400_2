@@ -21,9 +21,9 @@ public abstract class AbstractFastenerMapper extends AbstractInventoryItemMapper
 	 * @param length
 	 * @throws SQLException 
 	 */
-	public AbstractFastenerMapper(String upc, int manufacturerID, int price, double length) throws SQLException 
+	public AbstractFastenerMapper(String upc, int manufacturerID, int price, double length, String itemType) throws SQLException 
 	{
-		super(upc, manufacturerID, price);
+		super(upc, manufacturerID, price, itemType);
 
 			Connection conn = DBConnectionManager.getConnection();
 	

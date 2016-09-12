@@ -13,6 +13,11 @@ public class ToolMapper extends AbstractInventoryItemMapper
 {
 	String description;
 	
+	public ToolMapper(String upc, int manufacturerID, int price, String description) throws SQLException
+	{
+		this(upc, manufacturerID, price, description, "Tool");	
+	}
+	
 	/**
 	 * creation constructor
 	 * @param id 
@@ -22,9 +27,9 @@ public class ToolMapper extends AbstractInventoryItemMapper
 	 * @param description
 	 * @throws SQLException 
 	 */
-	public ToolMapper(String upc, int manufacturerID, int price, String description) throws SQLException 
+	public ToolMapper(String upc, int manufacturerID, int price, String description, String itemType) throws SQLException 
 	{
-		super(upc, manufacturerID, price);
+		super(upc, manufacturerID, price, itemType);
 	
 			Connection conn = DBConnectionManager.getConnection();
 			

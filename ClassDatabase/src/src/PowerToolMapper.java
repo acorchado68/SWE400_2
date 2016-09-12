@@ -25,7 +25,7 @@ public class PowerToolMapper extends ToolMapper
 	 */
 	public PowerToolMapper(String upc, int manufacturerID, int price, String description, boolean batteryPowered) throws SQLException 
 	{
-		super(upc, manufacturerID, price, description);
+		super(upc, manufacturerID, price, description, "PowerTool");
 	
 			Connection conn = DBConnectionManager.getConnection();
 			

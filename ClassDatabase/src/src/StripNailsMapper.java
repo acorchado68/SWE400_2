@@ -14,7 +14,7 @@ public class StripNailsMapper extends AbstractFastenerMapper
 	protected int numberInStrip;
 	public StripNailsMapper(String upc, int manufacturerID, int price, double length, int numberInStrip) throws SQLException 
 	{
-			super(upc, manufacturerID, price, length);
+			super(upc, manufacturerID, price, length, "StripNail");
 	
 			Connection conn = DBConnectionManager.getConnection();
 			
@@ -42,7 +42,7 @@ public class StripNailsMapper extends AbstractFastenerMapper
 			rs.next();
 			
 					
-			this.id = Integer.parseInt(rs.getString("id"));
+			this.id = rs.getInt("id");
 			this.upc= rs.getString("upc");
 			this.length = Double.parseDouble(rs.getString("length"));
 			this.manufacturerID = Integer.parseInt(rs.getString("manufacturerId"));

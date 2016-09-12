@@ -49,7 +49,7 @@ class MockInventoryItem extends AbstractInventoryItemMapper
 {	
 	MockInventoryItem( String upc, int manufacturerID, int price) throws SQLException
 	{
-		super(upc,manufacturerID, price);
+		super(upc,manufacturerID, price, "");
 	}
 
 	@Override

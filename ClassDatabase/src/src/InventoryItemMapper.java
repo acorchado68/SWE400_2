@@ -1,26 +1,99 @@
 package src;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-import javax.tools.Tool;
+import enums.Nails;
+import enums.PowerTools;
+import enums.StripNails;
+import enums.Tools;
 
-import org.junit.runner.RunWith;
 
+/**
+ * InventoryItemMapper.java
+ * @author Zachary & Scott
+ * Runner, creates a arrayList of items
+ */
 public class InventoryItemMapper extends Mapper
 {
-	
+	/**
+	 * Main method that c
+	 * @param args
+	 * @throws SQLException
+	 */
 	public static void main(String args[]) throws SQLException
 	{
-		//NailMapper a = new NailMapper(7, "5a", 9, 10, 5, 20);
-		PowerToolMapper pwt1 = new PowerToolMapper("6", 5, 10, "9", true);
-		StripNailsMapper sn1 = new StripNailsMapper("4", 6, 5, 10, 30);
-		//new ToolMapper(2, "9",5, 7, "5");
-		//NailMapper Nail = new NailMapper(7);
-		//Arraylist.add(Nail);
+		 ArrayList<AbstractInventoryItemMapper> dbItem = new ArrayList<AbstractInventoryItemMapper>();
+		createDatabase();//Instatiates the Database, comment out if already created.
 		
-		//ToolMapper tool = new ToolMapper(2);
-		//PowerToolMapper powTool = new PowerToolMapper(15);
+		Connection conn = DBConnectionManager.getConnection();
+	
+		PreparedStatement query = conn.prepareStatement("Select id, ItemType From InventoryItem;");
+		ResultSet rs = query.executeQuery();
+	
+		while(rs.next())
+		{	
+			dbItem.add(findClass(rs.getInt("id"), rs.getString("ItemType")));
+		}
+	}
+
+	/**
+	 * Instantiates the Database 
+	 * @throws SQLException
+	 */
+	private static void createDatabase() throws SQLException 
+	{				
+		for(StripNails stripNails : StripNails.values())
+		{	
+			new StripNailsMapper(stripNails.getUpc(), stripNails.getManufacturerID(), stripNails.getPrice(), stripNails.getLength(), stripNails.getNumberInStrip());
+		}
 		
-		PowerToolXStripNailMapper link1 = new PowerToolXStripNailMapper(pwt1, sn1);
+		for(Nails nails : Nails.values())
+		{
+			new NailMapper(nails.getUpc(), nails.getManufacturerID(), nails.getPrice(), nails.getLength(), nails.getNumberInBox());
+		}
+		
+		for(PowerTools powerTool : PowerTools.values())
+		{
+			new PowerToolMapper(powerTool.getUpc(), powerTool.getManufacturerID(), powerTool.getPrice(), powerTool.getDescription(), powerTool.isBatteryPowered());
+		}
+		
+		for(Tools tool : Tools.values())
+		{		
+			new ToolMapper(tool.getUpc(),tool.getManufacturerID(), tool.getPrice(), tool.getDescription());
+		}
+	}
+	
+	/**
+	 * finds the type of the id from the database
+	 * @param string
+	 * @param string2
+	 * @return
+	 * @throws SQLException 
+	 * @throws NumberFormatException 
+	 */
+	private static AbstractInventoryItemMapper findClass(int idNum, String itemType) throws NumberFormatException, SQLException 
+	{
+		AbstractInventoryItemMapper item = null;
+		if(itemType.equals("Tool"))
+		{
+			item = new ToolMapper(idNum);
+		}
+		else if(itemType.equals("PowerTool"))
+		{
+			item = new PowerToolMapper(idNum);
+		}
+		else if(itemType.equals("Nail"))
+		{
+			item = new NailMapper(idNum);
+		}
+		else if(itemType.equals("StripNail"))
+		{
+			item = new StripNailsMapper(idNum);
+		}
+		return item;
 	}
 	
 	

@@ -58,7 +58,7 @@ class MockFastener extends AbstractFastenerMapper
 {	
 	MockFastener( String upc, int manufacturerID, int price, double length) throws SQLException
 	{
-		super(upc,manufacturerID, price,length);
+		super(upc,manufacturerID, price,length, "");
 	}
 
 	@Override
