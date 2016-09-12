@@ -15,20 +15,6 @@ public class TestInventoryItem{
 		assertTrue(mockItem.getManufacturerId() == -1);
 		assertTrue(mockItem.getPrice() == -1);
 		assertTrue(mockItem.getUpc().equals("NOT AN ITEM/DOES NOT EXIST"));
-		ArrayList<Object> objArray = new ArrayList<Object>();
-		
-		{
-			objArray.add(((Integer)(-5)));
-			objArray.add(((Integer)(-5)).toString());
-			objArray.add(((Integer)(-5)));
-			objArray.add(((Integer)(-5)));
-		}
-			mockItem = new MockInventoryItem(objArray);
-			
-		assertTrue(mockItem.getId() == -5);
-		assertTrue(mockItem.getManufacturerId() == -5);
-		assertTrue(mockItem.getPrice() == -5);
-		assertTrue(mockItem.getUpc().equals("-5"));	
 		
 		mockItem = new MockInventoryItem();
 		mockItem.allMutatorsNegativeFive();

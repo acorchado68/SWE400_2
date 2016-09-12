@@ -24,8 +24,10 @@ public class CTITestCase {
 	protected static ResultSet resultSet;
 	protected static ArrayList<Object> objArray = null;
 	private static Savepoint savePoint;
+
 	/**
-	 * Before sets up the connection, statement and a savepoint for reverting later
+	 * Before sets up the connection, statement and a savepoint for reverting
+	 * later
 	 * 
 	 * @throws SQLException
 	 * @throws Exception
@@ -38,13 +40,15 @@ public class CTITestCase {
 		if (objArray == null) {
 			objArray = new ArrayList<Object>();
 		}
-		
+
 		try {
 			statement = connection.createStatement();
-			/*statement.execute("START TRANSACTION");
-			statement.execute("SAVEPOINT beginTest");*/
+			/*
+			 * statement.execute("START TRANSACTION");
+			 * statement.execute("SAVEPOINT beginTest");
+			 */
 			savePoint = connection.setSavepoint();
-			//populateTables();
+			// populateTables();
 
 		} catch (SQLException exception) {
 			exception.printStackTrace();
@@ -53,21 +57,25 @@ public class CTITestCase {
 		}
 	}
 
-	
-
 	/**
-	 * After rollsback the changes, re-enables auto-commit, opens a new statement and resets the auto_increment values using that statement.
-	 * Then it closes the connection/statement before finishing
+	 * After rollsback the changes, re-enables auto-commit, opens a new
+	 * statement and resets the auto_increment values using that statement. Then
+	 * it closes the connection/statement before finishing
+	 * 
 	 * @throws SQLException
 	 * @throws Exception
 	 */
 	@AfterClass
 	public static void after() throws SQLException, Exception {
 		connection.rollback(savePoint);
-		//objArray.clear();
-		// resultSet.close();
-		// statement.close();
-		// connection.close();
-
+		connection.setAutoCommit(true);
+		statement.close();
+		statement = InventoryItemCommand.getStatement();
+		String[] paramArray = { ".Nail", ".Tool", ".PowerTool", ".StripNails" };
+		for (String s : paramArray) {
+			statement.execute("ALTER TABLE `swe400-22`" + s + " AUTO_INCREMENT=1;");
+		}
+		statement.close();
+		connection.close();
 	}
 }
