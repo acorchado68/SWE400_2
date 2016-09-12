@@ -30,7 +30,7 @@ public enum StringAssemblerEnum implements SAEParent {
 	DESCRIPTION("description") {
 		public String getValue(InventoryItem i) {
 			Tool t = (Tool) i;
-			return t.getDescription();
+			return "'" + t.getDescription() +"'";
 		}
 
 	},
