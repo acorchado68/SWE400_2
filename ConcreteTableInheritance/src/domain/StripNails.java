@@ -48,7 +48,7 @@ public class StripNails extends Fastener {
 		return InventoryItemCommand.StripNails.find(id);
 	}
 
-	public Integer getNumPerStrip() {
+	public int getNumPerStrip() {
 		return numPerStrip;
 	}
 
