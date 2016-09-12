@@ -13,6 +13,8 @@ import src.DBConnectionManager;
 import src.PowerToolMapper;
 import src.PowerToolXStripNailMapper;
 import src.StripNailsMapper;
+import enums.PowerTools;
+import enums.StripNails;
 
 /**
  * TestPowerToolXStripNailMapper
@@ -45,5 +47,22 @@ public class TestsPowerToolXStripNailMapper extends abstractTests
 		assertEquals(sNMapper.getId(),rs.getInt("StripNailID"));
 	}
 	
-	
+	/**
+	 * Test finder methods I use to make using enums easier 
+	 * @throws SQLException
+	 */
+	@Test
+	public void testFinders() throws SQLException
+	{
+		PowerTools powerTool = PowerTools.HITACHI_PNEUMATIC_NAILER;
+		PowerToolMapper pwtool = new PowerToolMapper(powerTool.getUpc(), powerTool.getManufacturerID(), powerTool.getPrice(), powerTool.getDescription(), powerTool.isBatteryPowered());
+		
+		assertEquals(PowerToolXStripNailMapper.findPT(PowerTools.HITACHI_PNEUMATIC_NAILER).getId(), pwtool.getId());
+		
+		StripNails stripNail = StripNails.ROUND_HEAD_NAIL_STRIP;
+		StripNailsMapper sn = new StripNailsMapper(stripNail.getUpc(), stripNail.getManufacturerID(), stripNail.getPrice(),stripNail.getLength() , stripNail.getNumberInStrip());
+		
+		assertEquals(PowerToolXStripNailMapper.findSN(StripNails.ROUND_HEAD_NAIL_STRIP).getId(), sn.getId());
+			
+	}
 }

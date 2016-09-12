@@ -66,25 +66,25 @@ public class InventoryItemMapper
 			new ToolMapper(tool.getUpc(),tool.getManufacturerID(), tool.getPrice(), tool.getDescription());
 		}
 		
-		new PowerToolXStripNailMapper(PowerToolXStripNailMapper.findPTID(PowerTools.HITACHI_PNEUMATIC_NAILER),
-				PowerToolXStripNailMapper.findSNID(StripNails.ROUND_HEAD_NAIL_STRIP));
-		new PowerToolXStripNailMapper(PowerToolXStripNailMapper.findPTID(PowerTools.FRAMING_NAILER),
-				PowerToolXStripNailMapper.findSNID(StripNails.ROUND_HEAD_NAIL_STRIP));
+		new PowerToolXStripNailMapper(PowerToolXStripNailMapper.findPT(PowerTools.HITACHI_PNEUMATIC_NAILER),
+				PowerToolXStripNailMapper.findSN(StripNails.ROUND_HEAD_NAIL_STRIP));
+		new PowerToolXStripNailMapper(PowerToolXStripNailMapper.findPT(PowerTools.FRAMING_NAILER),
+				PowerToolXStripNailMapper.findSN(StripNails.ROUND_HEAD_NAIL_STRIP));
 		
-		new PowerToolXStripNailMapper(PowerToolXStripNailMapper.findPTID(PowerTools.HITACHI_PNEUMATIC_NAILER),
-				PowerToolXStripNailMapper.findSNID(StripNails.QUALITY_ROUND_HEAD_NAIL_STRIP));
-		new PowerToolXStripNailMapper(PowerToolXStripNailMapper.findPTID(PowerTools.FRAMING_NAILER),
-				PowerToolXStripNailMapper.findSNID(StripNails.QUALITY_ROUND_HEAD_NAIL_STRIP));
+		new PowerToolXStripNailMapper(PowerToolXStripNailMapper.findPT(PowerTools.HITACHI_PNEUMATIC_NAILER),
+				PowerToolXStripNailMapper.findSN(StripNails.QUALITY_ROUND_HEAD_NAIL_STRIP));
+		new PowerToolXStripNailMapper(PowerToolXStripNailMapper.findPT(PowerTools.FRAMING_NAILER),
+				PowerToolXStripNailMapper.findSN(StripNails.QUALITY_ROUND_HEAD_NAIL_STRIP));
 		
-		new PowerToolXStripNailMapper(PowerToolXStripNailMapper.findPTID(PowerTools.BRAD_CORDLESS_NAILER),
-				PowerToolXStripNailMapper.findSNID(StripNails.BRAD_STRIP));
-		new PowerToolXStripNailMapper(PowerToolXStripNailMapper.findPTID(PowerTools.BRAD_NAILER),
-				PowerToolXStripNailMapper.findSNID(StripNails.BRAD_STRIP));
+		new PowerToolXStripNailMapper(PowerToolXStripNailMapper.findPT(PowerTools.BRAD_CORDLESS_NAILER),
+				PowerToolXStripNailMapper.findSN(StripNails.BRAD_STRIP));
+		new PowerToolXStripNailMapper(PowerToolXStripNailMapper.findPT(PowerTools.BRAD_NAILER),
+				PowerToolXStripNailMapper.findSN(StripNails.BRAD_STRIP));
 		
-		new PowerToolXStripNailMapper(PowerToolXStripNailMapper.findPTID(PowerTools.BRAD_CORDLESS_NAILER),
-				PowerToolXStripNailMapper.findSNID(StripNails.BRIGHT_FINISH_BRAD_STRIP));
-		new PowerToolXStripNailMapper(PowerToolXStripNailMapper.findPTID(PowerTools.BRAD_NAILER),
-				PowerToolXStripNailMapper.findSNID(StripNails.BRIGHT_FINISH_BRAD_STRIP));
+		new PowerToolXStripNailMapper(PowerToolXStripNailMapper.findPT(PowerTools.BRAD_CORDLESS_NAILER),
+				PowerToolXStripNailMapper.findSN(StripNails.BRIGHT_FINISH_BRAD_STRIP));
+		new PowerToolXStripNailMapper(PowerToolXStripNailMapper.findPT(PowerTools.BRAD_NAILER),
+				PowerToolXStripNailMapper.findSN(StripNails.BRIGHT_FINISH_BRAD_STRIP));
 	}
 	
 	/**

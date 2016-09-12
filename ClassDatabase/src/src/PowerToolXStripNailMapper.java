@@ -61,7 +61,7 @@ public class PowerToolXStripNailMapper
 		return SNMapper;
 	}
 
-	public static PowerToolMapper findPTID(PowerTools powertool) throws SQLException
+	public static PowerToolMapper findPT(PowerTools powertool) throws SQLException
 	{
 		Connection conn = DBConnectionManager.getConnection();
 		
@@ -77,7 +77,7 @@ public class PowerToolXStripNailMapper
 		return new PowerToolMapper(Integer.parseInt(rs.getString("id")));
 	}
 	
-	public static StripNailsMapper findSNID(StripNails stripnail) throws SQLException
+	public static StripNailsMapper findSN(StripNails stripnail) throws SQLException
 	{
 		Connection conn = DBConnectionManager.getConnection();
 		
