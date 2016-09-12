@@ -4,21 +4,25 @@ import java.util.ArrayList;
 
 public class Tool extends InventoryItem {
 	protected String description;
+	/**
+	 * The ordinal of the column/entry in the arraylist for the description of the tool
+	 */
 	private static int COLUMN_DESCRIPTION = 4;
 
 	/**
-	 * A constructor for tool
-	 * 
+	 * Creation constructor - not accessible outside of this package
+	 * @see InventoryItemFactory
 	 * @param objArray
-	 *            an arraylist of objects representing a row of data from the
-	 *            Tool table
+	 *            an arraylist of objects that will be used to initialize this
+	 *            Tool object
 	 */
 	protected Tool(ArrayList<Object> objArray) {
 		super(objArray);
 	}
 	/**
-	 * Finder constructor for tool, accepts an id and finds the corresponding row in the database
-	 * @param id
+	 * The "Finder" Constructor, calls a static method which calls the correct method from the InventoryItemCommand enumeration
+	 * 
+	 * @param id - the id of the desired row in the database
 	 */
 	public Tool(int id) {
 		this(findList(id));

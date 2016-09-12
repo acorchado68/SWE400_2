@@ -7,11 +7,28 @@ public abstract class InventoryItem {
 	private int price;
 	private int manufacturerId;
 	private String upc;
+	/**
+	 * The ordinal of the column/entry in the arraylist for the id
+	 */
 	private static int COLUMN_ID = 0;
+	/**
+	 * The ordinal of the column/entry in the arraylist for the UPC
+	 */
 	private static int COLUMN_UPC = 1;
+	/**
+	 * The ordinal of the column/entry in the arraylist for the manufacturerID
+	 */
 	private static int COLUMN_MFGID = 2;
+	/**
+	 * The ordinal of the column/entry in the arraylist for the price
+	 */
 	private static int COLUMN_PRICE = 3;
-	private static int NO_ID_ISSUED = -27; //means the object has not yet been stored in the database, the database issues the IDs
+	/**
+	 * 'null' value to represent the ID for objects that have not yet been
+	 * inserted into the database
+	 */
+	private static int NO_ID_ISSUED = -27;
+
 	protected InventoryItem(ArrayList<Object> objectArray) {
 		if (objectArray.isEmpty()) {
 			this.id = -9999;
@@ -24,8 +41,7 @@ public abstract class InventoryItem {
 		}
 
 	}
-	
-	
+
 	/**
 	 * A really gross helper method for the constructor
 	 * 
@@ -34,10 +50,9 @@ public abstract class InventoryItem {
 	 */
 	private void parseParameterObjects(ArrayList<Object> objectArray) {
 
-		if((Integer)objectArray.get(COLUMN_ID) == NO_ID_ISSUED)
-		{
+		if ((Integer) objectArray.get(COLUMN_ID) == NO_ID_ISSUED) {
 			this.id = NO_ID_ISSUED;
-		}else{
+		} else {
 			this.id = (Integer) objectArray.get(COLUMN_ID);
 		}
 		this.upc = (String) objectArray.get(COLUMN_UPC);
@@ -47,7 +62,7 @@ public abstract class InventoryItem {
 	}
 
 	/**
-	 * Mutators and accessors (getters/setters) below
+	 * Accessor for ID of this InventoryItem object
 	 */
 	public int getId() {
 		return id;
@@ -87,12 +102,21 @@ public abstract class InventoryItem {
 
 	/**
 	 * This method will be implemented by subclasses, but only executed in the
-	 * constructor declared above
+	 * constructor declared above Implementations will provide behavior for
+	 * initializing class specific fields in objects that inherit from
+	 * InventoryItem
 	 * 
 	 * @param objectArray
 	 */
 	protected abstract void handleUniqueColumn(ArrayList<Object> objectArray);
+
+	/**
+	 * This method will be implemented by subclasses, implementations will call
+	 * the appropriate method/enumeration in the InventoryItemCommand enum to
+	 * insert an object into the database
+	 * 
+	 * @param objectArray
+	 */
 	protected abstract void insert();
-	
 
 }
