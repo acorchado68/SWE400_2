@@ -1,35 +1,40 @@
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Savepoint;
 
 /**
  *
  * Nick Martinez and Andrew Corchado - Single Table Inheritence.
  * Created by Andrew Corchado on 9/11/16.
  */
-public abstract class InheritableTest
+public class InheritableTest
 {
-    protected Connection connection;
+    protected static Connection connection;
+    protected static Savepoint sp;
 
     /*
      * Start testing.
      */
-    @Before
-    public void before() throws SQLException
+    @BeforeClass
+    public static void before() throws SQLException
     {
         connection = DBConnection.getConnection();
         connection.setAutoCommit(false);
+        sp = connection.setSavepoint();
     }
 
     /*
      * Close testing and rollback.
      */
-    @After
-    public void after() throws SQLException
+    @AfterClass
+    public static void after() throws SQLException
     {
-        connection.rollback();
+        connection.rollback(sp);
         connection.close();
     }
 

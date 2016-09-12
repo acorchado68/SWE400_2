@@ -10,26 +10,26 @@ import static junit.framework.TestCase.assertEquals;
 
 /**
  *
- * Nick Martinez and Andrew Corchado - Single Table Inheritence
+ * Nick Martinez and Andrew Corchado - Single Table Inheritance.
  * Created by Nick Martinez on 9/11/16.
  */
-public class TestTool extends InheritableTest
+public class TestPowerTool extends InheritableTest
 {
-
     @Rule
     public final ExpectedException exception = ExpectedException.none();
 
     /**
-     * Testing basic insertion of Tool into database.
+     * Testing basic insertion of PowerTool into database.
      */
     @Test
-    public void testInsertTool()
+    public void testInsertPowerTool()
     {
-        final String upc = "0121232234";
-        final int manufacturerID = 32;
-        final int price = 899;
-        final String description = "Ball Peen Hammer";
-        new Tool(upc, manufacturerID, price, description);
+        final String upc = "1231231234";
+        final int manufacturerID = 13;
+        final int price = 39900;
+        final String description = "Pnematic Nail Gun";
+        final boolean batteryPowered = false;
+        new PowerTool(upc, manufacturerID, price, description, batteryPowered);
 
         String query = "SELECT * FROM " + InventoryItem.getTableName() +
                 " WHERE upc = (?);";
@@ -43,6 +43,7 @@ public class TestTool extends InheritableTest
             assertEquals(manufacturerID, rs.getInt("manufacturerID"));
             assertEquals(price, rs.getInt("price"));
             assertEquals(description, rs.getString("description"));
+            assertEquals(batteryPowered, rs.getBoolean("batteryPowered"));
         } catch (SQLException exception )
         {
             exception.printStackTrace();
@@ -50,34 +51,33 @@ public class TestTool extends InheritableTest
     }
 
     /**
-     * We should be able to find a Tool record, and load a new Tool object
+     * We should be able to find a PowerTool record, and load a new PowerTool object
      * with data from the record.
      */
     @Test
-    public void testFindTool() throws SQLException
+    public void testFindPowerTool() throws SQLException
     {
         // insert
-        Tool tool = new Tool("0121232234", 32, 899, "Ball Peen Hammer");
+        PowerTool powerTool = new PowerTool("1231231234", 13, 39900, "Pnematic Nail Gun", false);
 
         // find
-        Tool hammer = new Tool(tool.getId());
+        PowerTool powerHammer = new PowerTool(powerTool.getId());
 
-        assertEquals(hammer.getId(), tool.getId());
-        assertEquals(hammer.getUpc(), tool.getUpc());
-        assertEquals(hammer.getManufacturerID(), tool.getManufacturerID());
-        assertEquals(hammer.getPrice(), tool.getPrice());
-        assertEquals(hammer.getDescription(), tool.getDescription());
+        assertEquals(powerHammer.getId(), powerTool.getId());
+        assertEquals(powerHammer.getUpc(), powerTool.getUpc());
+        assertEquals(powerHammer.getManufacturerID(), powerTool.getManufacturerID());
+        assertEquals(powerHammer.getPrice(), powerTool.getPrice());
+        assertEquals(powerHammer.getDescription(), powerTool.getDescription());
     }
 
     /**
      * If there is no record in the database, then throw an exception.
      */
     @Test
-    public void testFindToolNotFound() throws SQLException
+    public void testPowerToolNotFound() throws SQLException
     {
         exception.expect(SQLException.class);
         exception.expectMessage("Record not found.");
-        new Tool(-1);
+        new PowerTool(-1);
     }
-
 }

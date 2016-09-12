@@ -21,29 +21,6 @@ public abstract class InventoryItem
 
     }
 
-//    // TEST
-//    public InventoryItem(String upc, int manufacturerID, int price)
-//    {
-//        this.upc = upc;
-//        this.manufacturerID = manufacturerID;
-//        this.price = price;
-//        insert();
-//    }
-
-//    public InventoryItem(int id, String upc, int manufacturerID, int price)
-//    {
-//        this.id = id;
-//        this.upc = upc;
-//        this.manufacturerID = manufacturerID;
-//        this.price = price;
-//        insert();
-//    }
-
-//    public InventoryItem(int id)
-//    {
-//        find(id);
-//    }
-
     /**
      * Returns the database table name.
      * @return - the database table name

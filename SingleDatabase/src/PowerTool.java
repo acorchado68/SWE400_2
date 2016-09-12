@@ -86,13 +86,17 @@ public class PowerTool extends Tool
             stmt.setInt(1, id);
 
             ResultSet rs = stmt.executeQuery();
-            rs.next();
-            this.id = rs.getInt("id");
-            upc = rs.getString("upc");
-            manufacturerID = rs.getInt("manufacturerID");
-            price = rs.getInt("price");
-            description = rs.getString("description");
-            batteryPowered = rs.getBoolean("batteryPowered");
+            if( rs.next() ) {
+                this.id = rs.getInt("id");
+                upc = rs.getString("upc");
+                manufacturerID = rs.getInt("manufacturerID");
+                price = rs.getInt("price");
+                description = rs.getString("description");
+                batteryPowered = rs.getBoolean("batteryPowered");
+            } else
+            {
+                throw new SQLException("Record not found.");
+            }
         } catch (SQLException exception)
         {
             exception.printStackTrace();
