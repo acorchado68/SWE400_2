@@ -1,18 +1,12 @@
 package domain.test;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.sql.ResultSet;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
 import domain.InventoryItem;
-import junit.framework.TestCase;
 
-public class TestInventoryItem extends CTITestCase {
+public class TestInventoryItem{
 
 	@Test
 	public void testFields() {

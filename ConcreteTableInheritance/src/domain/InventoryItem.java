@@ -1,8 +1,5 @@
 package domain;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public abstract class InventoryItem {
@@ -14,7 +11,7 @@ public abstract class InventoryItem {
 	private static int COLUMN_UPC = 1;
 	private static int COLUMN_MFGID = 2;
 	private static int COLUMN_PRICE = 3;
-	private static int NO_ID_ISSUED = -27;
+	private static int NO_ID_ISSUED = -27; //means the object has not yet been stored in the database, the database issues the IDs
 	public InventoryItem(ArrayList<Object> objectArray) {
 		if (objectArray.isEmpty()) {
 			this.id = -9999;

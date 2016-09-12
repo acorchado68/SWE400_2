@@ -22,6 +22,7 @@ public enum InventoryItemCommand {
 	private static Connection connection;
 	protected static String uri = "jdbc:mysql://db.cs.ship.edu:3306/swe400-22?user=swe400_2&password=pwd4swe400_2F16";
 	private String[] splitString;
+	private static Statement statement;
 
 	InventoryItemCommand(String tableName, String valueString,int numColumns) {
 		this.tableName = tableName;
@@ -34,10 +35,6 @@ public enum InventoryItemCommand {
 		String temporaryString = String.copyValueOf(valueString.toCharArray());
 		temporaryString = temporaryString.replaceAll("[)(]","");
 		splitString = temporaryString.split(",");
-	}
-	private String[] getSplitString()
-	{
-		return splitString;
 	}
 	protected ArrayList<Object> find(int id) {
 		return getRowList(id);
@@ -57,10 +54,18 @@ public enum InventoryItemCommand {
 		}
 		return connection;
 	}
-
+	
+	public static Statement getStatement() throws SQLException
+	{
+		if(statement == null)
+		{
+			statement = getConnection().createStatement();
+		}
+		return statement;
+	}
 	private ArrayList<Object> getRowList(int id) {
 		try {
-			Statement statement = connection.createStatement();
+			getStatement();
 			if (statement.execute("SELECT * FROM " + this.tableName + " WHERE id=" + id)) {
 				ResultSet results = statement.getResultSet();
 				results.first();
@@ -68,10 +73,8 @@ public enum InventoryItemCommand {
 				for (int i = 1; i < this.numColumns+1; i++) {
 					objArray.add(results.getObject(i));
 				}
-				statement.close();
 				return objArray;
 			}
-			statement.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -80,11 +83,15 @@ public enum InventoryItemCommand {
 
 	protected boolean insert( InventoryItem in) {
 		try {
-			Statement statement = connection.createStatement();
-			statement.execute("START TRANSACTION");
+			getStatement();
 			statement.execute(assembleString(in));
-			statement.execute("COMMIT");
-			statement.close();
+			{
+				//update id after insertion
+				statement.execute("SELECT * FROM " + this.tableName + " WHERE upc='" + in.getUpc() +"'");
+				ResultSet result = statement.getResultSet();
+				result.first();
+				in.setId(result.getInt(1));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
