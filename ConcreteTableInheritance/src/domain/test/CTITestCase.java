@@ -11,7 +11,6 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
 import domain.InventoryItemCommand;
-import wellington.*;
 
 /**
  * 
