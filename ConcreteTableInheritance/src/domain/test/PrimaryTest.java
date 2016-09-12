@@ -87,7 +87,6 @@ public class PrimaryTest extends CTITestCase {
 	 */
 	@Test
 	public void testPowerTool() {
-		ArrayList<PowerTool> powerToolArray = new ArrayList<PowerTool>();
 		for (wellington.PowerTools n : wellington.PowerTools.values()) {
 
 			PowerTool aPowerTool = (PowerTool) InventoryItemFactory.PowerTool.buildItem(n.getUpc(),
